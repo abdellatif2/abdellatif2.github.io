@@ -7,15 +7,36 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
+      // Background blur trigger
+      setScrolled(window.scrollY > 20);
 
-      const sections = ['hero', 'research', 'models', 'publications', 'experience', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 120;
+      // Scroll progress percentage
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolledPct = (winScroll / height) * 100;
+      setScrollProgress(scrolledPct);
+
+      // Active section detection
+      const sections = [
+        'hero',
+        'about',
+        'publications',
+        'models',
+        'communications',
+        'peer-review',
+        'experience',
+        'education',
+        'teaching',
+        'skills',
+        'contact'
+      ];
+      const scrollPosition = window.scrollY + 140;
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -35,112 +56,147 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#hero', id: 'hero' },
-    { name: 'Research', href: '#research', id: 'research' },
-    { name: 'Numerical Models', href: '#models', id: 'models' },
-    { name: 'Publications', href: '#publications', id: 'publications' },
-    { name: 'Experience', href: '#experience', id: 'experience' },
-    { name: 'Skills', href: '#skills', id: 'skills' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { num: '01', name: 'About', href: '#about', id: 'about' },
+    { num: '02', name: 'Publications', href: '#publications', id: 'publications' },
+    { num: '03', name: 'FEM & Projects', href: '#models', id: 'models' },
+    { num: '04', name: 'Communications', href: '#communications', id: 'communications' },
+    { num: '05', name: 'Peer Review', href: '#peer-review', id: 'peer-review' },
+    { num: '06', name: 'Experience', href: '#experience', id: 'experience' },
+    { num: '07', name: 'Education', href: '#education', id: 'education' },
+    { num: '08', name: 'Teaching', href: '#teaching', id: 'teaching' },
+    { num: '09', name: 'Stack', href: '#skills', id: 'skills' },
   ];
 
   return (
-    <header 
-      className={`sticky top-0 z-40 bg-white/95 backdrop-blur-xs transition-all duration-200 border-b ${
-        scrolled ? 'border-slate-200 shadow-2xs' : 'border-slate-100'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          
-          {/* Brand Name */}
-          <a href="#hero" className="flex items-center gap-2.5 group">
-            <span className="w-8 h-8 rounded bg-slate-900 text-white font-mono font-bold text-sm flex items-center justify-center">
-              AH
-            </span>
-            <div className="leading-tight">
-              <span className="font-bold text-slate-900 text-sm sm:text-base tracking-tight block group-hover:text-sky-700 transition-colors">
-                Abdellatif Hannachi
-              </span>
-              <span className="text-[11px] text-slate-500 font-mono block">
-                Ph.D. Candidate &bull; ENP
-              </span>
-            </div>
-          </a>
+    <>
+      {/* Scroll Progress Bar */}
+      <div 
+        className="fixed top-0 left-0 h-[3px] z-50 transition-all duration-75 pointer-events-none"
+        style={{
+          width: `${scrollProgress}%`,
+          background: 'linear-gradient(90deg, #C49B3C, #D4AF5A, #C49B3C)',
+          boxShadow: '0 0 8px rgba(196, 155, 60, 0.5)'
+        }}
+      />
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  className={`px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'text-sky-700 font-semibold bg-sky-50'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onOpenCvModal}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors cursor-pointer"
+      <header 
+        className={`sticky top-0 z-40 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-[#002147]/95 backdrop-blur-md shadow-lg border-b border-white/10' 
+            : 'bg-[#002147] border-b border-[#002147]'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14">
+            
+            {/* Empty left spacer or home anchor */}
+            <a 
+              href="#hero" 
+              className="text-white/40 hover:text-[#C49B3C] text-xs font-mono transition-colors"
+              title="Return to top"
+              aria-label="Return to top"
             >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Full CV (PDF)</span>
-            </button>
-
-            {/* Mobile Hamburger Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 border border-slate-200 cursor-pointer"
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 px-4 py-3 space-y-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`block px-3 py-2 rounded-md text-sm font-medium ${
-                activeSection === link.id
-                  ? 'text-sky-700 bg-sky-50 font-semibold'
-                  : 'text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              {link.name}
+              <span className="text-[#C49B3C] font-bold">&sect;</span>
             </a>
-          ))}
-          <div className="pt-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenCvModal();
-              }}
-              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-md bg-slate-900 text-white font-medium text-xs"
-            >
-              <FileText className="w-4 h-4" />
-              View & Print Full Academic CV
-            </button>
+
+            {/* Desktop Navigation Links */}
+            <nav className="hidden xl:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    className={`px-2.5 py-1 text-xs font-medium transition-colors rounded-xs ${
+                      isActive
+                        ? 'text-[#C49B3C] font-semibold bg-white/5'
+                        : 'text-white/80 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Desktop Secondary Action: CV Modal Button */}
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={onOpenCvModal}
+                className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-[#C49B3C] hover:text-white border border-[#C49B3C] hover:bg-[#C49B3C] rounded transition-colors cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Academic CV</span>
+              </button>
+            </div>
+
+            {/* Mobile / Tablet Hamburger Toggle */}
+            <div className="flex items-center gap-2 xl:hidden">
+              <button
+                onClick={onOpenCvModal}
+                className="hidden xs:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#C49B3C] border border-[#C49B3C] rounded hover:bg-[#C49B3C] hover:text-white transition-colors"
+              >
+                <FileText className="w-3 h-3" />
+                <span>CV</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-1.5 text-white hover:text-[#C49B3C] rounded focus:outline-hidden"
+                aria-label="Toggle navigation menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+
           </div>
         </div>
-      )}
-    </header>
+
+        {/* Mobile Full-screen Overlay Menu */}
+        {mobileMenuOpen && (
+          <div className="xl:hidden fixed inset-x-0 top-14 bottom-0 bg-[#002147] z-50 overflow-y-auto px-6 py-6 border-t border-white/10 flex flex-col justify-between">
+            <div>
+              <div className="pb-4 mb-4 border-b border-[#C49B3C]/30">
+                <p className="font-serif text-xl text-white font-bold">Abdellatif Hannachi</p>
+                <p className="text-xs text-[#C49B3C] font-mono mt-0.5">PhD Candidate &middot; École Nationale Polytechnique (ENP)</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 py-2 text-white/90 hover:text-[#C49B3C] text-sm transition-colors"
+                  >
+                    <span className="font-mono text-xs text-[#C49B3C] font-bold">{link.num}</span>
+                    <span>{link.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-white/10 mt-6 space-y-3">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenCvModal();
+                }}
+                className="w-full py-2.5 text-center text-xs font-semibold text-[#002147] bg-[#C49B3C] hover:bg-[#D4AF5A] rounded transition-colors flex items-center justify-center gap-2"
+              >
+                <FileText className="w-4 h-4" />
+                <span>View Full Academic CV</span>
+              </button>
+              <p className="text-center text-xs font-mono text-white/60">
+                <a href="mailto:abdellatif.hannachi@g.enp.edu.dz" className="hover:text-white">
+                  abdellatif.hannachi@g.enp.edu.dz
+                </a>
+              </p>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 };

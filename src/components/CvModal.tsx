@@ -74,7 +74,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-slate-700 pt-2">
               <span>Email: <strong>{PERSONAL_INFO.email}</strong></span>
               <span>•</span>
-              <span>ORCID: 0009-0004-8921-3482</span>
+              <span>ORCID: {PERSONAL_INFO.orcid}</span>
               <span>•</span>
               <span>Google Scholar: Abdellatif Hannachi</span>
             </div>

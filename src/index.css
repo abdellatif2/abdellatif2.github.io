@@ -1,36 +1,118 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --navy: #002147;
+    --navy-light: #003366;
+    --slate: #4A5568;
+    --off-white: #FAFAFA;
+    --gold: #C49B3C;
+    --gold-light: #D4AF5A;
+    --border: #E2E8F0;
+    --text-dark: #1A202C;
+    --text-muted: #718096;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--slate);
+    background-color: var(--off-white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
   }
   
   code, pre, .font-mono {
     font-family: 'Fira Code', monospace;
   }
 
-  .font-serif {
-    font-family: 'Merriweather', Georgia, serif;
+  h1, h2, h3, .font-serif, .academic-title {
+    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
-/* Engineering Blueprint & Subtle Grid Backgrounds */
-.bg-grid-slate-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #C49B3C, #D4AF5A, #C49B3C);
+  z-index: 99;
+  box-shadow: 0 0 8px rgba(196, 155, 60, 0.4);
+  pointer-events: none;
 }
 
-.dark .bg-grid-slate-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+/* Academic Section Styling */
+.academic-section {
+  padding: 4rem 0;
+  position: relative;
 }
 
-.bg-dot-pattern {
-  background-size: 20px 20px;
-  background-image: radial-gradient(rgba(100, 116, 139, 0.2) 1px, transparent 1px);
+.academic-section-alt {
+  background-color: #ffffff;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.academic-section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.85rem;
+  color: #002147;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #002147;
+  display: inline-block;
+  position: relative;
+}
+
+.academic-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #C49B3C;
+  transition: width 0.4s ease;
+}
+
+.academic-section:hover .academic-section-title::after {
+  width: 100%;
+}
+
+.academic-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  background-color: #ffffff;
+  border: 1px solid #E2E8F0;
+  color: #4A5568;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.academic-tag:hover {
+  border-color: #C49B3C;
+  color: #002147;
+  background-color: #FDFBF7;
+}
+
+/* CTA Banner */
+.cta-banner {
+  background-color: #002147;
+  color: #ffffff;
+  padding: 0.85rem 1.25rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 15px rgba(0, 33, 71, 0.12);
 }
 
 /* Custom Scrollbar */
@@ -45,14 +127,10 @@
   background: #cbd5e1;
   border-radius: 4px;
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
-}
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
-/* Print optimizations for CV download/print */
 @media print {
   body {
     background: white !important;
@@ -63,15 +141,5 @@
   }
   .print-only {
     display: block !important;
-  }
-  .print-break-inside-avoid {
-    break-inside: avoid;
-  }
-  .print-break-before {
-    break-before: page;
-  }
-  a {
-    text-decoration: none !important;
-    color: #0f172a !important;
   }
 }

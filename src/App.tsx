@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ResearchInterests } from './components/ResearchInterests';
-import { NumericalModels } from './components/NumericalModels';
+import { InstitutionsBanner } from './components/InstitutionsBanner';
+import { AboutSection } from './components/AboutSection';
 import { Publications } from './components/Publications';
+import { NumericalModels } from './components/NumericalModels';
+import { CommunicationsSection } from './components/CommunicationsSection';
+import { PeerReviewSection } from './components/PeerReviewSection';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
+import { EducationSection } from './components/EducationSection';
+import { TeachingSection } from './components/TeachingSection';
 import { SkillsGrid } from './components/SkillsGrid';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { CvModal } from './components/CvModal';
 
@@ -14,37 +18,48 @@ export default function App() {
   const [cvModalOpen, setCvModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-sky-100 selection:text-sky-900 font-sans antialiased">
-      {/* Top Navbar */}
-      <Navbar 
-        onOpenCvModal={() => setCvModalOpen(true)} 
-      />
+    <div className="min-h-screen bg-[#FAFAFA] text-[#4A5568] font-sans antialiased selection:bg-[#C49B3C] selection:text-white">
+      
+      {/* Top Navbar with Scroll Progress */}
+      <Navbar onOpenCvModal={() => setCvModalOpen(true)} />
 
-      {/* Main Content: Direct CV & Research Portfolio */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
-        {/* 1. Academic Bio & Background */}
+      {/* Main Content Area */}
+      <main>
+        {/* 1. Hero: Name, Role, Institutional Affiliations, Portrait & Clean Action Toolbar */}
         <Hero onOpenCvModal={() => setCvModalOpen(true)} />
 
-        {/* 2. Research Focus & Core Areas */}
-        <ResearchInterests />
+        {/* 2. Institutional Logos (LGSDS Lab, ENP School, IISEE Institute) */}
+        <InstitutionsBanner />
 
-        {/* 3. Numerical Models & Structural Engineering Projects (OpenSees & SAP2000) */}
-        <NumericalModels />
+        {/* 3. About & Research (Placed just after the logos as requested) */}
+        <AboutSection />
 
-        {/* 4. Publications, Papers & BibTeX */}
+        {/* 4. Publications & Theses (Minimalist citation list style matching reference) */}
         <Publications />
 
-        {/* 5. Education & Academic Trajectory */}
+        {/* 5. Numerical Models & Projects (Directly under Publications) */}
+        <NumericalModels />
+
+        {/* 6. Scientific Communications (Clean list with badges) */}
+        <CommunicationsSection />
+
+        {/* 7. Peer Review Activities (Simple and direct) */}
+        <PeerReviewSection />
+
+        {/* 8. Professional & Research Experience */}
         <ExperienceTimeline />
 
-        {/* 6. Technical Stack & FEA Toolkit */}
-        <SkillsGrid />
+        {/* 9. Education (Ph.D., State Engineer Valedictorian, CPGE) */}
+        <EducationSection />
 
-        {/* 7. Contact Information */}
-        <ContactSection />
+        {/* 10. Teaching & Supervision */}
+        <TeachingSection />
+
+        {/* 11. Computational & FEA Stack (Flat academic list) */}
+        <SkillsGrid />
       </main>
 
-      {/* Footer */}
+      {/* Footer with Scholarly Links & Contact */}
       <Footer />
 
       {/* Printable Academic CV Modal */}

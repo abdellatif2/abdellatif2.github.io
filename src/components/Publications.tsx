@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { PUBLICATIONS } from '../data/portfolioData';
 import { Publication } from '../types';
 import { 
-  BookOpen, 
   Search, 
   ExternalLink, 
   Copy, 
   Check, 
   ChevronDown, 
   ChevronUp, 
-  X,
   Quote
 } from 'lucide-react';
 
@@ -17,13 +15,24 @@ export const Publications: React.FC = () => {
   const [selectedType, setSelectedType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedAbstracts, setExpandedAbstracts] = useState<Record<string, boolean>>({});
-  const [bibtexModalPub, setBibtexModalPub] = useState<Publication | null>(null);
-  const [copiedBibtex, setCopiedBibtex] = useState(false);
+  const [copiedBibtex, setCopiedBibtex] = useState<string | null>(null);
 
   const toggleAbstract = (id: string) => {
     setExpandedAbstracts(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const handleCopyBibtex = (pubId: string, bibtex?: string) => {
+    if (!bibtex) return;
+    navigator.clipboard.writeText(bibtex);
+    setCopiedBibtex(pubId);
+    setTimeout(() => setCopiedBibtex(null), 2000);
+  };
+
+  const journalCount = PUBLICATIONS.filter(p => p.type === 'journal').length;
+  const conferenceCount = PUBLICATIONS.filter(p => p.type === 'conference').length;
+  const thesisCount = PUBLICATIONS.filter(p => p.type === 'thesis').length;
+
+  // Filter based on search and selected tab
   const filteredPubs = PUBLICATIONS.filter(pub => {
     const matchesType = selectedType === 'all' || pub.type === selectedType;
     const q = searchQuery.toLowerCase();
@@ -35,235 +44,410 @@ export const Publications: React.FC = () => {
     return matchesType && matchesSearch;
   });
 
-  const handleCopyBibtex = (bibtex: string) => {
-    navigator.clipboard.writeText(bibtex);
-    setCopiedBibtex(true);
-    setTimeout(() => setCopiedBibtex(false), 2000);
+  const journalArticles = filteredPubs.filter(p => p.type === 'journal');
+  const conferencePapers = filteredPubs.filter(p => p.type === 'conference');
+  const thesesPapers = filteredPubs.filter(p => p.type === 'thesis');
+
+  const formatAuthors = (authors: string[]) => {
+    if (!authors || authors.length === 0) return '';
+    return authors.map((author, i) => {
+      const isUser = author.toLowerCase().includes('hannachi');
+      return (
+        <span key={i} className={isUser ? 'font-bold text-slate-900' : 'text-slate-600'}>
+          {author}{i < authors.length - 1 ? ', ' : ''}
+        </span>
+      );
+    });
   };
 
+  let globalIndex = 0;
+
   return (
-    <section id="publications" className="border-b border-slate-200 pb-14">
-      {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-            Publications & Refereed Proceedings
+    <section id="publications" className="academic-section bg-white border-b border-[#E2E8F0]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        {/* Section Header */}
+        <div className="mb-6">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#002147] tracking-tight">
+            Publications
           </h2>
-          <p className="mt-1 text-sm text-slate-600">
-            Journal articles, international conference papers (18WCEE, COMPDYN), and preprints.
+          <div className="w-16 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-sm sm:text-base text-[#718096]">
+            {PUBLICATIONS.length} peer-reviewed publications in journals, international earthquake engineering conferences (18WCEE, 18WCSI, ICRCE), and engineering theses.
           </p>
         </div>
 
-        <div className="text-xs font-mono text-slate-500 self-start sm:self-auto bg-slate-50 px-3 py-1.5 rounded border border-slate-200">
-          <strong className="text-slate-900">{PUBLICATIONS.length}</strong> Total Scholarly Items
-        </div>
-      </div>
-
-      {/* Filter & Search Toolbar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
-        
-        {/* Category Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto">
-          {[
-            { id: 'all', label: 'All Publications' },
-            { id: 'journal', label: 'Journal Articles' },
-            { id: 'conference', label: 'Conferences (18WCEE / COMPDYN)' },
-            { id: 'preprint', label: 'Preprints' },
-          ].map(tab => (
+        {/* Toolbar: Category Filters & Search */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8">
+          {/* Filter Buttons matching reference style */}
+          <div className="flex flex-wrap items-center gap-2">
             <button
-              key={tab.id}
-              onClick={() => setSelectedType(tab.id)}
-              className={`px-2.5 py-1 rounded text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
-                selectedType === tab.id
-                  ? 'bg-slate-900 text-white font-semibold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+              onClick={() => setSelectedType('all')}
+              className={`px-3.5 py-1 text-xs font-semibold rounded-xs border transition-all cursor-pointer ${
+                selectedType === 'all'
+                  ? 'bg-[#002147] border-[#002147] text-white'
+                  : 'bg-white border-[#002147] text-[#002147] hover:bg-slate-50'
               }`}
             >
-              {tab.label}
+              All {PUBLICATIONS.length}
             </button>
-          ))}
-        </div>
 
-        {/* Search */}
-        <div className="relative w-full sm:w-64">
-          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Search keywords, OpenSees, year..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-3 py-1 bg-white border border-slate-300 rounded text-xs text-slate-900 placeholder-slate-400 focus:outline-hidden focus:ring-1 focus:ring-slate-900"
-          />
-        </div>
+            <button
+              onClick={() => setSelectedType('journal')}
+              className={`px-3.5 py-1 text-xs font-semibold rounded-xs border transition-all cursor-pointer ${
+                selectedType === 'journal'
+                  ? 'bg-[#002147] border-[#002147] text-white'
+                  : 'bg-white border-[#002147] text-[#002147] hover:bg-slate-50'
+              }`}
+            >
+              Journals {journalCount}
+            </button>
 
-      </div>
+            <button
+              onClick={() => setSelectedType('conference')}
+              className={`px-3.5 py-1 text-xs font-semibold rounded-xs border transition-all cursor-pointer ${
+                selectedType === 'conference'
+                  ? 'bg-[#002147] border-[#002147] text-white'
+                  : 'bg-white border-[#002147] text-[#002147] hover:bg-slate-50'
+              }`}
+            >
+              Conferences {conferenceCount}
+            </button>
 
-      {/* Publications List */}
-      <div className="space-y-4">
-        {filteredPubs.length === 0 ? (
-          <div className="text-center py-10 text-xs text-slate-500">
-            No papers matched your search criteria.
-          </div>
-        ) : (
-          filteredPubs.map((pub, idx) => {
-            const isExpanded = expandedAbstracts[pub.id] || false;
-            const isJournal = pub.type === 'journal';
-            const isConference = pub.type === 'conference';
-
-            return (
-              <div
-                key={pub.id}
-                className="p-4 sm:p-5 rounded-lg bg-white border border-slate-200 space-y-2 hover:border-slate-300 transition-colors"
+            {thesisCount > 0 && (
+              <button
+                onClick={() => setSelectedType('thesis')}
+                className={`px-3.5 py-1 text-xs font-semibold rounded-xs border transition-all cursor-pointer ${
+                  selectedType === 'thesis'
+                    ? 'bg-[#002147] border-[#002147] text-white'
+                    : 'bg-white border-[#002147] text-[#002147] hover:bg-slate-50'
+                }`}
               >
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                  <div className="space-y-1 flex-1">
-                    
-                    {/* Badge row */}
-                    <div className="flex items-center gap-2 text-xs font-mono">
-                      <span className={`px-2 py-0.5 rounded font-semibold text-[10px] uppercase ${
-                        isJournal 
-                          ? 'bg-sky-100 text-sky-800 border border-sky-200' 
-                          : isConference 
-                          ? 'bg-slate-100 text-slate-800 border border-slate-300' 
-                          : 'bg-amber-50 text-amber-800 border border-amber-200'
-                      }`}>
-                        {isJournal ? 'Journal' : isConference ? 'Conference' : 'Preprint'}
-                      </span>
-                      <span className="text-slate-500 font-bold">{pub.year}</span>
-                      {pub.featured && (
-                        <span className="text-amber-700 text-[10px] font-bold">
-                          ★ Featured
-                        </span>
-                      )}
-                    </div>
+                Theses {thesisCount}
+              </button>
+            )}
+          </div>
 
-                    {/* Paper Title */}
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                      {pub.title}
-                    </h3>
+          {/* Clean Search Input */}
+          <div className="relative w-full sm:w-60">
+            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Search publications..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-[#E2E8F0] rounded-xs focus:outline-hidden focus:border-[#C49B3C]"
+            />
+          </div>
+        </div>
 
-                    {/* Authors */}
-                    <p className="text-xs text-slate-600">
-                      {pub.authors.map((author, aIdx) => {
-                        const isSelf = author.includes('Hannachi');
-                        return (
-                          <span key={aIdx}>
-                            <span className={isSelf ? 'font-bold text-slate-900 underline' : ''}>
-                              {author}
-                            </span>
-                            {aIdx < pub.authors.length - 1 ? ', ' : ''}
-                          </span>
-                        );
-                      })}
-                    </p>
-
-                    {/* Venue / Journal Name */}
-                    <p className="text-xs italic text-slate-700">
-                      {pub.venue}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1 pt-1">
-                      {pub.tags.map((t, tIdx) => (
-                        <span key={tIdx} className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
-                          #{t}
-                        </span>
-                      ))}
-                    </div>
-
-                  </div>
-
-                  {/* Actions (BibTeX, DOI, Abstract) */}
-                  <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
-                    <button
-                      onClick={() => setBibtexModalPub(pub)}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-mono transition-colors cursor-pointer"
-                      title="View BibTeX"
-                    >
-                      <Quote className="w-3 h-3 text-slate-600" />
-                      <span>BibTeX</span>
-                    </button>
-
-                    {pub.doi && (
-                      <a
-                        href={`https://doi.org/${pub.doi}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-sky-300 bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-mono transition-colors"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        <span>DOI</span>
-                      </a>
-                    )}
-
-                    <button
-                      onClick={() => toggleAbstract(pub.id)}
-                      className="inline-flex items-center gap-1 px-2 py-1 text-slate-500 hover:text-slate-800 text-xs font-medium transition-colors cursor-pointer"
-                    >
-                      <span>{isExpanded ? 'Hide' : 'Abstract'}</span>
-                      {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                    </button>
-                  </div>
-
-                </div>
-
-                {/* Abstract Accordion */}
-                {isExpanded && (
-                  <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded">
-                    <span className="font-bold text-slate-800 block mb-0.5">Abstract:</span>
-                    {pub.abstract}
-                  </div>
-                )}
-
+        {/* Publications List Grouped by Category */}
+        <div className="space-y-10">
+          
+          {/* 1. Journal Articles */}
+          {journalArticles.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#002147]">
+                  Journal Articles
+                </h3>
+                <ChevronDown className="w-4 h-4 text-[#002147]" />
               </div>
-            );
-          })
-        )}
-      </div>
 
-      {/* BibTeX Modal */}
-      {bibtexModalPub && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-2xs">
-          <div className="bg-white rounded-lg max-w-lg w-full p-5 border border-slate-300 shadow-xl space-y-3">
-            <div className="flex items-center justify-between border-b border-slate-200 pb-2">
-              <span className="text-xs font-mono font-bold text-slate-900 flex items-center gap-1.5">
-                <Quote className="w-3.5 h-3.5 text-sky-600" />
-                BibTeX Citation
-              </span>
-              <button
-                onClick={() => setBibtexModalPub(null)}
-                className="text-slate-400 hover:text-slate-700 cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
+              <div className="divide-y divide-slate-100">
+                {journalArticles.map((pub) => {
+                  globalIndex += 1;
+                  const currentIndex = globalIndex;
+                  const isExpanded = !!expandedAbstracts[pub.id];
+
+                  return (
+                    <div key={pub.id} className="py-4 sm:py-5 flex items-start gap-3 sm:gap-5">
+                      <span className="font-mono text-xs sm:text-sm font-semibold text-[#002147] pt-0.5 shrink-0">
+                        [{currentIndex}]
+                      </span>
+
+                      <div className="flex-1 space-y-1 text-left">
+                        <p className="text-xs sm:text-sm text-slate-600">
+                          {formatAuthors(pub.authors)}, {pub.year}.
+                        </p>
+
+                        <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                          {pub.title}
+                        </h4>
+
+                        <p className="font-serif italic text-xs sm:text-sm text-slate-600">
+                          {pub.venue}.
+                        </p>
+
+                        <div className="pt-1">
+                          <button
+                            onClick={() => toggleAbstract(pub.id)}
+                            className="inline-flex items-center gap-1 text-xs font-semibold text-[#C49B3C] hover:text-[#a07b27] hover:underline cursor-pointer transition-colors"
+                          >
+                            <span>{isExpanded ? 'Hide Details' : 'View Details'}</span>
+                            {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          </button>
+                        </div>
+
+                        {isExpanded && (
+                          <div className="mt-3 pt-3 border-t border-slate-100 space-y-3">
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/80 p-3.5 rounded border border-slate-100">
+                              {pub.abstract}
+                            </p>
+
+                            <div className="flex flex-wrap items-center gap-2 pt-1">
+                              {pub.scholarUrl && (
+                                <a
+                                  href={pub.scholarUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#002147]/5 hover:bg-[#002147]/10 text-[#002147] text-xs font-semibold transition-colors"
+                                >
+                                  <Quote className="w-3 h-3 text-[#C49B3C]" />
+                                  <span>Google Scholar</span>
+                                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                                </a>
+                              )}
+                              {pub.doi && (
+                                <a
+                                  href={`https://doi.org/${pub.doi}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#002147]/5 hover:bg-[#002147]/10 text-[#002147] text-xs font-semibold transition-colors"
+                                >
+                                  <span>DOI: {pub.doi}</span>
+                                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                                </a>
+                              )}
+                              {pub.bibtex && (
+                                <button
+                                  onClick={() => handleCopyBibtex(pub.id, pub.bibtex)}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded border border-slate-200 hover:border-[#C49B3C] text-slate-700 hover:text-[#002147] text-xs font-medium transition-colors cursor-pointer"
+                                >
+                                  {copiedBibtex === pub.id ? (
+                                    <>
+                                      <Check className="w-3 h-3 text-emerald-600" />
+                                      <span className="text-emerald-700 font-semibold">BibTeX Copied</span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="w-3 h-3 text-[#C49B3C]" />
+                                      <span>Copy BibTeX</span>
+                                    </>
+                                  )}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+          )}
 
-            <p className="text-xs text-slate-600 truncate">
-              {bibtexModalPub.title}
-            </p>
+          {/* 2. Conference Papers */}
+          {conferencePapers.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#002147]">
+                  Conference Papers
+                </h3>
+                <ChevronDown className="w-4 h-4 text-[#002147]" />
+              </div>
 
-            <pre className="p-3 bg-slate-900 text-slate-100 font-mono text-xs rounded overflow-x-auto leading-relaxed max-h-56">
-              <code>{bibtexModalPub.bibtex}</code>
-            </pre>
+              <div className="divide-y divide-slate-100">
+                {conferencePapers.map((pub) => {
+                  globalIndex += 1;
+                  const currentIndex = globalIndex;
+                  const isExpanded = !!expandedAbstracts[pub.id];
 
-            <div className="flex justify-end gap-2 pt-2">
-              <button
-                onClick={() => setBibtexModalPub(null)}
-                className="px-3 py-1.5 rounded text-xs text-slate-600 hover:bg-slate-100 cursor-pointer"
-              >
-                Close
-              </button>
-              <button
-                onClick={() => handleCopyBibtex(bibtexModalPub.bibtex)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 cursor-pointer"
-              >
-                {copiedBibtex ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copiedBibtex ? 'Copied!' : 'Copy BibTeX'}</span>
-              </button>
+                  return (
+                    <div key={pub.id} className="py-4 sm:py-5 flex items-start gap-3 sm:gap-5">
+                      <span className="font-mono text-xs sm:text-sm font-semibold text-[#002147] pt-0.5 shrink-0">
+                        [{currentIndex}]
+                      </span>
+
+                      <div className="flex-1 space-y-1 text-left">
+                        <p className="text-xs sm:text-sm text-slate-600">
+                          {formatAuthors(pub.authors)}, {pub.year}.
+                        </p>
+
+                        <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                          {pub.title}
+                        </h4>
+
+                        <p className="font-serif italic text-xs sm:text-sm text-slate-600">
+                          {pub.venue}.
+                        </p>
+
+                        <div className="pt-1">
+                          <button
+                            onClick={() => toggleAbstract(pub.id)}
+                            className="inline-flex items-center gap-1 text-xs font-semibold text-[#C49B3C] hover:text-[#a07b27] hover:underline cursor-pointer transition-colors"
+                          >
+                            <span>{isExpanded ? 'Hide Details' : 'View Details'}</span>
+                            {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          </button>
+                        </div>
+
+                        {isExpanded && (
+                          <div className="mt-3 pt-3 border-t border-slate-100 space-y-3">
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/80 p-3.5 rounded border border-slate-100">
+                              {pub.abstract}
+                            </p>
+
+                            <div className="flex flex-wrap items-center gap-2 pt-1">
+                              {pub.scholarUrl && (
+                                <a
+                                  href={pub.scholarUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#002147]/5 hover:bg-[#002147]/10 text-[#002147] text-xs font-semibold transition-colors"
+                                >
+                                  <Quote className="w-3 h-3 text-[#C49B3C]" />
+                                  <span>Google Scholar</span>
+                                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                                </a>
+                              )}
+                              {pub.doi && (
+                                <a
+                                  href={`https://doi.org/${pub.doi}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#002147]/5 hover:bg-[#002147]/10 text-[#002147] text-xs font-semibold transition-colors"
+                                >
+                                  <span>DOI: {pub.doi}</span>
+                                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                                </a>
+                              )}
+                              {pub.bibtex && (
+                                <button
+                                  onClick={() => handleCopyBibtex(pub.id, pub.bibtex)}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded border border-slate-200 hover:border-[#C49B3C] text-slate-700 hover:text-[#002147] text-xs font-medium transition-colors cursor-pointer"
+                                >
+                                  {copiedBibtex === pub.id ? (
+                                    <>
+                                      <Check className="w-3 h-3 text-emerald-600" />
+                                      <span className="text-emerald-700 font-semibold">BibTeX Copied</span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="w-3 h-3 text-[#C49B3C]" />
+                                      <span>Copy BibTeX</span>
+                                    </>
+                                  )}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* 3. Theses & Dissertations */}
+          {thesesPapers.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#002147]">
+                  Theses &amp; Dissertations
+                </h3>
+                <ChevronDown className="w-4 h-4 text-[#002147]" />
+              </div>
+
+              <div className="divide-y divide-slate-100">
+                {thesesPapers.map((pub) => {
+                  globalIndex += 1;
+                  const currentIndex = globalIndex;
+                  const isExpanded = !!expandedAbstracts[pub.id];
+
+                  return (
+                    <div key={pub.id} className="py-4 sm:py-5 flex items-start gap-3 sm:gap-5">
+                      <span className="font-mono text-xs sm:text-sm font-semibold text-[#002147] pt-0.5 shrink-0">
+                        [{currentIndex}]
+                      </span>
+
+                      <div className="flex-1 space-y-1 text-left">
+                        <p className="text-xs sm:text-sm text-slate-600">
+                          {formatAuthors(pub.authors)}, {pub.year}.
+                        </p>
+
+                        <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                          {pub.title}
+                        </h4>
+
+                        <p className="font-serif italic text-xs sm:text-sm text-slate-600">
+                          {pub.venue}.
+                        </p>
+
+                        <div className="pt-1">
+                          <button
+                            onClick={() => toggleAbstract(pub.id)}
+                            className="inline-flex items-center gap-1 text-xs font-semibold text-[#C49B3C] hover:text-[#a07b27] hover:underline cursor-pointer transition-colors"
+                          >
+                            <span>{isExpanded ? 'Hide Details' : 'View Details'}</span>
+                            {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          </button>
+                        </div>
+
+                        {isExpanded && (
+                          <div className="mt-3 pt-3 border-t border-slate-100 space-y-3">
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/80 p-3.5 rounded border border-slate-100">
+                              {pub.abstract}
+                            </p>
+
+                            <div className="flex flex-wrap items-center gap-2 pt-1">
+                              {pub.scholarUrl && (
+                                <a
+                                  href={pub.scholarUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#002147]/5 hover:bg-[#002147]/10 text-[#002147] text-xs font-semibold transition-colors"
+                                >
+                                  <Quote className="w-3 h-3 text-[#C49B3C]" />
+                                  <span>Google Scholar</span>
+                                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                                </a>
+                              )}
+                              {pub.bibtex && (
+                                <button
+                                  onClick={() => handleCopyBibtex(pub.id, pub.bibtex)}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded border border-slate-200 hover:border-[#C49B3C] text-slate-700 hover:text-[#002147] text-xs font-medium transition-colors cursor-pointer"
+                                >
+                                  {copiedBibtex === pub.id ? (
+                                    <>
+                                      <Check className="w-3 h-3 text-emerald-600" />
+                                      <span className="text-emerald-700 font-semibold">BibTeX Copied</span>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="w-3 h-3 text-[#C49B3C]" />
+                                      <span>Copy BibTeX</span>
+                                    </>
+                                  )}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
         </div>
-      )}
+
+      </div>
     </section>
   );
 };

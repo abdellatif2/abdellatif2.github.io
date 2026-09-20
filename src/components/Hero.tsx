@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 import { 
-  PERSONAL_INFO 
-} from '../data/portfolioData';
-import { 
+  FileText, 
+  Mail, 
+  Check, 
+  Copy, 
+  ExternalLink, 
   GraduationCap, 
   MapPin, 
   BookOpen, 
+  Layers, 
   Github, 
-  Linkedin, 
-  Copy, 
-  Check, 
-  FileText,
-  Building,
-  Mail,
-  ExternalLink,
-  Code
+  Globe, 
+  FileCheck,
+  Compass
 } from 'lucide-react';
 
 interface HeroProps {
@@ -23,6 +22,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
   const [copied, setCopied] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -31,163 +31,238 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
   };
 
   return (
-    <section id="hero" className="pt-8 pb-4">
-      {/* Top Academic Profile Header */}
-      <div className="border-b border-slate-200 pb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <section id="hero" className="relative pt-10 pb-12 border-b border-[#E2E8F0] overflow-hidden bg-white/60">
+      {/* Subtle background glow */}
+      <div 
+        className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full pointer-events-none opacity-30 blur-3xl"
+        style={{ background: 'radial-gradient(circle, rgba(196, 155, 60, 0.20) 0%, transparent 70%)' }}
+      />
+
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+        
+        {/* Top Header: Title & Portrait */}
+        <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between gap-8 md:gap-12 mb-8">
           
-          {/* Main Info (Left 8 cols) */}
-          <div className="lg:col-span-8 space-y-4">
+          {/* Left Text Block */}
+          <div className="flex-1 text-center md:text-left space-y-4">
             
-            <div className="space-y-1.5">
-              <span className="text-xs font-mono font-semibold uppercase tracking-wider text-sky-800 bg-sky-50 px-2.5 py-1 rounded inline-block">
-                Ph.D. Candidate &bull; Earthquake Engineering & Structural Mechanics
-              </span>
-              <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                {PERSONAL_INFO.name}
+            {/* Name */}
+            <div>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#002147] font-bold tracking-tight leading-none">
+                Abdellatif Hannachi
               </h1>
-              <p className="text-base sm:text-lg text-slate-700 font-medium">
-                {PERSONAL_INFO.specialization}
+              
+              {/* Primary Role */}
+              <p className="mt-2.5 text-lg sm:text-xl font-semibold text-[#002147] tracking-tight">
+                Doctoral Candidate in Earthquake Engineering
               </p>
             </div>
 
-            {/* Affiliation info */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs text-slate-600 font-mono">
-              <div className="flex items-center gap-1.5">
-                <Building className="w-4 h-4 text-slate-500 shrink-0" />
-                <span>{PERSONAL_INFO.institution} &bull; {PERSONAL_INFO.department}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
-                <span>{PERSONAL_INFO.location}</span>
-              </div>
+            {/* Structured Institutional Affiliations */}
+            <div className="space-y-1.5 text-sm sm:text-base text-[#4A5568] border-l-2 border-[#C49B3C] pl-3.5 text-left">
+              <p className="font-medium text-[#002147]">
+                Department of Civil Engineering &middot; Structural Dynamics &amp; Earthquake Engineering Laboratory (LGSDS)
+              </p>
+              <p className="text-slate-600 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#C49B3C] shrink-0" />
+                <span>École Nationale Polytechnique (ENP) &middot; Algiers, Algeria</span>
+              </p>
+              <p className="text-slate-600 flex items-center gap-1.5 pt-0.5">
+                <Compass className="w-3.5 h-3.5 text-[#C49B3C] shrink-0" />
+                <span>Trainee at International Institute of Seismology and Earthquake Engineering, Building Research Institute, Japan.</span>
+              </p>
             </div>
 
-            {/* Academic Bio */}
-            <p className="text-sm sm:text-base text-slate-700 leading-relaxed max-w-3xl pt-1">
-              {PERSONAL_INFO.bio}
-            </p>
-
-            {/* Action buttons & Email */}
-            <div className="flex flex-wrap items-center gap-3 pt-3">
+            {/* Primary Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
               <button
                 onClick={onOpenCvModal}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-900 text-white hover:bg-slate-800 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#002147] hover:bg-[#003366] text-white text-xs sm:text-sm font-semibold rounded-xs transition-all shadow-xs cursor-pointer"
               >
-                <FileText className="w-4 h-4 text-sky-400" />
-                <span>Download Academic CV (PDF)</span>
+                <FileText className="w-4 h-4 text-[#C49B3C]" />
+                <span>Curriculum Vitae</span>
               </button>
+
+              <a
+                href="#publications"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white hover:bg-slate-50 text-[#002147] border border-[#E2E8F0] hover:border-[#C49B3C] text-xs sm:text-sm font-semibold rounded-xs transition-all"
+              >
+                <BookOpen className="w-4 h-4 text-[#C49B3C]" />
+                <span>Publications &amp; Theses</span>
+              </a>
 
               <a
                 href="#models"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-slate-100 text-slate-800 hover:bg-slate-200 text-xs sm:text-sm font-semibold transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-white hover:bg-slate-50 text-[#002147] border border-[#E2E8F0] hover:border-[#C49B3C] text-xs sm:text-sm font-medium rounded-xs transition-all"
               >
-                <span>Numerical Models</span>
-                <span className="text-slate-400">&rarr;</span>
-              </a>
-
-              <button
-                onClick={handleCopyEmail}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-mono transition-colors cursor-pointer"
-                title="Copy academic email"
-              >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
-                <span>{PERSONAL_INFO.email}</span>
-                {copied && <span className="text-emerald-700 font-bold ml-1">Copied</span>}
-              </button>
-            </div>
-
-            {/* Scholarly profiles links */}
-            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-600 font-mono">
-              <span className="text-slate-400 uppercase text-[11px] font-bold">Profiles:</span>
-              <a
-                href={PERSONAL_INFO.googleScholar}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 hover:text-sky-700 underline underline-offset-2"
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                Google Scholar
-              </a>
-              <span className="text-slate-300">&bull;</span>
-              <a
-                href={PERSONAL_INFO.researchGate}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 hover:text-sky-700 underline underline-offset-2"
-              >
-                ResearchGate
-              </a>
-              <span className="text-slate-300">&bull;</span>
-              <a
-                href={PERSONAL_INFO.orcid}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 hover:text-sky-700 underline underline-offset-2"
-              >
-                ORCID ({PERSONAL_INFO.orcid.split('/').pop()})
-              </a>
-              <span className="text-slate-300">&bull;</span>
-              <a
-                href={PERSONAL_INFO.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 hover:text-sky-700 underline underline-offset-2"
-              >
-                <Github className="w-3.5 h-3.5" />
-                GitHub
+                <Layers className="w-4 h-4 text-[#C49B3C]" />
+                <span>Numerical Models &amp; Projects</span>
               </a>
             </div>
 
           </div>
 
-          {/* Quick Summary Card (Right 4 cols) */}
-          <div className="lg:col-span-4 bg-slate-50 border border-slate-200 rounded-lg p-5 space-y-4">
-            <h3 className="text-xs uppercase font-mono font-bold text-slate-500 tracking-wider">
-              Research & FEA Summary
-            </h3>
-
-            <div className="space-y-3 text-xs">
-              <div className="border-b border-slate-200 pb-2">
-                <span className="text-slate-500 block font-mono">Primary Finite Element Tools</span>
-                <span className="font-semibold text-slate-900 font-mono">OpenSees / OpenSeesPy, SAP2000 OAPI</span>
-              </div>
-
-              <div className="border-b border-slate-200 pb-2">
-                <span className="text-slate-500 block font-mono">Computational Focus</span>
-                <span className="font-semibold text-slate-900 font-mono">Nonlinear Dynamic (NLTHA), Fiber Sections, Damage Identification</span>
-              </div>
-
-              <div className="border-b border-slate-200 pb-2">
-                <span className="text-slate-500 block font-mono">Seismic Design Codes</span>
-                <span className="font-semibold text-slate-900 font-mono">ASCE 41-17, Eurocode 8, RPA 99 / 2003</span>
-              </div>
-
-              <div>
-                <span className="text-slate-500 block font-mono">Status</span>
-                <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold font-mono">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  Doctoral Thesis in Progress (Final Stage)
-                </span>
+          {/* Right Portrait Column */}
+          <div className="shrink-0 flex flex-col items-center">
+            <div className="relative">
+              <div className="w-44 h-44 sm:w-52 sm:h-52 rounded-full p-1 border-2 border-[#C49B3C] shadow-md bg-white">
+                <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 flex items-center justify-center relative">
+                  {!imgError ? (
+                    <img 
+                      src="/perso_image.jpg"
+                      alt="Abdellatif Hannachi"
+                      className="w-full h-full object-cover object-center"
+                      onError={() => setImgError(true)}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-linear-to-b from-[#002147] to-[#003366] text-white p-4 text-center">
+                      <GraduationCap className="w-12 h-12 text-[#C49B3C] mb-2" />
+                      <span className="font-serif font-bold text-lg tracking-wide">Abdellatif Hannachi</span>
+                      <span className="text-[10px] font-mono text-[#C49B3C] uppercase tracking-widest mt-1">ENP &middot; Civil &amp; Seismic</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-
           </div>
 
         </div>
 
-        {/* Stats Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-slate-100">
-          {PERSONAL_INFO.stats.map((stat, idx) => (
-            <div key={idx} className="bg-white border border-slate-200 rounded p-3 text-center sm:text-left">
-              <div className="text-2xl font-bold font-mono text-slate-900">
-                {stat.value}
-              </div>
-              <div className="text-xs text-slate-600 font-medium">
-                {stat.label}
+        {/* Organized Contact & Academic Profiles Grid (Matching Image 3 Reference Style) */}
+        <div id="contact" className="pt-6 border-t border-slate-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-left">
+            
+            {/* Row 1: EMAIL */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                EMAIL
+              </span>
+              <div className="flex items-center justify-between gap-2">
+                <a 
+                  href={`mailto:${PERSONAL_INFO.email}`} 
+                  className="text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline"
+                >
+                  {PERSONAL_INFO.email}
+                </a>
+                <button
+                  onClick={handleCopyEmail}
+                  className="p-1 rounded text-slate-400 hover:text-[#002147] hover:bg-slate-100 transition-colors cursor-pointer"
+                  title="Copy email address"
+                  aria-label="Copy email"
+                >
+                  {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                </button>
               </div>
             </div>
-          ))}
+
+            {/* Row 1: LINKEDIN */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                LINKEDIN
+              </span>
+              <a 
+                href={PERSONAL_INFO.linkedin} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              >
+                <div className="w-5 h-5 rounded bg-[#002147] text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                  in
+                </div>
+                <span>LinkedIn</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* Row 2: LOCATION */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                LOCATION
+              </span>
+              <p className="text-sm font-medium text-slate-900">
+                Algiers, Algeria
+              </p>
+            </div>
+
+            {/* Row 2: LANGUAGES */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                LANGUAGES
+              </span>
+              <p className="text-sm font-medium text-slate-900">
+                French (C1) &middot; English (C1) &middot; Arabic (Native)
+              </p>
+            </div>
+
+            {/* Row 3: GOOGLE SCHOLAR */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                GOOGLE SCHOLAR
+              </span>
+              <a 
+                href={PERSONAL_INFO.googleScholar} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              >
+                <BookOpen className="w-4 h-4 text-[#002147] shrink-0" />
+                <span>Google Scholar</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* Row 3: RESEARCHGATE */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                RESEARCHGATE
+              </span>
+              <a 
+                href={PERSONAL_INFO.researchGate} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              >
+                <Globe className="w-4 h-4 text-[#002147] shrink-0" />
+                <span>ResearchGate</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* Row 4: ORCID */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                ORCID
+              </span>
+              <a 
+                href={PERSONAL_INFO.orcidUrl} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline font-mono group"
+              >
+                <FileCheck className="w-4 h-4 text-[#C49B3C] shrink-0" />
+                <span>{PERSONAL_INFO.orcid}</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* Row 4: GITHUB */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                GITHUB
+              </span>
+              <a 
+                href={PERSONAL_INFO.github} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              >
+                <Github className="w-4 h-4 text-[#002147] shrink-0" />
+                <span>github.com/abdellatif2</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+          </div>
         </div>
 
       </div>

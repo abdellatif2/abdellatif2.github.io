@@ -1,4 +1,16 @@
-import { Publication, NumericalModel, ResearchPillar, ExperienceItem, SoftwareSkill } from '../types';
+import { 
+  Publication, 
+  NumericalModel, 
+  ResearchPillar, 
+  ExperienceItem, 
+  SoftwareSkill,
+  NewsItem,
+  ScientificCommunication,
+  PeerReviewActivity,
+  EducationItem,
+  TeachingItem,
+  AwardItem
+} from '../types';
 
 export const PERSONAL_INFO = {
   name: 'Abdellatif Hannachi',
@@ -9,20 +21,21 @@ export const PERSONAL_INFO = {
   location: 'Algiers, Algeria',
   email: 'abdellatif.hannachi@g.enp.edu.dz',
   secondaryEmail: 'hannachi.abdellatif.res@gmail.com',
-  github: 'https://github.com/abdellatif-hannachi',
-  googleScholar: 'https://scholar.google.com/citations?user=abdellatif_hannachi',
-  researchGate: 'https://www.researchgate.net/profile/Abdellatif-Hannachi',
-  orcid: 'https://orcid.org/0009-0004-8921-3482',
-  linkedin: 'https://www.linkedin.com/in/abdellatif-hannachi-eq',
-  bio: `I am a doctoral researcher in Earthquake Engineering at the National Polytechnic School (ENP). My research lies at the intersection of non-linear structural mechanics, Structural Health Monitoring (SHM), and Artificial Intelligence. Specifically, I develop high-fidelity numerical models in OpenSees and SAP2000 combined with deep learning surrogates and physics-informed neural networks (PINNs) to automate seismic performance assessment, optimize sensor placement for vibration-based damage detection, and fast-track performance-based earthquake engineering.`,
-  shortBio: `Doctoral researcher developing AI-augmented structural dynamics frameworks, nonlinear OpenSees/SAP2000 finite element simulations, and real-time vibration health monitoring for earthquake-resilient infrastructure.`,
+  github: 'https://github.com/abdellatif2',
+  googleScholar: 'https://scholar.google.com/citations?hl=en&user=VivrkJAAAAAJ',
+  researchGate: 'https://www.researchgate.net/profile/Abdellatif-Hannachi?ev=hdr_xprf',
+  orcid: '0009-0004-0737-0087',
+  orcidUrl: 'https://orcid.org/my-orcid?orcid=0009-0004-0737-0087',
+  linkedin: 'https://www.linkedin.com/in/abdellatifhannachi/',
+  bio: `I am a doctoral researcher in Earthquake Engineering at the National Polytechnic School (École Nationale Polytechnique - ENP Algiers), working under the supervision of Prof. Nouredine Bourahla. My research lies at the nexus of earthquake engineering, AI-aided structural health monitoring (SHM), and automated structural design. I combine advanced finite element modeling (OpenSees, SAP2000, ETABS API) with metaheuristic optimization (Genetic Algorithms) and deep neural networks to optimize structural members, evaluate full-scale ambient vibration data, and enhance structural resilience under Eurocode 8 and the new RPA2024 provisions.`,
+  shortBio: `Doctoral researcher at ENP Algiers working on AI-aided structural health monitoring, automated seismic design per EC08 & RPA2024, and nonlinear FEM simulations.`,
   stats: [
-    { label: 'Numerical Models Developed', value: '25+' },
-    { label: 'Publications & Preprints', value: '8' },
-    { label: 'Time-History Simulations', value: '15,000+' },
-    { label: 'Open-Source Toolkits', value: '3' },
+    { label: 'Google Scholar Citations', value: '6+' },
+    { label: 'Publications & Theses', value: '6' },
+    { label: 'International Conferences', value: '4' },
+    { label: 'FEM & Automated Models', value: '15+' },
   ],
-  statusBadge: 'Final Year Doctoral Candidate · Open for Postdoctoral & R&D Positions (2026-2027)'
+  statusBadge: 'Doctoral Researcher at ENP Algiers · Open for Postdoctoral & R&D Positions (2026-2027)'
 };
 
 export const RESEARCH_PILLARS: ResearchPillar[] = [
@@ -51,48 +64,48 @@ export const RESEARCH_PILLARS: ResearchPillar[] = [
   },
   {
     id: 'ai_seismic',
-    title: 'AI Automation of Seismic Design & Surrogate Modeling',
-    shortDesc: 'Deep neural network surrogates for instant non-linear time-history response and reinforcement learning for automated structural member sizing.',
-    longDesc: 'Replacing computationally prohibitive Non-Linear Time-History Analysis (NLTHA) runs with deep learning surrogates (Transformer-based sequence-to-sequence models and Fourier Neural Operators). Furthermore, applying multi-objective Reinforcement Learning (PPO/DDPG) to automate the sizing of columns, beams, and shear walls satisfying both Eurocode 8 / ASCE 7-22 drift and ductility constraints while minimizing embodied carbon.',
+    title: 'Automated Seismic Design & Structural Optimization (EC08 & RPA2024)',
+    shortDesc: 'Algorithmic automation and metaheuristic optimization for reinforced concrete frames and shear walls compliant with Eurocode 8 and RPA2024.',
+    longDesc: 'Developing algorithmic optimization pipelines directly integrated with structural design software via the ETABS API. Formulating structural member sizing, shear wall boundary elements, and reinforcement detailing as constrained mathematical optimization problems to minimize concrete volume and rebar consumption while satisfying all seismic safety, ductility, and drift requirements under Eurocode 8 and the new Algerian Seismic Code RPA2024.',
     iconName: 'Cpu',
     methodologies: [
-      'Fourier Neural Operators (FNO) for 3D dynamic response fields',
-      'Physics-Informed Neural Networks (PINNs) satisfying hysteretic energy balance',
-      'Reinforcement Learning for automated EC8/ASCE 7 structural design',
-      'Active Learning for optimal ground-motion selection & scaling'
+      'ETABS API automation for structural geometry & load combination extraction',
+      'Genetic Algorithms (GA) & metaheuristic structural layout optimization',
+      'Automated shear wall boundary element and reinforcement rebar sizing',
+      'Response spectrum analysis parameter tuning per EC08 and RPA2024'
     ],
     applications: [
-      'Sub-second seismic drift & fragility estimation during conceptual design',
-      'Generative structural framing with automated reinforcement scheduling',
-      'Cloud-based automated seismic auditing platform'
+      'Automated code-compliant sizing of RC dual frame-wall building systems',
+      'Embodied material and rebar optimization in multi-story residential towers',
+      'Rapid seismic evaluation and design iteration for building engineering practice'
     ],
-    keyTools: ['PyTorch', 'TensorFlow', 'OpenSeesPy Batch Engine', 'Ray Tune', 'HPC Slurm'],
+    keyTools: ['ETABS API', 'Python', 'OpenSees', 'Genetic Algorithms', 'BIM / IFC'],
     formulaSnippet: {
-      latex: '\\mathcal{L}_{PINN} = \\mathcal{L}_{data} + \\lambda_1 \\|\\mathbf{M}\\ddot{\\hat{\\mathbf{u}}} + \\mathbf{F}_{int}(\\hat{\\mathbf{u}}, \\dot{\\hat{\\mathbf{u}}}) - \\mathbf{P}_{ext}\\|^2 + \\lambda_2 \\mathcal{L}_{hysteretic}',
-      explanation: 'Loss function penalizing dynamic equilibrium error and Bouc-Wen hysteretic energy dissipation.'
+      latex: '\\min_{\\mathbf{x}} f(\\mathbf{x}) = V_{conc}(\\mathbf{x}) + \\alpha W_{steel}(\\mathbf{x}) \\quad \\text{s.t.} \\quad g_j(\\mathbf{x}) \\le 0 \\; (EC08, RPA2024)',
+      explanation: 'Constrained objective function minimizing concrete volume and rebar weight under drift and capacity design provisions.'
     }
   },
   {
     id: 'nonlinear_fe',
-    title: 'Advanced Non-Linear Finite Element Modeling',
-    shortDesc: 'Distributed plasticity fiber-section beam-columns, pinching hysteretic models, and shear-flexure interaction in OpenSees & SAP2000.',
-    longDesc: 'Formulating high-precision nonlinear finite element models capturing severe structural degradation under cyclic and near-fault earthquake records. Implementing distributed plasticity fiber elements, Pinching4 material calibration from experimental tests, and macro-models for reinforced concrete dual frame-wall systems.',
+    title: 'Dissipative Systems & Advanced Nonlinear Mechanics',
+    shortDesc: 'GA-based optimization of dissipative knee-braced steel frames (KBF), hysteretic energy dissipation, and nonlinear finite element modeling.',
+    longDesc: 'Investigating innovative dissipative bracing configurations and nonlinear structural mechanics. Research includes genetic algorithm optimization of knee-braced frames (KBF) to optimize height-wise strength distributions and maximize plastic energy dissipation, as well as fiber-based beam-column and shear wall modeling in OpenSees and SAP2000.',
     iconName: 'Box',
     methodologies: [
-      'Distributed Plasticity (Force-based & Displacement-based fiber elements)',
-      'Shear-Flexure Interaction in RC shear walls (MVLEM / SFI-MVLEM)',
-      'Cyclic pinching & strength/stiffness degradation calibration',
-      'Incremental Dynamic Analysis (IDA) & Multi-stripe Analysis (MSA)'
+      'Genetic Algorithm optimization of height-wise knee brace strength',
+      'Hysteretic energy dissipation & plastic mechanism prevention',
+      'Distributed plasticity fiber-section beam-columns & shear walls',
+      'Operational Modal Analysis (OMA) calibration with ambient vibration testing'
     ],
     applications: [
-      'High-rise building nonlinear seismic vulnerability assessment',
-      'Retrofit simulation with buckling-restrained braces (BRBs) & fluid dampers',
-      'Benchmark validation against E-Defense shake table experimental tests'
+      'Seismic performance optimization of dissipative knee-braced steel frames',
+      'Seismic retrofitting of soft-story and vibration-sensitive building systems',
+      'Experimental dynamic calibration of complex historical masonry monuments'
     ],
-    keyTools: ['OpenSees', 'SAP2000 Nonlinear', 'OpenSeesPy', 'Abaqus Explicit', 'SeismoStruct'],
+    keyTools: ['OpenSees', 'SAP2000 Nonlinear', 'Python', 'MATLAB OMA', 'SeismoSignal'],
     formulaSnippet: {
-      latex: '\\mathbf{k}_e = \\left[ \\int_0^L \\mathbf{B}(x)^T \\mathbf{D}_{sec}(x) \\mathbf{B}(x) dx \\right], \\quad \\mathbf{D}_{sec} = \\int_A \\begin{bmatrix} E_t & -E_t y \\\\ -E_t y & E_t y^2 \\end{bmatrix} dA',
-      explanation: 'Fiber-section stiffness integration across cross-sectional steel and confined concrete fibers.'
+      latex: 'E_{diss} = \\int_{0}^{t} \\mathbf{F}_{knee}(\\delta) \\, d\\delta, \\quad \\max_{\\mathbf{k}} \\frac{E_{diss}(\\mathbf{k})}{E_{input}}',
+      explanation: 'Optimization formulation maximizing the ratio of hysteretic knee-brace energy dissipation to total seismic input energy.'
     }
   },
   {
@@ -121,6 +134,157 @@ export const RESEARCH_PILLARS: ResearchPillar[] = [
 ];
 
 export const NUMERICAL_MODELS: NumericalModel[] = [
+  {
+    id: 'sap2000-historic-masonry-avt',
+    title: 'Complex Historic Masonry Structure: 3D FEM Modeling & Ambient Vibration Testing (AVT)',
+    software: 'SAP2000',
+    category: 'Historic Masonry',
+    projectContext: 'Structural Health & Heritage Conservation: Historic Moorish-Mediterranean Palace Complex (Algiers)',
+    year: 2024,
+    objective: 'Develop a high-fidelity 3D FEM shell model incorporating 47 distinct wall section thicknesses (7 cm to 98 cm), calibrated via in-situ Ambient Vibration Testing (AVT) and Operational Modal Analysis (OMA) for structural health and seismic vulnerability assessment.',
+    description: 'Comprehensive structural modeling, dynamic identification, and seismic assessment of an irregular multi-story historic masonry palace. Built through successive historical periods, the building exhibits high architectural complexity including multi-level courtyards, decorative arches, vaults, timber-joist diaphragms, and a central hemispherical dome. Geometrical and architectural surveying identified 47 distinct wall section profiles—ranging from thin 7 cm interior partitions to 98 cm thick load-bearing perimeter stone walls. To evaluate structural properties without causing damage to cultural heritage fabric, an on-site Ambient Vibration Testing (AVT) campaign was performed using high-sensitivity seismic accelerometers. Frequency Domain Decomposition (FDD) and Stochastic Subspace Identification (SSI) extracted experimental natural frequencies, mode shapes, and modal damping. These served as empirical benchmarks to update and calibrate the 3D SAP2000 finite element model (optimizing masonry Young\'s modulus, shear modulus, and foundation soil spring constants), yielding modal assurance criterion (MAC) values above 0.93.',
+    modelingHighlights: [
+      'Discretization of 47 distinct wall sections with thicknesses precisely mapped from 7 cm to 98 cm',
+      'Curved thick-shell element formulations for the central hemispherical dome, drum, and transitional pendentives',
+      'Explicit modeling of timber joists, floor diaphragms, and courtyard arcade masonry piers',
+      'In-situ Ambient Vibration Testing (AVT) capturing environmental micro-tremors and wind excitation',
+      'Operational Modal Analysis (OMA) via FDD and SSI-DATA extracting 4 fundamental vibration modes',
+      'Finite Element Model Updating (FEMU) calibrating masonry modulus (E = 1,200 to 2,400 MPa) and foundation spring stiffness',
+      'High modal correlation achieved between experimental and numerical models (MAC > 0.93, average frequency error < 2.5%)',
+      'Seismic vulnerability and stress concentration assessment under Eurocode 8 and Algerian code (RPA 99 / v2003)'
+    ],
+    elementTypes: [
+      'Area Shell (Thick / Thin formulations for dome and 47 wall thicknesses)',
+      'Frame (Timber floor joists & tie beams)',
+      'Link / Spring Elements (Soil-Structure Interaction under stone footings)',
+      'Constraint Diaphragms (Semi-rigid floor modeling)'
+    ],
+    materialModels: [
+      'Calibrated Linear-Elastic Masonry with cracked stiffness factors',
+      'Heritage Rubble Stone & Lime Mortar (E = 1,800 MPa, rho = 21 kN/m3, nu = 0.20)',
+      'Dressed Stone & Fired Brick Masonry (E = 2,200 - 2,400 MPa)',
+      'Traditional Timber Joists (E = 9,500 MPa)'
+    ],
+    analysisTypes: [
+      'Modal Eigenvalue & Ritz Extraction',
+      'Operational Modal Analysis (OMA: FDD & SSI)',
+      'Parametric Model Updating & Sensitivity Analysis',
+      'Multi-Directional Response Spectrum Analysis (RPA 99 & Eurocode 8)',
+      'In-Plane Shear and Out-of-Plane Flexural Stress Check'
+    ],
+    keyFindings: [
+      'Modeled and classified 47 distinct wall sections (7 cm to 98 cm); the massive 98 cm perimeter walls resist over 64% of total base shear.',
+      'In-situ AVT successfully identified the fundamental coupled transverse-torsional mode at 2.61 Hz (T1 = 0.383 s), closely matched by the calibrated FEM model at 2.63 Hz (error +0.77%, MAC = 0.96).',
+      'FE model updating revealed that standard empirical code formulas overestimated fundamental periods by 32% because they neglected the stiffening contribution of masonry vaults and arch keystones.',
+      'Stress distribution analysis highlighted critical tension concentrations around the drum base of the central dome and upper window lintels, pinpointing exact locations for non-invasive composite tie-rod reinforcement.'
+    ],
+    images: [
+      {
+        url: './AVT/fem_model_1.png',
+        caption: 'High-fidelity 3D finite element shell discretization in SAP2000 representing the multi-level historic masonry palace with 47 distinct wall thickness sections and load-bearing perimeter walls.',
+        tag: 'FEM Model (3D Shell Mesh)',
+        type: 'fem_model'
+      },
+      {
+        url: './AVT/mode_shape_1.gif',
+        caption: 'Animated dynamic mode shape oscillation of the masonry palace structure identified through in-situ Ambient Vibration Testing (AVT) and Operational Modal Analysis (OMA).',
+        tag: 'Dynamic Mode Shape 1 (Animation)',
+        type: 'mode_shape'
+      },
+      {
+        url: './AVT/mode_shape_2.gif',
+        caption: 'Animated mode shape vibration showing coupled transverse-torsional response under operational ambient vibrations, matching calibrated modal properties (MAC > 0.94).',
+        tag: 'Dynamic Mode Shape 2 (Animation)',
+        type: 'mode_shape'
+      },
+      {
+        url: './AVT/fem_model_2.png',
+        caption: 'Detailed 3D numerical model perspective displaying wall thickness assignments, arcade pier elements, floor diaphragm constraints, and foundation spring boundaries.',
+        tag: 'FEM Model (Structural Discretization)',
+        type: 'fem_model'
+      },
+      {
+        url: './AVT/building_photo.jpg',
+        caption: 'Field photograph of the surveyed historic Moorish-Mediterranean masonry structure in Algiers investigated during the Ambient Vibration Testing (AVT) experimental campaign.',
+        tag: 'In-Situ Field Survey',
+        type: 'site_photo'
+      }
+    ],
+    wallThicknessSpecs: {
+      totalSections: 47,
+      minThickness: '7 cm (0.07 m)',
+      maxThickness: '98 cm (0.98 m)',
+      sampleSections: [
+        { id: 'W_EXT_98', name: 'Perimeter Basal Wall', thickness: '98 cm', material: 'Rubble stone masonry with lime mortar', role: 'Main load-bearing foundation retaining & perimeter shear wall' },
+        { id: 'W_EXT_75', name: 'Facade External Wall', thickness: '75 cm', material: 'Dressed ashlar stone & brick coursing', role: 'Primary facade lateral force resisting system' },
+        { id: 'W_INT_55', name: 'Courtyard Arcade Piers', thickness: '55 cm', material: 'Solid fired brick with hydraulic lime', role: 'Arcade structural support and interior shear transfers' },
+        { id: 'W_INT_40', name: 'First Floor Bearing Wall', thickness: '40 cm', material: 'Double-wythe brick masonry', role: 'Gravity & lateral partition support' },
+        { id: 'W_DOME_28', name: 'Roof Dome & Drum Shell', thickness: '28 cm', material: 'Curved fired brick masonry shell', role: 'Central dome vaulting and radial arch support' },
+        { id: 'W_PART_15', name: 'Secondary Internal Walls', thickness: '15 cm', material: 'Single-wythe hollow/solid brick', role: 'Internal room division and secondary stability' },
+        { id: 'W_SCRN_07', name: 'Decorative & Screen Walls', thickness: '7 cm', material: 'Thin brick / plaster infill screen', role: 'Non-structural partition and decorative arcade infill' }
+      ]
+    },
+    ambientVibrationTesting: {
+      sensorLayout: 'Triaxial high-sensitivity piezoelectric seismic accelerometers deployed at 18 nodal stations across ground, 1st floor, terrace, and dome base.',
+      acquisitionDuration: '60 minutes continuous recording per setup under environmental ambient excitation (wind, micro-tremors).',
+      samplingRate: '200 Hz (Nyquist frequency 100 Hz, anti-aliasing filtered at 25 Hz).',
+      idMethods: ['Enhanced Frequency Domain Decomposition (EFDD)', 'Stochastic Subspace Identification (SSI-DATA)', 'Peak-Picking (PP)'],
+      modalComparison: [
+        { mode: 1, label: 'Transverse-Torsional coupled mode', expFreq: '2.61 Hz (0.383 s)', femFreq: '2.63 Hz (0.380 s)', error: '+0.77%', mac: '0.96', damping: '2.8%' },
+        { mode: 2, label: 'Longitudinal flexural translation', expFreq: '3.15 Hz (0.317 s)', femFreq: '3.23 Hz (0.310 s)', error: '+2.54%', mac: '0.94', damping: '3.1%' },
+        { mode: 3, label: 'Dominant torsional global mode', expFreq: '4.42 Hz (0.226 s)', femFreq: '4.55 Hz (0.220 s)', error: '+2.94%', mac: '0.93', damping: '3.6%' },
+        { mode: 4, label: '2nd Transverse + Local Dome breathing mode', expFreq: '6.12 Hz (0.163 s)', femFreq: '6.30 Hz (0.159 s)', error: '+2.94%', mac: '0.91', damping: '4.2%' }
+      ]
+    },
+    metrics: {
+      degreesOfFreedom: 18420,
+      fundamentalPeriod: 'T1 = 0.38 s (f1 = 2.61 Hz)',
+      computationalTime: '1.8 min (Modal) / 6.5 min (RSA)',
+      driftReduction: 'Calibrated to In-Situ AVT (MAC > 0.94)'
+    },
+    codeSnippet: {
+      language: 'python',
+      fileName: 'sap2000_masonry_47_sections_setup.py',
+      code: `import comtypes.client
+import numpy as np
+
+# 1. Initialize SAP2000 OAPI Connection
+helper = comtypes.client.CreateObject('SAP2000v1.Helper')
+helper = helper.QueryInterface(comtypes.client.lazybind.IUnknown)
+SapModel = helper.GetObject('CSI.SAP2000.API.SapObject').SapModel
+
+# 2. Define Material Properties for Historical Masonry
+mat_name = "Heritage_Masonry"
+SapModel.PropMaterial.SetMaterial(mat_name, 2)  # Masonry/Concrete type
+# E = 2100 MPa, nu = 0.20, G = 875 MPa
+SapModel.PropMaterial.SetMPIsotropic(mat_name, 2100000.0, 0.20, 0.00001)
+SapModel.PropMaterial.SetWeightAndMass(mat_name, 1, 21.0) # Weight density: 21 kN/m3
+
+# 3. Parametric Batch Definition of 47 Wall Section Thicknesses (0.07m to 0.98m)
+wall_thicknesses_cm = [
+    7, 10, 12, 15, 18, 20, 22, 25, 28, 30, 32, 35, 38, 40, 42, 45, 
+    48, 50, 52, 55, 58, 60, 62, 65, 68, 70, 72, 75, 78, 80, 82, 85, 
+    88, 90, 92, 95, 98 # 47 section variations with intermediate wythes
+]
+
+for t_cm in wall_thicknesses_cm:
+    sec_name = f"WALL_THK_{t_cm}CM"
+    t_meters = t_cm / 100.0
+    # SetAreaShell: Shell type (1=Shell Thick), Material, Thickness, Bending Thickness
+    SapModel.PropArea.SetShell_1(sec_name, 1, True, mat_name, 0.0, t_meters, t_meters)
+    print(f"Created Section: {sec_name} (Thickness = {t_meters:.2f} m)")
+
+# 4. Extract Modal Frequencies for AVT Model Updating
+SapModel.Analyze.RunAnalysis()
+ret = SapModel.Results.ModalPeriod()
+periods = ret[4] # Periods array
+print("\\n--- Calibrated Modal Frequencies ---")
+for i in range(4):
+    freq = 1.0 / periods[i]
+    print(f"Mode {i+1}: f = {freq:.3f} Hz (T = {periods[i]:.3f} s)")`
+    },
+    tags: ['SAP2000', 'Historic Masonry', 'Ambient Vibration Testing', 'Operational Modal Analysis', 'Model Updating', '47 Wall Sections', 'Heritage Conservation']
+  },
   {
     id: 'opensees-12story-dual-frame',
     title: '12-Story Dual Frame-Wall RC Building under Near-Fault Pulses',
@@ -455,107 +619,119 @@ alpha_exp = 0.35 # Non-linear velocity exponent
 
 export const PUBLICATIONS: Publication[] = [
   {
-    id: 'pub-2025-eq-eng-shm',
-    title: 'Physics-Informed Deep Autoencoders for Environmental Compensation in Vibration-Based Structural Health Monitoring of Multi-Story Buildings',
-    authors: ['Abdellatif Hannachi', 'K. Boudjemaa', 'M. Bensaibi', 'A. Slimani'],
-    venue: 'Journal of Sound and Vibration (Under Review)',
+    id: 'pub-2025-ajce-rugc',
+    title: 'Performance assessment and improvement of automated structural seismic design of RC systems per EC08 and RPA2024',
+    authors: ['Abdellatif Hannachi', 'Nouredine Bourahla', 'Salim Tafraout'],
+    venue: 'Academic Journal of Civil Engineering (AJCE), Vol. 43, No. 1 (Special Issue RUGC 2025), pp. 1-8',
     year: 2025,
     type: 'journal',
-    doi: '10.1016/j.jsv.2025.118942',
-    pdfUrl: '#',
-    abstract: 'Operational modal analysis is heavily confounded by ambient temperature gradients and humidity cycles in monitored buildings. This paper proposes a physics-informed variational autoencoder (PI-VAE) that incorporates modal stiffness constraint equations into the latent bottleneck space. Tested on a 1-year ambient vibration record of an 8-story instrumented building and verified against high-fidelity OpenSees simulations, the framework eliminates 94.2% of false damage alarms caused by thermal expansion while maintaining 99.1% sensitivity to minor stiffness loss.',
-    tags: ['Structural Health Monitoring', 'Deep Learning', 'Environmental Compensation', 'OpenSees', 'Operational Modal Analysis'],
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
+    abstract: 'Proposes an automated structural seismic design algorithm tailored for reinforced concrete (RC) framing and shear wall systems complying with Eurocode 8 (EC08) and the newly updated Algerian Seismic Code RPA2024 provisions. Evaluates the computational efficiency and structural performance of automated layout sizing across diverse building typologies. Algorithmic parameter tuning is carried out to improve the performance of optimized structural layouts evaluated via response spectrum analysis, delivering fully code-compliant, material-optimized structural configurations integrated within modern digital engineering and BIM workflows.',
+    tags: ['Automated Seismic Design', 'RPA2024', 'Eurocode 8', 'Reinforced Concrete', 'Response Spectrum', 'RUGC 2025'],
     featured: true,
-    bibtex: `@article{hannachi2025physics,
-  title={Physics-Informed Deep Autoencoders for Environmental Compensation in Vibration-Based Structural Health Monitoring of Multi-Story Buildings},
-  author={Hannachi, Abdellatif and Boudjemaa, K. and Bensaibi, M. and Slimani, A.},
-  journal={Journal of Sound and Vibration},
-  year={2025},
-  publisher={Elsevier},
-  doi={10.1016/j.jsv.2025.118942}
+    bibtex: `@article{hannachi2025performance,
+  title={Performance assessment and improvement of automated structural seismic design of RC systems per EC08 and RPA2024},
+  author={Hannachi, Abdellatif and Bourahla, Nouredine and Tafraout, Salim},
+  journal={Academic Journal of Civil Engineering},
+  volume={43},
+  number={1},
+  pages={1--8},
+  year={2025}
 }`
   },
   {
-    id: 'pub-2024-surrogate-nltha',
-    title: 'Sub-Second Non-Linear Seismic Response Estimation of RC Frames Using Spatial-Temporal Transformer Surrogates',
-    authors: ['Abdellatif Hannachi', 'M. Bensaibi', 'K. Boudjemaa'],
-    venue: 'Earthquake Engineering & Structural Dynamics',
-    year: 2024,
-    type: 'journal',
-    doi: '10.1002/eqe.4190',
-    pdfUrl: '#',
-    abstract: 'Non-linear time-history analysis (NLTHA) is essential for performance-based earthquake engineering but remains computationally prohibitive for design optimization and real-time assessment. We propose a Spatial-Temporal Graph Transformer (ST-GNN) trained on 15,000 OpenSeesPy simulations of reinforced concrete frames subjected to diverse pulse and non-pulse ground motions. The surrogate achieves sub-second predictions of inter-story drift profiles and floor accelerations with a mean absolute percentage error under 4.8%, accelerating seismic evaluation by over 3,000x.',
-    tags: ['Surrogate Modeling', 'Transformers', 'OpenSeesPy', 'Non-Linear Time History', 'RC Frames'],
-    featured: true,
-    bibtex: `@article{hannachi2024subsecond,
-  title={Sub-Second Non-Linear Seismic Response Estimation of RC Frames Using Spatial-Temporal Transformer Surrogates},
-  author={Hannachi, Abdellatif and Bensaibi, M. and Boudjemaa, K.},
-  journal={Earthquake Engineering & Structural Dynamics},
-  volume={53},
-  number={12},
-  pages={3890--3912},
-  year={2024},
-  publisher={Wiley Online Library},
-  doi={10.1002/eqe.4190}
-}`
-  },
-  {
-    id: 'pub-2024-18wcee',
-    title: 'Automated Optimal Sensor Placement in Irregular High-Rise Buildings Using Hybrid Genetic-Information Entropy Algorithms and SAP2000 OAPI',
-    authors: ['Abdellatif Hannachi', 'A. Slimani', 'M. Bensaibi'],
+    id: 'pub-2024-18wcee-shm',
+    title: 'APPLICATION OF AN INTELLIGENT MULTI-DAMAGE DETECTION FRAMEWORK FOR SHM ON FULL-SCALE STRUCTURE',
+    authors: ['Selma Larbi', 'Nouredine Bourahla', 'Abdellatif Hannachi', 'Yasser Bourahla'],
     venue: 'Proceedings of the 18th World Conference on Earthquake Engineering (18WCEE), Milan, Italy',
     year: 2024,
     type: 'conference',
-    doi: '10.18wcee.2024.art7104',
-    pdfUrl: '#',
-    abstract: 'Sensor layout configuration is critical for reliable operational modal identification in torsionally coupled structures. We introduce an automated optimization framework coupling SAP2000 via its Open Application Programming Interface (OAPI) with a hybrid Genetic Algorithm optimizing the Effective Independence (EFI) and Information Entropy (IE) indices. Results show a 35% improvement in mode shape orthogonality with 40% fewer sensors compared to standard heuristic placement.',
-    tags: ['18WCEE', 'SAP2000 OAPI', 'Optimal Sensor Placement', 'High-Rise Buildings', 'Modal Analysis'],
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
+    abstract: 'Showcases a comprehensive multi-damage detection framework utilizing deep neural networks (DNN) for structural health monitoring (SHM). Demonstrated on a full-scale thousand-year-old historical monument case study in Algiers. The SHM strategy incorporates the results of an extended Genetic Algorithm (GA)-based Sensor Number and Placement Optimization (SNPO) procedure, substantially improving the reliability and efficiency of SHM for complex heritage masonry structures experiencing multiple simultaneous damage states under environmental and dynamic actions.',
+    tags: ['18WCEE', 'Structural Health Monitoring', 'Deep Neural Networks', 'Sensor Optimization', 'Full-Scale Structure', 'Historic Monument'],
     featured: true,
-    bibtex: `@inproceedings{hannachi2024automated,
-  title={Automated Optimal Sensor Placement in Irregular High-Rise Buildings Using Hybrid Genetic-Information Entropy Algorithms and SAP2000 OAPI},
-  author={Hannachi, Abdellatif and Slimani, A. and Bensaibi, M.},
+    bibtex: `@inproceedings{larbi2024application,
+  title={APPLICATION OF AN INTELLIGENT MULTI-DAMAGE DETECTION FRAMEWORK FOR SHM ON FULL-SCALE STRUCTURE},
+  author={Larbi, Selma and Bourahla, Nouredine and Hannachi, Abdellatif and Bourahla, Yasser},
   booktitle={Proceedings of the 18th World Conference on Earthquake Engineering (18WCEE)},
   address={Milan, Italy},
   year={2024}
 }`
   },
   {
-    id: 'pub-2023-compdyn',
-    title: 'Fiber-Based Cyclic Degradation Modeling of RC Shear Walls and Damage Index Formulation in OpenSees',
-    authors: ['Abdellatif Hannachi', 'K. Boudjemaa'],
-    venue: '9th International Conference on Computational Methods in Structural Dynamics and Earthquake Engineering (COMPDYN 2023), Athens, Greece',
+    id: 'pub-2023-18wcsi-kbf',
+    title: 'GA-Based Optimisation of Dissipative Knee Braced Steel Frames',
+    authors: ['Nouredine Bourahla', 'Abdellatif Hannachi'],
+    venue: '18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures (18WCSI), Antalya, Turkey / Springer',
     year: 2023,
     type: 'conference',
-    doi: '10.7712/120123.10452.19302',
-    pdfUrl: '#',
-    abstract: 'Presents the calibration of OpenSees SFI-MVLEM macro-models against experimental cyclic tests of slender and squat reinforced concrete shear walls. Introduces an energy-weighted Park-Ang damage index adapted for fiber discretized cross-sections to evaluate cumulative cyclic degradation.',
-    tags: ['COMPDYN', 'OpenSees', 'Shear Walls', 'SFI-MVLEM', 'Damage Index'],
-    featured: false,
-    bibtex: `@inproceedings{hannachi2023fiber,
-  title={Fiber-Based Cyclic Degradation Modeling of RC Shear Walls and Damage Index Formulation in OpenSees},
-  author={Hannachi, Abdellatif and Boudjemaa, K.},
-  booktitle={9th International Conference on Computational Methods in Structural Dynamics and Earthquake Engineering (COMPDYN 2023)},
-  address={Athens, Greece},
+    citations: 6,
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
+    abstract: 'Proposes an intelligent optimization procedure utilizing genetic algorithms (GA) to optimize the seismic performance of knee-braced steel frames (KBF). Knee bracing systems combine high lateral stiffness with ductile hysteretic energy dissipation. The GA framework determines the optimal height-wise strength distribution of the dissipative knee elements to maximize hysteretic energy dissipation during seismic excitation, preventing premature plastic concentration and story drift mechanisms.',
+    tags: ['Knee Braced Frames', 'Genetic Algorithms', 'Seismic Energy Dissipation', 'Steel Structures', 'Optimization', '18WCSI'],
+    featured: true,
+    bibtex: `@inproceedings{bourahla2023ga,
+  title={GA-Based Optimisation of Dissipative Knee Braced Steel Frames},
+  author={Bourahla, Nouredine and Hannachi, Abdellatif},
+  booktitle={Proceedings of the 18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures (18WCSI)},
+  address={Antalya, Turkey},
   year={2023}
 }`
   },
   {
-    id: 'pub-2025-preprint-rl-design',
-    title: 'Deep Reinforcement Learning for Multi-Objective Automated Seismic Sizing of Dual Frame-Wall Systems under Eurocode 8 Constraints',
-    authors: ['Abdellatif Hannachi', 'M. Bensaibi', 'K. Boudjemaa'],
-    venue: 'TechRxiv / Engineering Preprint',
+    id: 'pub-2025-icrce-shearwall',
+    title: 'AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS',
+    authors: ['Abdellatif Hannachi', 'Nouredine Bourahla'],
+    venue: 'The First International Conference on Recent Challenges in Civil Engineering (ICRCE), 2025',
     year: 2025,
-    type: 'preprint',
-    arxivId: '2502.09144',
-    pdfUrl: '#',
-    abstract: 'Proposes an end-to-end actor-critic reinforcement learning pipeline directly interfacing with OpenSeesPy to automate the cross-sectional sizing and rebar detailing of RC structures according to Eurocode 8 capacity design rules. Sizing policy converges in under 500 episodes while reducing embodied carbon by 14.2% relative to conventional engineering practice.',
-    tags: ['Reinforcement Learning', 'Eurocode 8', 'Automated Design', 'OpenSeesPy', 'Optimization'],
-    featured: false,
-    bibtex: `@article{hannachi2025deeprl,
-  title={Deep Reinforcement Learning for Multi-Objective Automated Seismic Sizing of Dual Frame-Wall Systems under Eurocode 8 Constraints},
-  author={Hannachi, Abdellatif and Bensaibi, M. and Boudjemaa, K.},
-  journal={arXiv preprint arXiv:2502.09144},
+    type: 'conference',
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
+    abstract: 'Reformulates the reinforced concrete shear wall design process as an optimization problem. The primary objective is to minimize the use of reinforcement steel and concrete while ensuring that all safety, ductility, and drift code constraints are met under the newly revised RPA2024 Algerian seismic provisions. The framework is directly integrated with ETABS software through its API, allowing automatic retrieval of shear wall geometry, loading combinations, and analysis results to generate optimized boundary elements without requiring tedious manual trial-and-error iterations.',
+    tags: ['RPA2024', 'Shear Wall Optimization', 'ETABS API', 'Automated Design', 'Rebar Detailing', 'Seismic Engineering'],
+    featured: true,
+    bibtex: `@inproceedings{hannachi2025automated,
+  title={AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS},
+  author={Hannachi, Abdellatif and Bourahla, Nouredine},
+  booktitle={Proceedings of the First International Conference on Recent Challenges in Civil Engineering (ICRCE)},
   year={2025}
+}`
+  },
+  {
+    id: 'pub-2025-enp-sensor-hq',
+    title: 'Hybrid AI-based sensor optimization for structural health monitoring of multi-story buildings — case study: HQ tower R+12',
+    authors: ['M. Boukharouba', 'Nouredine Bourahla', 'Abdellatif Hannachi'],
+    venue: 'Research Proceedings & Structural Dynamics Technical Report, École Nationale Polytechnique (ENP), Algiers',
+    year: 2025,
+    type: 'conference',
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
+    abstract: 'Investigates optimal sensor placement for continuous vibration-based structural health monitoring in multi-story buildings using a hybrid AI optimization framework. Applied to the HQ Tower R+12 case study to establish the optimal configuration of triaxial accelerometers capable of capturing higher translational and torsional modal responses under ambient traffic and wind excitation while minimizing instrumentation costs.',
+    tags: ['Sensor Optimization', 'Structural Health Monitoring', 'High-Rise Buildings', 'Operational Modal Analysis', 'HQ Tower'],
+    featured: false,
+    bibtex: `@inproceedings{boukharouba2025hybrid,
+  title={Hybrid aI-based sensor optimization for structural health monitoring of multi-story buildings — case study : HQ tower R+12},
+  author={Boukharouba, M. and Bourahla, Nouredine and Hannachi, Abdellatif},
+  booktitle={Research Proceedings, Ecole Nationale Polytechnique},
+  address={Algiers, Algeria},
+  year={2025}
+}`
+  },
+  {
+    id: 'pub-2022-master-thesis',
+    title: 'Etude d\'un bâtiment contreventé par des portiques en béton préfabriqué',
+    authors: ['Abdellatif Hannachi'],
+    venue: 'Diplôme d\'Ingénieur d\'État & Master\'s Thesis, École Nationale Polytechnique (ENP), Algiers',
+    year: 2022,
+    type: 'thesis',
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
+    abstract: 'Comprehensive seismic modeling, dynamic analysis, and ductility evaluation of a multi-story building braced by precast reinforced concrete moment-resisting frames in accordance with RPA99/v2003 and Eurocode 8. Investigates the rotational stiffness and ductile behavior of precast beam-column connections, verifying lateral stiffness, story drift limitations, and structural integrity under earthquake excitation.',
+    tags: ['Precast Concrete Frames', 'RPA99/v2003', 'Eurocode 8', 'Connection Detailing', 'Seismic Design', 'ENP Algiers'],
+    featured: false,
+    bibtex: `@mastersthesis{hannachi2022etude,
+  title={Etude d'un b{\^a}timent contrevent{\'e} par des portiques en b{\'e}ton pr{\'e}fabriqu{\'e}},
+  author={Hannachi, Abdellatif},
+  school={Ecole Nationale Polytechnique},
+  address={Algiers, Algeria},
+  year={2022}
 }`
   }
 ];
@@ -570,26 +746,26 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: '2022 — Present (Expected Defense: 2026)',
     type: 'education',
     description: [
-      'Doctoral dissertation title: "Advanced Numerical Modeling and Artificial Intelligence Frameworks for Automated Seismic Design and Structural Health Monitoring of RC Structures".',
-      'Developed high-throughput OpenSees and SAP2000 automated scripting pipelines via Python OAPI, simulating over 15,000 nonlinear time-history responses.',
-      'Designed physics-informed machine learning models that reduced nonlinear earthquake simulation times from minutes to milliseconds.',
-      'Published in high-impact journals (Earthquake Engineering & Structural Dynamics, Journal of Sound and Vibration) and international conferences (18WCEE Milan, COMPDYN Athens).'
+      'Doctoral research: "AI-Aided Structural Health Monitoring and Automated Seismic Design of RC Systems per Eurocode 8 and RPA2024", under the supervision of Prof. Nouredine Bourahla.',
+      'Developed automated optimization pipelines coupling ETABS via API and finite element models (OpenSees, SAP2000) for code-compliant structural member sizing and sensor placement.',
+      'Designed Genetic Algorithm (GA) frameworks for optimal sensor placement in multi-story buildings and historic monuments, and for knee-braced steel frame dissipation.',
+      'Published and presented research in peer-reviewed venues including the Academic Journal of Civil Engineering, 18th World Conference on Earthquake Engineering (18WCEE Milan), and 18WCSI Antalya.'
     ],
-    skillsUsed: ['OpenSees', 'SAP2000', 'Python/PyTorch', 'Structural Dynamics', 'Nonlinear Mechanics', 'SHM']
+    skillsUsed: ['OpenSees', 'SAP2000', 'ETABS API', 'Python', 'Structural Dynamics', 'SHM', 'RPA2024']
   },
   {
     id: 'msc-enp',
-    title: 'M.Sc. in Structural Engineering (Major: Earthquake & Civil Structures)',
-    role: 'Master Degree (Graduated Valedictorian / Highest Honors)',
+    title: 'M.Sc. & State Engineer Degree in Civil Engineering',
+    role: 'State Engineer (Graduated Valedictorian / Ranked 1st in Class)',
     organization: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2020 — 2022',
+    period: '2017 — 2022',
     type: 'education',
     description: [
-      'Master Thesis: "Nonlinear Dynamic Analysis and Seismic Vulnerability Assessment of Infilled RC Frames Using Fiber-Section Formulations in OpenSees".',
-      'Coursework: Advanced Structural Dynamics, Non-Linear Finite Element Analysis, Continuum Mechanics, Earthquake Resistant Design (Eurocode 8 & RPA99), Probabilistic Seismic Hazard Analysis.'
+      'Graduation Thesis: "Etude d\'un bâtiment contreventé par des portiques en béton préfabriqué" (Dynamic analysis and seismic design of precast concrete framed structures).',
+      'Advanced coursework: Non-Linear Finite Element Analysis, Structural Dynamics, Continuum Mechanics, Seismic Resistant Design (Eurocode 8 & RPA99), Soil-Structure Interaction.'
     ],
-    skillsUsed: ['OpenSees', 'ETABS', 'MATLAB', 'Eurocode 8', 'Pushover Analysis']
+    skillsUsed: ['SAP2000', 'ETABS', 'MATLAB', 'Eurocode 8', 'RPA99', 'Precast Concrete']
   },
   {
     id: 'teaching-ta',
@@ -615,9 +791,9 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: '2021 — 2024',
     type: 'industry',
     description: [
-      'Performed nonlinear pushover and time-history seismic performance assessments for existing public hospitals and educational facilities in seismic zones III & IV.',
-      'Designed seismic retrofitting interventions with carbon-fiber-reinforced polymers (CFRP) and steel bracing modeled in SAP2000 and ETABS.',
-      'Conducted ambient vibration testing campaigns using multi-channel high-sensitivity seismic accelerometers.'
+      'Conducted on-site Ambient Vibration Testing (AVT) campaigns and 3D FEM modeling for historic masonry structures, including complex heritage palaces with 47 distinct wall thickness sections (7 cm to 98 cm) calibrated via Operational Modal Analysis (FDD/SSI).',
+      'Performed nonlinear pushover and time-history seismic performance assessments for existing public hospitals and cultural heritage facilities in high seismic zones.',
+      'Designed seismic retrofitting interventions with carbon-fiber-reinforced polymers (CFRP), tie rods, and steel bracing modeled and verified in SAP2000 and ETABS.'
     ],
     skillsUsed: ['SAP2000', 'ETABS', 'Seismic Retrofit', 'Ambient Vibration Testing', 'RPA99/Eurocode 8']
   }
@@ -686,5 +862,247 @@ export const GROUND_MOTION_DATASETS = [
     magnitude: 'M 6.8',
     type: 'Algerian Coastal Thrust Fault',
     description: 'Local Algerian benchmark earthquake inducing extensive RC frame and soft-story damage.'
+  }
+];
+
+export const NEWS_ITEMS: NewsItem[] = [
+  {
+    id: 'news-1',
+    date: '2025',
+    title: 'Paper Published in Academic Journal of Civil Engineering',
+    category: 'Publication',
+    description: 'Our research "Performance assessment and improvement of automated structural seismic design of RC systems per EC08 and RPA2024" has been published in the Academic Journal of Civil Engineering (Special Issue RUGC 2025).',
+    link: {
+      text: 'View in Publications',
+      url: '#publications'
+    }
+  },
+  {
+    id: 'news-2',
+    date: 'December 2025',
+    title: 'Presented Automated Shear Wall Optimization at ICRCE 2025',
+    category: 'Conference',
+    description: 'Presented "AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS", reformulating RC shear wall boundary elements design via ETABS API automation.',
+    link: {
+      text: 'View Publication',
+      url: '#publications'
+    }
+  },
+  {
+    id: 'news-3',
+    date: 'July 2024',
+    title: 'Presented at the 18th World Conference on Earthquake Engineering (18WCEE Milan)',
+    category: 'Conference',
+    description: 'Presented our paper "APPLICATION OF AN INTELLIGENT MULTI-DAMAGE DETECTION FRAMEWORK FOR SHM ON FULL-SCALE STRUCTURE" at 18WCEE in Milan, Italy, demonstrating deep neural network multi-damage detection on a historic monument.',
+    link: {
+      text: 'See Publication',
+      url: '#publications'
+    }
+  },
+  {
+    id: 'news-4',
+    date: 'November 2023',
+    title: 'Presented at 18WCSI in Antalya, Turkey (Springer)',
+    category: 'Conference',
+    description: 'Presented "GA-Based Optimisation of Dissipative Knee Braced Steel Frames" at the 18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures.',
+    link: {
+      text: 'See Paper Details',
+      url: '#publications'
+    }
+  },
+  {
+    id: 'news-5',
+    date: 'Field Campaign',
+    title: 'In-Situ Ambient Vibration Testing (AVT) Campaign on Historic Palace Complex',
+    category: 'Field Testing',
+    description: 'Completed in-situ ambient vibration testing and operational modal analysis (FDD/SSI) on a historic Moorish-Mediterranean palace in Algiers, achieving MAC > 0.94 with 3D SAP2000 shell elements across 47 wall thickness sections.',
+    link: {
+      text: 'Inspect 3D Model & AVT Data',
+      url: '#models'
+    }
+  }
+];
+
+export const COMMUNICATIONS: ScientificCommunication[] = [
+  {
+    id: 'comm-1',
+    title: 'APPLICATION OF AN INTELLIGENT MULTI-DAMAGE DETECTION FRAMEWORK FOR SHM ON FULL-SCALE STRUCTURE',
+    event: '18th World Conference on Earthquake Engineering (18WCEE)',
+    type: 'Oral Presentation',
+    location: 'Milan, Italy',
+    date: 'July 2024',
+    details: 'Presented deep neural network (DNN) multi-damage detection framework for a thousand-year-old historic monument in Algiers combining GA-based Sensor Number and Placement Optimization (SNPO) with Operational Modal Analysis.'
+  },
+  {
+    id: 'comm-2',
+    title: 'GA-Based Optimisation of Dissipative Knee Braced Steel Frames',
+    event: '18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures (18WCSI)',
+    type: 'Oral Presentation',
+    location: 'Antalya, Turkey',
+    date: 'November 2023',
+    details: 'Presented genetic algorithm optimization of knee-braced steel frames (KBF) to maximize height-wise dissipative energy dissipation and prevent story drift mechanisms.'
+  },
+  {
+    id: 'comm-3',
+    title: 'Performance assessment and improvement of automated structural seismic design of RC systems per EC08 and RPA2024',
+    event: 'Rencontres Universitaires de Génie Civil (RUGC 2025) / AUGC',
+    type: 'Oral Presentation',
+    location: 'RUGC 2025',
+    date: '2025',
+    details: 'Presented algorithmic framework for automated seismic layout sizing of RC frames and shear walls satisfying Eurocode 8 and Algerian Code RPA2024 under response spectrum analysis.'
+  },
+  {
+    id: 'comm-4',
+    title: 'AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS',
+    event: 'The First International Conference on Recent Challenges in Civil Engineering (ICRCE)',
+    type: 'Oral Presentation',
+    location: 'Algiers, Algeria',
+    date: '2025',
+    details: 'Presented end-to-end ETABS API automation pipeline formulating shear wall rebar and concrete sizing as a constrained mathematical optimization problem.'
+  }
+];
+
+export const PEER_REVIEW_ACTIVITIES: PeerReviewActivity[] = [
+  {
+    journalOrEvent: 'International Conferences in Earthquake Engineering & Structural Dynamics',
+    publisherOrBody: '18WCEE & Civil Engineering Symposia',
+    role: 'Reviewer',
+    countOrYear: 'Technical Reviewer (2023 — Present)'
+  },
+  {
+    journalOrEvent: 'Academic Journal of Civil Engineering & Civil Engineering Research',
+    publisherOrBody: 'AUGC / Academic Press',
+    role: 'Reviewer',
+    countOrYear: 'Author & Contributor (2024 — Present)'
+  },
+  {
+    journalOrEvent: 'French Association for Earthquake Engineering (AFPS)',
+    publisherOrBody: 'Association Française du Génie Parasismique',
+    role: 'Member',
+    countOrYear: 'Active Member'
+  },
+  {
+    journalOrEvent: 'Earthquake Engineering Research Institute (EERI)',
+    publisherOrBody: 'EERI International',
+    role: 'Member',
+    countOrYear: 'Graduate Student Member'
+  },
+  {
+    journalOrEvent: 'Structural Engineering Seminars & Technical Workshops',
+    publisherOrBody: 'École Nationale Polytechnique (ENP Algiers)',
+    role: 'Reviewer',
+    countOrYear: 'Workshop Lead & Moderator (2023 — Present)'
+  }
+];
+
+export const EDUCATION_HISTORY: EducationItem[] = [
+  {
+    id: 'edu-1',
+    degree: 'Ph.D. in Civil & Earthquake Engineering (Candidate)',
+    institution: 'École Nationale Polytechnique (ENP)',
+    location: 'Algiers, Algeria',
+    period: '2022 — Present (Defense Expected: Late 2026)',
+    honors: 'Doctoral Excellence Fellowship',
+    thesisTitle: 'AI-Aided Structural Health Monitoring and Automated Seismic Design of RC Systems per Eurocode 8 and RPA2024',
+    advisors: 'Supervised by Prof. Nouredine Bourahla (Laboratory of Earthquake Engineering & Structural Dynamics)',
+    description: 'Research centered on AI-aided structural health monitoring, ambient vibration testing, finite element model updating in OpenSees/SAP2000, and automated structural seismic design under Eurocode 8 and the new Algerian Seismic Code RPA2024.'
+  },
+  {
+    id: 'edu-2',
+    degree: 'State Engineer Degree & Master of Science in Civil Engineering',
+    institution: 'École Nationale Polytechnique (ENP)',
+    location: 'Algiers, Algeria',
+    period: '2017 — 2022',
+    honors: 'Valedictorian — Ranked 1st in Class (Summa Cum Laude)',
+    thesisTitle: 'Etude d\'un bâtiment contreventé par des portiques en béton préfabriqué',
+    description: 'Rigorous 5-year Grande École curriculum encompassing advanced structural mechanics, finite element analysis, soil-structure interaction, continuum mechanics, concrete & steel design, and applied mathematics.'
+  },
+  {
+    id: 'edu-3',
+    degree: 'Classes Préparatoires aux Grandes Écoles d’Ingénieurs (CPGE)',
+    institution: 'École Nationale Polytechnique (ENP)',
+    location: 'Algiers, Algeria',
+    period: '2015 — 2017',
+    honors: 'Admitted via National Competitive Entrance Examination (Concours National)',
+    description: 'Intensive two-year foundation in advanced higher mathematics (linear algebra, differential geometry, multivariable calculus), physics (classical mechanics, thermodynamics, electromagnetism), and numerical algorithm design.'
+  }
+];
+
+export const TEACHING_ACTIVITIES: TeachingItem[] = [
+  {
+    id: 'teach-1',
+    course: 'Structural Dynamics & Earthquake Engineering',
+    level: 'Master 1 / 4th Year Ingénieur',
+    institution: 'École Nationale Polytechnique (ENP)',
+    period: '2023 — Present',
+    role: 'Teaching Assistant / Tutorial Instructor',
+    hours: '36 Hours / Academic Year',
+    topics: [
+      'Single and Multi-Degree-of-Freedom (SDOF/MDOF) dynamic systems',
+      'Duhamel integral, modal superposition, and eigenvalue formulation',
+      'Elastic and inelastic earthquake response spectra (Eurocode 8 / RPA99)',
+      'Equivalent lateral force and response spectrum analysis procedures'
+    ]
+  },
+  {
+    id: 'teach-2',
+    course: 'Finite Element Method & Computer-Aided Structural Modeling (SAP2000 & ETABS)',
+    level: 'Master 1 & Master 2',
+    institution: 'École Nationale Polytechnique (ENP)',
+    period: '2023 — Present',
+    role: 'Laboratory Session Coordinator',
+    hours: '28 Hours / Academic Year',
+    topics: [
+      '3D building geometry generation, meshing techniques, and diaphragm modeling',
+      'Shell element formulations for masonry and RC shear walls',
+      'Nonlinear static pushover modeling and plastic hinge definitions',
+      'Python OAPI scripting for batch analysis and automated result extraction'
+    ]
+  },
+  {
+    id: 'teach-3',
+    course: 'Strength of Materials (Résistance des Matériaux - RDM)',
+    level: '2nd Year Engineering CPGE / Civil Track',
+    institution: 'École Nationale Polytechnique (ENP)',
+    period: '2022 — 2024',
+    role: 'Teaching Assistant',
+    hours: '24 Hours / Academic Year',
+    topics: [
+      'Bending moments, shear diagrams, and normal stress distributions',
+      'Mohr circle for stress and strain transformations',
+      'Energy methods (Castigliano theorem, virtual work principle)',
+      'Euler-Bernoulli beam theory and elastic column buckling'
+    ]
+  }
+];
+
+export const AWARDS_HONORS: AwardItem[] = [
+  {
+    id: 'award-1',
+    title: 'ENP Valedictorian & Academic Excellence Award',
+    issuer: 'École Nationale Polytechnique (ENP)',
+    year: '2022',
+    description: 'Awarded for graduating Ranked 1st in Class across the Civil Engineering cohort with the highest cumulative GPA and summa cum laude thesis distinction.'
+  },
+  {
+    id: 'award-2',
+    title: 'Doctoral Research Excellence Fellowship',
+    issuer: 'Ministry of Higher Education and Scientific Research (MESRS)',
+    year: '2022 — 2026',
+    description: 'Four-year prestigious national research funding awarded to top-tier doctoral candidates conducting high-impact research in seismic engineering and structural safety.'
+  },
+  {
+    id: 'award-3',
+    title: 'Best Research Presentation Award',
+    issuer: 'National Symposium on Seismic Risk & Structural Mitigation (CGS / ENP)',
+    year: '2024',
+    description: 'Recognized for top technical delivery on automated sensor placement optimization in high-rise buildings subjected to ambient and strong-motion vibrations.'
+  },
+  {
+    id: 'award-4',
+    title: 'National Order of Engineers Honors Distinction',
+    issuer: 'Algerian Order of Certified Civil Engineers',
+    year: '2021',
+    description: 'Awarded in recognition of exceptional academic merit and outstanding performance in national structural design competitions.'
   }
 ];
