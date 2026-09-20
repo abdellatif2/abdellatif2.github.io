@@ -68,12 +68,12 @@ export const Publications: React.FC = () => {
         
         {/* Section Header */}
         <div className="mb-6">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#002147] tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
             Publications
           </h2>
-          <div className="w-16 h-1 bg-[#C49B3C] mt-2 mb-3" />
-          <p className="text-sm sm:text-base text-[#718096]">
-            {PUBLICATIONS.length} peer-reviewed publications in journals, international earthquake engineering conferences (18WCEE, 18WCSI, ICRCE), and engineering theses.
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-xs sm:text-sm text-slate-500">
+            {PUBLICATIONS.length} peer-reviewed publications in international journals, world earthquake engineering conferences (18WCEE, 18WCSI, ICRCE), and engineering theses.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export const Publications: React.FC = () => {
           {journalArticles.length > 0 && (
             <div>
               <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#002147]">
+                <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147]">
                   Journal Articles
                 </h3>
                 <ChevronDown className="w-4 h-4 text-[#002147]" />
@@ -252,7 +252,7 @@ export const Publications: React.FC = () => {
           {conferencePapers.length > 0 && (
             <div>
               <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#002147]">
+                <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147]">
                   Conference Papers
                 </h3>
                 <ChevronDown className="w-4 h-4 text-[#002147]" />
@@ -356,7 +356,7 @@ export const Publications: React.FC = () => {
           {thesesPapers.length > 0 && (
             <div>
               <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#002147]">
+                <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147]">
                   Theses &amp; Dissertations
                 </h3>
                 <ChevronDown className="w-4 h-4 text-[#002147]" />

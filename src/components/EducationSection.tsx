@@ -1,67 +1,66 @@
 import React from 'react';
 import { EDUCATION_HISTORY } from '../data/portfolioData';
-import { GraduationCap, Award, Calendar, MapPin, BookOpen } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 export const EducationSection: React.FC = () => {
   return (
-    <section id="education" className="academic-section">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="education" className="academic-section bg-white border-b border-[#E2E8F0]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left">
         
-        <div className="mb-2">
-          <h2 className="academic-section-title">
+        {/* Section Header */}
+        <div className="mb-6">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
             Education
           </h2>
-          <p className="mt-1 text-sm text-[#718096]">
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-xs sm:text-sm text-slate-500">
             Academic degrees and formal engineering diplomas from École Nationale Polytechnique (ENP Algiers).
           </p>
         </div>
 
-        <div className="mt-8 relative border-l-2 border-[#E2E8F0] ml-3 sm:ml-4 pl-6 sm:pl-8 space-y-8">
+        {/* Flat Academic List matching other sections */}
+        <div className="divide-y divide-slate-100 border-t border-slate-100">
           {EDUCATION_HISTORY.map((edu) => (
-            <div key={edu.id} className="relative group">
-              {/* Timeline marker with gold accent */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-[#C49B3C] group-hover:bg-[#C49B3C] transition-colors" />
+            <div key={edu.id} className="py-5 text-left">
+              
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900">
+                    {edu.degree}
+                  </h3>
+                  {edu.honors && (
+                    <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-50 text-[#C49B3C] border border-[#C49B3C]/30 inline-flex items-center gap-1">
+                      <Award className="w-3 h-3" />
+                      <span>{edu.honors}</span>
+                    </span>
+                  )}
+                </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                <span className="font-mono text-xs text-[#C49B3C] font-semibold">
+                <span className="font-mono text-xs font-semibold text-[#C49B3C] shrink-0">
                   {edu.period}
                 </span>
-
-                {edu.honors && (
-                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-[#C49B3C] border border-[#C49B3C]/30 flex items-center gap-1">
-                    <Award className="w-3 h-3" />
-                    <span>{edu.honors}</span>
-                  </span>
-                )}
               </div>
 
-              <h3 className="text-base sm:text-lg font-bold text-[#002147] group-hover:text-[#003366] transition-colors">
-                {edu.degree}
-              </h3>
-
-              <p className="text-xs sm:text-sm font-semibold text-[#4A5568]">
-                {edu.institution} &middot; <span className="font-normal text-[#718096]">{edu.location}</span>
+              <p className="text-xs sm:text-sm font-medium text-slate-600 mb-2">
+                <span className="text-[#002147] font-semibold">{edu.institution}</span> &middot; {edu.location}
               </p>
 
               {edu.thesisTitle && (
-                <div className="mt-2 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-[#4A5568]">
-                  <span className="font-mono font-bold text-[#002147] uppercase text-[10px] block mb-0.5">
+                <div className="mt-2 text-xs sm:text-sm text-slate-600 space-y-0.5">
+                  <span className="font-mono text-[11px] uppercase font-bold text-slate-500 block">
                     Thesis Dissertation:
                   </span>
                   <p className="font-serif italic text-slate-800">
                     &ldquo;{edu.thesisTitle}&rdquo;
                   </p>
                   {edu.advisors && (
-                    <p className="mt-1 text-[11px] text-[#718096]">
+                    <p className="text-xs text-slate-500">
                       Laboratory: {edu.advisors}
                     </p>
                   )}
                 </div>
               )}
 
-              <p className="mt-2 text-xs sm:text-sm text-[#718096] leading-relaxed">
-                {edu.description}
-              </p>
             </div>
           ))}
         </div>

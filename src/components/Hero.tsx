@@ -48,19 +48,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
             
             {/* Name */}
             <div>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#002147] font-bold tracking-tight leading-none">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] text-[#002147] font-bold tracking-tight leading-tight">
                 Abdellatif Hannachi
               </h1>
               
               {/* Primary Role */}
-              <p className="mt-2.5 text-lg sm:text-xl font-semibold text-[#002147] tracking-tight">
+              <p className="mt-2 text-base sm:text-lg font-semibold text-[#002147] tracking-tight">
                 Doctoral Candidate in Earthquake Engineering
               </p>
             </div>
 
             {/* Structured Institutional Affiliations */}
-            <div className="space-y-1.5 text-sm sm:text-base text-[#4A5568] border-l-2 border-[#C49B3C] pl-3.5 text-left">
-              <p className="font-medium text-[#002147]">
+            <div className="space-y-1.5 text-xs sm:text-sm text-slate-600 border-l-2 border-[#C49B3C] pl-3.5 text-left">
+              <p className="font-semibold text-[#002147]">
                 Department of Civil Engineering &middot; Structural Dynamics &amp; Earthquake Engineering Laboratory (LGSDS)
               </p>
               <p className="text-slate-600 flex items-center gap-1.5">
@@ -128,11 +128,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
 
         </div>
 
-        {/* Organized Contact & Academic Profiles Grid (Matching Image 3 Reference Style) */}
+        {/* Organized Contact & Academic Profiles Grid */}
         <div id="contact" className="pt-6 border-t border-slate-200">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-left">
             
-            {/* Row 1: EMAIL */}
+            {/* 1. EMAIL */}
             <div className="border-b border-[#E2E8F0] pb-3">
               <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
                 EMAIL
@@ -155,7 +155,58 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
               </div>
             </div>
 
-            {/* Row 1: LINKEDIN */}
+            {/* 2. GOOGLE SCHOLAR */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                GOOGLE SCHOLAR
+              </span>
+              <a 
+                href={PERSONAL_INFO.googleScholar} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              >
+                <BookOpen className="w-4 h-4 text-[#002147] shrink-0" />
+                <span>Google Scholar</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* 3. RESEARCHGATE */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                RESEARCHGATE
+              </span>
+              <a 
+                href={PERSONAL_INFO.researchGate} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              >
+                <Globe className="w-4 h-4 text-[#002147] shrink-0" />
+                <span>ResearchGate</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* 4. ORCID */}
+            <div className="border-b border-[#E2E8F0] pb-3">
+              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+                ORCID
+              </span>
+              <a 
+                href={PERSONAL_INFO.orcidUrl} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline font-mono group"
+              >
+                <FileCheck className="w-4 h-4 text-[#C49B3C] shrink-0" />
+                <span>{PERSONAL_INFO.orcid}</span>
+                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
+
+            {/* 5. LINKEDIN */}
             <div className="border-b border-[#E2E8F0] pb-3">
               <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
                 LINKEDIN
@@ -174,78 +225,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
               </a>
             </div>
 
-            {/* Row 2: LOCATION */}
-            <div className="border-b border-[#E2E8F0] pb-3">
-              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
-                LOCATION
-              </span>
-              <p className="text-sm font-medium text-slate-900">
-                Algiers, Algeria
-              </p>
-            </div>
-
-            {/* Row 2: LANGUAGES */}
-            <div className="border-b border-[#E2E8F0] pb-3">
-              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
-                LANGUAGES
-              </span>
-              <p className="text-sm font-medium text-slate-900">
-                French (C1) &middot; English (C1) &middot; Arabic (Native)
-              </p>
-            </div>
-
-            {/* Row 3: GOOGLE SCHOLAR */}
-            <div className="border-b border-[#E2E8F0] pb-3">
-              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
-                GOOGLE SCHOLAR
-              </span>
-              <a 
-                href={PERSONAL_INFO.googleScholar} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
-              >
-                <BookOpen className="w-4 h-4 text-[#002147] shrink-0" />
-                <span>Google Scholar</span>
-                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </div>
-
-            {/* Row 3: RESEARCHGATE */}
-            <div className="border-b border-[#E2E8F0] pb-3">
-              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
-                RESEARCHGATE
-              </span>
-              <a 
-                href={PERSONAL_INFO.researchGate} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
-              >
-                <Globe className="w-4 h-4 text-[#002147] shrink-0" />
-                <span>ResearchGate</span>
-                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </div>
-
-            {/* Row 4: ORCID */}
-            <div className="border-b border-[#E2E8F0] pb-3">
-              <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
-                ORCID
-              </span>
-              <a 
-                href={PERSONAL_INFO.orcidUrl} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline font-mono group"
-              >
-                <FileCheck className="w-4 h-4 text-[#C49B3C] shrink-0" />
-                <span>{PERSONAL_INFO.orcid}</span>
-                <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </div>
-
-            {/* Row 4: GITHUB */}
+            {/* 6. GITHUB */}
             <div className="border-b border-[#E2E8F0] pb-3">
               <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
                 GITHUB
@@ -261,6 +241,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCvModal }) => {
                 <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             </div>
+
+ 
 
           </div>
         </div>

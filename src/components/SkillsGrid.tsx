@@ -8,11 +8,11 @@ export const SkillsGrid: React.FC = () => {
         
         {/* Section Header */}
         <div className="mb-6">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#002147] tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
             Computational &amp; FEA Stack
           </h2>
-          <div className="w-16 h-1 bg-[#C49B3C] mt-2 mb-3" />
-          <p className="text-sm sm:text-base text-[#718096]">
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-xs sm:text-sm text-slate-500">
             Finite element solvers, scientific programming languages, machine learning surrogate frameworks, and seismic codes.
           </p>
         </div>

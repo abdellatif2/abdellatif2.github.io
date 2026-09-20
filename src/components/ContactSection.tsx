@@ -27,28 +27,28 @@ export const ContactSection: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left">
         
         {/* Header */}
-        <div className="mb-8">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#002147] tracking-tight">
+        <div className="mb-6">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
             Contact &amp; Profiles
           </h2>
-          <div className="w-16 h-1 bg-[#C49B3C] mt-2 mb-3" />
-          <p className="text-sm sm:text-base text-[#718096]">
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-xs sm:text-sm text-slate-500">
             Get in touch for academic inquiries, postdoctoral collaborations, or technical consultations.
           </p>
         </div>
 
-        {/* 2-Column Grid matching reference image */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+        {/* 2-Column Grid matching reference order */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
           
-          {/* Row 1: EMAIL */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
+          {/* 1. EMAIL */}
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
               EMAIL
             </span>
             <div className="flex items-center justify-between gap-2">
               <a 
                 href={`mailto:${PERSONAL_INFO.email}`} 
-                className="text-sm sm:text-base font-medium text-slate-900 hover:text-[#002147] hover:underline"
+                className="text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline"
               >
                 {PERSONAL_INFO.email}
               </a>
@@ -63,112 +63,93 @@ export const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Row 1: LINKEDIN */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
-              LINKEDIN
-            </span>
-            <a 
-              href={PERSONAL_INFO.linkedin} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-slate-900 hover:text-[#002147] hover:underline group"
-            >
-              <div className="w-6 h-6 rounded bg-[#002147] text-white flex items-center justify-center text-xs font-bold shrink-0">
-                in
-              </div>
-              <span>LinkedIn</span>
-              <ExternalLink className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
-          </div>
-
-          {/* Row 2: LOCATION */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
-              LOCATION
-            </span>
-            <p className="text-sm sm:text-base font-medium text-slate-900">
-              Algiers, Algeria
-            </p>
-          </div>
-
-          {/* Row 2: LANGUAGES */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
-              LANGUAGES
-            </span>
-            <p className="text-sm sm:text-base font-medium text-slate-900">
-              French (C1) &middot; English (C1) &middot; Arabic (Native)
-            </p>
-          </div>
-
-          {/* Row 3: GOOGLE SCHOLAR */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
+          {/* 2. GOOGLE SCHOLAR */}
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
               GOOGLE SCHOLAR
             </span>
             <a 
               href={PERSONAL_INFO.googleScholar} 
               target="_blank" 
               rel="noreferrer" 
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
             >
-              <BookOpen className="w-5 h-5 text-[#002147] shrink-0" />
+              <BookOpen className="w-4 h-4 text-[#002147] shrink-0" />
               <span>Google Scholar</span>
-              <ExternalLink className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
 
-          {/* Row 3: RESEARCHGATE */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
+          {/* 3. RESEARCHGATE */}
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
               RESEARCHGATE
             </span>
             <a 
               href={PERSONAL_INFO.researchGate} 
               target="_blank" 
               rel="noreferrer" 
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
             >
-              <Globe className="w-5 h-5 text-[#002147] shrink-0" />
+              <Globe className="w-4 h-4 text-[#002147] shrink-0" />
               <span>ResearchGate</span>
-              <ExternalLink className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
 
-          {/* Row 4: ORCID */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
+          {/* 4. ORCID */}
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
               ORCID
             </span>
             <a 
               href={PERSONAL_INFO.orcidUrl} 
               target="_blank" 
               rel="noreferrer" 
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-slate-900 hover:text-[#002147] hover:underline font-mono group"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline font-mono group"
             >
-              <FileCheck className="w-5 h-5 text-[#C49B3C] shrink-0" />
+              <FileCheck className="w-4 h-4 text-[#C49B3C] shrink-0" />
               <span>{PERSONAL_INFO.orcid}</span>
-              <ExternalLink className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
 
-          {/* Row 4: GITHUB */}
-          <div className="border-b border-[#E2E8F0] pb-4">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1.5">
+          {/* 5. LINKEDIN */}
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
+              LINKEDIN
+            </span>
+            <a 
+              href={PERSONAL_INFO.linkedin} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+            >
+              <div className="w-5 h-5 rounded bg-[#002147] text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                in
+              </div>
+              <span>LinkedIn</span>
+              <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
+
+          {/* 6. GITHUB */}
+          <div className="border-b border-[#E2E8F0] pb-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider text-[#002147] uppercase block mb-1">
               GITHUB
             </span>
             <a 
               href={PERSONAL_INFO.github} 
               target="_blank" 
               rel="noreferrer" 
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-slate-900 hover:text-[#002147] hover:underline group"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-[#002147] hover:underline group"
             >
-              <Github className="w-5 h-5 text-[#002147] shrink-0" />
+              <Github className="w-4 h-4 text-[#002147] shrink-0" />
               <span>github.com/abdellatif2</span>
-              <ExternalLink className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ExternalLink className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
+
 
         </div>
 

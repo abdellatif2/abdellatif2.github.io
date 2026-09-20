@@ -7,12 +7,12 @@ export const TeachingSection: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left">
         
         <div className="mb-6">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#002147] tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
             Teaching &amp; Supervision
           </h2>
-          <div className="w-16 h-1 bg-[#C49B3C] mt-2 mb-3" />
-          <p className="text-sm sm:text-base text-[#718096]">
-            85+ hours of university-level lecture tutorials and computational finite element lab sessions at École Nationale Polytechnique (ENP).
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-xs sm:text-sm text-slate-500">
+            85+ hours of university-level lecture tutorials and computational finite element lab sessions at École Nationale Polytechnique (ENP Algiers).
           </p>
         </div>
 
@@ -20,7 +20,7 @@ export const TeachingSection: React.FC = () => {
           {TEACHING_ACTIVITIES.map((item) => (
             <div key={item.id} className="py-5 text-left">
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
-                <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900">
                   {item.course}
                 </h3>
                 <span className="font-mono text-xs font-semibold text-[#C49B3C] shrink-0">

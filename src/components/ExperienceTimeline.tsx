@@ -11,12 +11,12 @@ export const ExperienceTimeline: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left">
         
         <div className="mb-6">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#002147] tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
             Professional &amp; Research Experience
           </h2>
-          <div className="w-16 h-1 bg-[#C49B3C] mt-2 mb-3" />
-          <p className="text-sm sm:text-base text-[#718096]">
-            Doctoral research positions, academic appointments, and advanced earthquake engineering consulting.
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
+          <p className="text-xs sm:text-sm text-slate-500">
+            Doctoral research positions, academic appointments, and advanced structural earthquake engineering consulting.
           </p>
         </div>
 
@@ -24,7 +24,7 @@ export const ExperienceTimeline: React.FC = () => {
           {researchAndIndustryItems.map((item) => (
             <div key={item.id} className="py-5 text-left">
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
-                <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900">
                   {item.title}
                 </h3>
                 <span className="font-mono text-xs font-semibold text-[#C49B3C] shrink-0">
