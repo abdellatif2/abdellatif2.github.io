@@ -55,7 +55,7 @@ export default function App() {
         {/* 10. Teaching & Supervision */}
         <TeachingSection />
 
-        {/* 11. Computational & FEA Stack (Flat academic list) */}
+        {/* 11. Technical Skills */}
         <SkillsGrid />
       </main>
 

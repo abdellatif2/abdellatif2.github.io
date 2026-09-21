@@ -1,5 +1,4 @@
 import React from 'react';
-import { SOFTWARE_SKILLS } from '../data/portfolioData';
 
 export const SkillsGrid: React.FC = () => {
   return (
@@ -9,53 +8,81 @@ export const SkillsGrid: React.FC = () => {
         {/* Section Header */}
         <div className="mb-6">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#002147] tracking-tight">
-            Computational &amp; FEA Stack
+            Technical Skills
           </h2>
-          <div className="w-12 h-1 bg-[#C49B3C] mt-2 mb-3" />
-          <p className="text-xs sm:text-sm text-slate-500">
-            Finite element solvers, scientific programming languages, machine learning surrogate frameworks, and seismic codes.
-          </p>
+          <div className="w-12 h-1 bg-[#C49B3C] mt-2" />
         </div>
 
-        {/* Categories formatted as flat academic lists without boxed cards */}
-        <div className="space-y-8">
-          {SOFTWARE_SKILLS.map((cat, idx) => (
-            <div key={idx} className="space-y-2">
-              
-              {/* Category Subheader */}
-              <div className="border-b border-slate-200 pb-2">
-                <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147]">
-                  {cat.category}
-                </h3>
-              </div>
+        {/* Straightforward categories without badges, bars, or scores */}
+        <div className="divide-y divide-slate-100 border-t border-slate-100">
+          
+          {/* Structural Engineering */}
+          <div className="py-5 text-left space-y-2.5">
+            <h3 className="text-base font-bold text-slate-900">
+              Structural Engineering
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 pl-4 list-disc marker:text-[#C49B3C]">
+              <li>Structural analysis and design of reinforced concrete and steel structures</li>
+              <li>Seismic design and assessment of existing structures</li>
+              <li>Nonlinear static analysis and pushover analysis</li>
+              <li>Structural dynamics and modal analysis</li>
+              <li>Seismic retrofitting and strengthening</li>
+              <li>Finite element modeling</li>
+            </ul>
+          </div>
 
-              {/* Flat list with hairline dividers */}
-              <div className="divide-y divide-slate-100">
-                {cat.skills.map((skill, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-6 text-left"
-                  >
-                    {/* Tool Name & Level */}
-                    <div className="sm:w-64 shrink-0">
-                      <h4 className="text-sm font-bold text-slate-900 leading-snug">
-                        {skill.name}
-                      </h4>
-                      <span className="text-[11px] font-mono text-[#C49B3C] block mt-0.5 font-medium">
-                        {skill.level}
-                      </span>
-                    </div>
+          {/* Software & Numerical Modeling */}
+          <div className="py-5 text-left space-y-2.5">
+            <h3 className="text-base font-bold text-slate-900">
+              Software &amp; Numerical Modeling
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 pl-4 list-disc marker:text-[#C49B3C]">
+              <li><strong className="font-semibold text-slate-900">ETABS</strong> &mdash; structural analysis and seismic design</li>
+              <li><strong className="font-semibold text-slate-900">SAP2000</strong> &mdash; structural analysis, finite element modeling, and seismic assessment</li>
+              <li><strong className="font-semibold text-slate-900">OpenSees / OpenSeesPy</strong> &mdash; nonlinear structural and dynamic modeling</li>
+              <li><strong className="font-semibold text-slate-900">MATLAB</strong> &mdash; numerical analysis and signal processing</li>
+              <li><strong className="font-semibold text-slate-900">Python</strong> &mdash; scientific computing, automation, data analysis, and machine learning</li>
+            </ul>
+          </div>
 
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed flex-1 pt-0.5">
-                      {skill.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+          {/* AI & Computational Methods */}
+          <div className="py-5 text-left space-y-2.5">
+            <h3 className="text-base font-bold text-slate-900">
+              AI &amp; Computational Methods
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 pl-4 list-disc marker:text-[#C49B3C]">
+              <li>Machine learning for structural engineering</li>
+              <li>Graph neural networks (GNNs)</li>
+              <li>Genetic algorithms and evolutionary optimization</li>
+              <li>Structural health monitoring and vibration-based damage detection</li>
+              <li>Automated structural design and analysis</li>
+              <li>Data-driven structural engineering</li>
+            </ul>
+          </div>
 
-            </div>
-          ))}
+          {/* Codes & Standards */}
+          <div className="py-5 text-left space-y-2.5">
+            <h3 className="text-base font-bold text-slate-900">
+              Codes &amp; Standards
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 pl-4 list-disc marker:text-[#C49B3C]">
+              <li><strong className="font-semibold text-slate-900">RPA2024 / RPA99</strong> &mdash; Algerian seismic design code</li>
+              <li><strong className="font-semibold text-slate-900">Eurocode 8</strong> &mdash; seismic design and assessment</li>
+            </ul>
+          </div>
+
+          {/* Languages */}
+          <div className="py-5 text-left space-y-2.5">
+            <h3 className="text-base font-bold text-slate-900">
+              Languages
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 pl-4 list-disc marker:text-[#C49B3C]">
+              <li><strong className="font-semibold text-slate-900">Arabic:</strong> Native</li>
+              <li><strong className="font-semibold text-slate-900">English:</strong> C1</li>
+              <li><strong className="font-semibold text-slate-900">French:</strong> C1</li>
+            </ul>
+          </div>
+
         </div>
 
       </div>

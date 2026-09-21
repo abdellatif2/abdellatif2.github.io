@@ -66,6 +66,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
   // Group images into regular photos/models and mode shape animations
   const modeShapeImages = project.images?.filter(img => img.type === 'mode_shape') || [];
   const structuralImages = project.images?.filter(img => img.type !== 'mode_shape') || [];
+  const isHistoricMasonry = project.id === 'sap2000-historic-masonry-avt';
+  const isTsurumiBridge = project.id === 'opensees-tsurumi-tsubasa-bridge';
 
   return (
     <>
@@ -81,17 +83,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
         <div className="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-6 animate-in fade-in zoom-in-95 duration-200">
           
           {/* Modal Sticky Top Control Bar */}
-          <div className="sticky top-0 z-20 flex items-center justify-between px-5 sm:px-6 py-4 bg-[#002147] text-white border-b border-slate-800">
+          <div className="sticky top-0 z-20 flex items-center justify-between px-5 sm:px-6 py-3.5 bg-[#002147] text-white border-b border-slate-800">
             <div className="flex items-center gap-2.5 overflow-hidden">
-              <Layers className="w-5 h-5 text-[#C49B3C] shrink-0" />
-              <div className="flex items-center gap-2 truncate">
-                <span className="font-bold text-xs sm:text-sm tracking-wide">
-                  Project Dossier: {project.software}
-                </span>
-                <span className="hidden sm:inline-block text-slate-400 text-xs">
-                  &middot; {project.category} ({project.year})
-                </span>
-              </div>
+              <Layers className="w-4 h-4 text-[#C49B3C] shrink-0" />
+              <span className="font-semibold text-xs sm:text-sm tracking-wide truncate">
+                {project.title}
+              </span>
             </div>
 
             <div className="flex items-center gap-3 shrink-0">
@@ -106,355 +103,418 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
           </div>
 
           {/* Modal Document Body */}
-          <div className="p-6 sm:p-8 space-y-8 bg-white text-slate-900 text-left">
+          <div className="p-6 sm:p-8 bg-white text-slate-900 text-left">
             
-            {/* Title & Metadata Banner */}
-            <div className="border-b border-slate-200 pb-6 space-y-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-xs px-2.5 py-0.5 rounded-xs font-semibold bg-[#002147] text-white">
-                  {project.software}
-                </span>
-                <span className="font-mono text-xs px-2.5 py-0.5 rounded-xs font-semibold bg-amber-50 text-[#C49B3C] border border-[#C49B3C]/30">
-                  {project.category}
-                </span>
-                <span className="font-mono text-xs px-2.5 py-0.5 rounded-xs text-slate-600 bg-slate-100">
-                  Year {project.year}
-                </span>
-              </div>
-
-              <h1 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-[#002147] leading-tight">
-                {project.title}
-              </h1>
-
-              <p className="text-xs sm:text-sm font-medium text-slate-600">
-                <strong className="text-slate-900">Context:</strong> {project.projectContext}
-              </p>
-
-              {/* Key Quantitative Metrics Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
-                {project.metrics.degreesOfFreedom && (
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                    <span className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider">
-                      Degrees of Freedom
-                    </span>
-                    <span className="text-sm sm:text-base font-bold text-[#002147] font-mono">
-                      {project.metrics.degreesOfFreedom.toLocaleString()} DOFs
-                    </span>
-                  </div>
-                )}
-                {project.metrics.fundamentalPeriod && (
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                    <span className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider">
-                      Fundamental Period
-                    </span>
-                    <span className="text-sm sm:text-base font-bold text-[#002147] font-mono">
-                      {project.metrics.fundamentalPeriod}
-                    </span>
-                  </div>
-                )}
-                {project.metrics.computationalTime && (
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                    <span className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider">
-                      Solution Time
-                    </span>
-                    <span className="text-sm sm:text-base font-bold text-slate-800 font-mono">
-                      {project.metrics.computationalTime}
-                    </span>
-                  </div>
-                )}
-                {project.metrics.driftReduction && (
-                  <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                    <span className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider">
-                      Validation &amp; Status
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-emerald-700">
-                      {project.metrics.driftReduction}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Objective Callout */}
-            <div className="bg-amber-50/50 border-l-4 border-[#C49B3C] p-4 rounded-r-lg space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C49B3C] font-mono">
-                Project Objective
-              </span>
-              <p className="text-xs sm:text-sm text-slate-800 leading-relaxed">
-                {project.objective}
-              </p>
-            </div>
-
-            {/* Comprehensive Description */}
-            <div className="space-y-2">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono border-b border-slate-100 pb-1">
-                Project Overview &amp; Numerical Formulation
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                {project.description}
-              </p>
-            </div>
-
-            {/* Visual Gallery: Real Photos & Finite Element Discretization */}
-            {structuralImages.length > 0 && (
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">
-                    Finite Element Mesh &amp; Structural Models
-                  </h3>
-                  <span className="text-[11px] text-slate-500 font-mono">
-                    Click image to expand
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {structuralImages.map((img, idx) => (
-                    <div 
-                      key={idx}
-                      onClick={() => setActiveLightboxImage(img)}
-                      className="group cursor-pointer rounded-lg overflow-hidden border border-slate-200 hover:border-[#002147] hover:shadow-md transition-all bg-slate-950 flex flex-col"
-                    >
-                      <div className="relative h-44 bg-slate-900 overflow-hidden flex items-center justify-center">
-                        <img 
-                          src={img.url} 
-                          alt={img.caption}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        <div className="absolute top-2 left-2 bg-[#002147]/90 text-white font-mono text-[10px] font-semibold px-2 py-0.5 rounded shadow-xs">
-                          {img.tag}
-                        </div>
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 text-[#002147] text-xs font-semibold px-2.5 py-1 rounded shadow-sm inline-flex items-center gap-1">
-                            <Maximize2 className="w-3.5 h-3.5" /> Enlarge
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-2.5 bg-white border-t border-slate-100 text-left">
-                        <p className="text-[11px] text-slate-700 line-clamp-2 leading-snug">
-                          {img.caption}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Dynamic Mode Shapes & Animated Gifs Gallery */}
-            {modeShapeImages.length > 0 && (
-              <div className="space-y-3 pt-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-200 pb-2">
-                  <div className="flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-[#C49B3C]" />
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">
-                      Dynamic Mode Shapes &amp; Eigenvalue Oscillations ({modeShapeImages.length} Modes)
-                    </h3>
-                  </div>
-                  <span className="text-[11px] text-emerald-700 font-mono font-medium">
-                    3D Animated Mode Shapes
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {modeShapeImages.map((img, idx) => (
-                    <div 
-                      key={idx}
-                      onClick={() => setActiveLightboxImage(img)}
-                      className="group cursor-pointer rounded-lg overflow-hidden border border-slate-200 hover:border-[#002147] hover:shadow-md transition-all bg-white flex flex-col"
-                    >
-                      <div className="relative h-44 bg-slate-950 overflow-hidden flex items-center justify-center">
-                        <img 
-                          src={img.url} 
-                          alt={img.caption}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        <div className="absolute top-2 left-2 bg-[#002147]/90 text-white font-mono text-[10px] font-semibold px-2 py-0.5 rounded shadow-xs">
-                          {img.tag}
-                        </div>
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 text-[#002147] text-xs font-semibold px-2.5 py-1 rounded shadow-sm inline-flex items-center gap-1">
-                            <Maximize2 className="w-3.5 h-3.5" /> Full Size
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-3 bg-white border-t border-slate-100 text-left">
-                        <p className="text-xs font-semibold text-slate-900 line-clamp-2 leading-snug">
-                          {img.caption}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Modal Identification & Comparison Table */}
-            {project.ambientVibrationTesting?.modalComparison && (
-              <div className="space-y-2.5 pt-2">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">
-                    Dynamic Modal Identification &amp; Eigenvalue Results
-                  </h3>
-                  <span className="text-[11px] font-mono text-slate-500">
-                    {project.ambientVibrationTesting.idMethods?.join(' &middot; ')}
-                  </span>
-                </div>
+            {isHistoricMasonry ? (
+              /* Dedicated Clean, Technical & Visual Layout for Historic Masonry Building */
+              <div className="space-y-8">
                 
-                <div className="overflow-x-auto border border-slate-200 rounded-lg">
-                  <table className="w-full text-left text-xs border-collapse">
-                    <thead className="bg-slate-50 text-slate-700 font-mono border-b border-slate-200">
-                      <tr>
-                        <th className="py-2.5 px-3 font-semibold">Mode #</th>
-                        <th className="py-2.5 px-3 font-semibold">Vibration Mode Description</th>
-                        <th className="py-2.5 px-3 font-semibold">Modal Freq. (Period)</th>
-                        <th className="py-2.5 px-3 font-semibold">FEM Freq. (Period)</th>
-                        <th className="py-2.5 px-3 font-semibold">MAC</th>
-                        <th className="py-2.5 px-3 font-semibold">Damping</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 font-mono text-[11px]">
-                      {project.ambientVibrationTesting.modalComparison.map((m) => (
-                        <tr key={m.mode} className="hover:bg-slate-50/80 transition-colors">
-                          <td className="py-2 px-3 font-bold text-[#002147]">Mode {m.mode}</td>
-                          <td className="py-2 px-3 font-sans text-slate-800 font-medium">{m.label}</td>
-                          <td className="py-2 px-3 text-slate-900">{m.expFreq}</td>
-                          <td className="py-2 px-3 text-slate-900">{m.femFreq}</td>
-                          <td className="py-2 px-3 font-bold text-emerald-700">{m.mac}</td>
-                          <td className="py-2 px-3 text-slate-600">{m.damping}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                {/* Title Header */}
+                <div className="border-b border-slate-200 pb-4">
+                  <h1 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-[#002147] leading-tight">
+                    Historic Masonry Building | 3D FEM Modeling &amp; Structural Assessment
+                  </h1>
                 </div>
-              </div>
-            )}
 
-            {/* Wall Thickness Specifications for Masonry Structure */}
-            {project.wallThicknessSpecs && (
-              <div className="space-y-2.5 pt-2">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">
-                    Wall Thickness Discretization (47 Distinct Sections: {project.wallThicknessSpecs.minThickness} to {project.wallThicknessSpecs.maxThickness})
-                  </h3>
-                  <span className="text-[11px] font-mono text-[#C49B3C] font-semibold">
-                    Total {project.wallThicknessSpecs.totalSections} Section Types
-                  </span>
-                </div>
-                
-                <div className="overflow-x-auto border border-slate-200 rounded-lg">
-                  <table className="w-full text-left text-xs border-collapse">
-                    <thead className="bg-slate-50 text-slate-700 font-mono border-b border-slate-200">
-                      <tr>
-                        <th className="py-2 px-3 font-semibold">Section ID</th>
-                        <th className="py-2 px-3 font-semibold">Structural Element Role</th>
-                        <th className="py-2 px-3 font-semibold">Thickness</th>
-                        <th className="py-2 px-3 font-semibold">Constitutive Material</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 font-mono text-[11px]">
-                      {project.wallThicknessSpecs.sampleSections.map((sec) => (
-                        <tr key={sec.id} className="hover:bg-slate-50/80">
-                          <td className="py-2 px-3 font-bold text-[#002147]">{sec.id}</td>
-                          <td className="py-2 px-3 font-sans text-slate-900 font-medium">{sec.name}</td>
-                          <td className="py-2 px-3 text-[#C49B3C] font-bold">{sec.thickness}</td>
-                          <td className="py-2 px-3 font-sans text-slate-700">{sec.material}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-
-            {/* Modeling Highlights */}
-            <div className="space-y-2.5">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono border-b border-slate-100 pb-1">
-                Key Modeling Formulations &amp; Discretization Details
-              </h3>
-              <ul className="grid grid-cols-1 gap-2 pt-1">
-                {project.modelingHighlights.map((highlight, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Elements & Materials Two-Column Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
-                <span className="block text-xs font-bold uppercase tracking-wider text-slate-900 font-mono">
-                  Finite Element Formulations
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.elementTypes.map((el, idx) => (
-                    <span key={idx} className="font-mono text-xs px-2.5 py-1 rounded bg-white text-[#002147] border border-slate-300 font-medium">
-                      {el}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
-                <span className="block text-xs font-bold uppercase tracking-wider text-slate-900 font-mono">
-                  Constitutive Material Models
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.materialModels.map((mat, idx) => (
-                    <span key={idx} className="font-mono text-xs px-2.5 py-1 rounded bg-white text-slate-800 border border-slate-300">
-                      {mat}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Key Findings */}
-            <div className="space-y-2.5">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono border-b border-slate-100 pb-1">
-                Engineering Findings &amp; Dynamic Performance Conclusions
-              </h3>
-              <ul className="space-y-2 pt-1">
-                {project.keyFindings.map((finding, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                    <ChevronRight className="w-4 h-4 text-[#C49B3C] shrink-0 mt-0.5" />
-                    <span>{finding}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Automated Code Snippet */}
-            {project.codeSnippet && (
-              <div className="space-y-2 pt-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <FileCode className="w-4 h-4 text-[#002147]" />
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">
-                      Simulation Script ({project.codeSnippet.fileName})
-                    </h3>
-                  </div>
-                  <button
-                    onClick={() => handleCopyCode(project.codeSnippet!.code)}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-[#002147] transition-colors cursor-pointer border border-slate-300"
+                {/* 1. Historic Building (Prominently at the beginning) */}
+                <div className="space-y-2.5">
+                  <div 
+                    onClick={() => setActiveLightboxImage({
+                      url: '/AVT/building_photo.jpg',
+                      caption: 'Existing historic masonry building, Algiers',
+                      tag: 'Existing Building'
+                    })}
+                    className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col max-w-2xl mx-auto"
                   >
-                    {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copiedCode ? 'Copied' : 'Copy Script'}</span>
-                  </button>
+                    <div className="relative h-72 sm:h-96 w-full overflow-hidden flex items-center justify-center bg-white">
+                      <img 
+                        src="/AVT/building_photo.jpg" 
+                        alt="Existing historic masonry building, Algiers"
+                        className="max-h-full w-auto object-contain rounded-md group-hover:opacity-90 transition-opacity"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                          <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge Photograph
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                    Existing historic masonry building, Algiers
+                  </p>
                 </div>
-                <div className="bg-slate-950 rounded-lg p-4 overflow-x-auto text-left font-mono text-xs text-slate-200 leading-relaxed border border-slate-800">
-                  <pre>{project.codeSnippet.code}</pre>
+
+                {/* Introduction */}
+                <div className="space-y-2">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147] border-b border-slate-100 pb-1">
+                    Introduction
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    This project concerns the numerical modeling and structural assessment of an historic masonry building in Algiers, constructed in the 1800s. The building consists of a partial basement, ground floor, and first floor, organized around a central patio covered by a masonry dome.
+                  </p>
                 </div>
+
+                {/* Structural Complexity */}
+                <div className="space-y-2">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147] border-b border-slate-100 pb-1">
+                    Structural Complexity
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    The building presents a highly irregular architectural configuration, with complex geometry and numerous variations in wall dimensions. Reconstruction of the existing geometry was particularly challenging due to the age and limitations of the original plans.
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    The model includes <strong className="font-semibold text-slate-900">47 distinct wall thicknesses, ranging from 7 cm to 98 cm</strong>, covering thin internal partitions as well as massive load-bearing masonry walls.
+                  </p>
+                </div>
+
+                {/* Numerical Model */}
+                <div className="space-y-2">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147] border-b border-slate-100 pb-1">
+                    Numerical Model
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    A detailed <strong className="font-semibold text-slate-900">3D finite element model was developed in SAP2000</strong> to reproduce the existing structural configuration and support the assessment of the historic masonry structure. The model incorporates the main walls, floors, openings, architectural elements, and the central masonry dome.
+                  </p>
+                </div>
+
+                {/* Visual Content: 3D FEM Model, Wall Thicknesses & Modal Analysis */}
+                <div className="space-y-8 pt-2">
+                  
+                  {/* 2. 3D FEM Model */}
+                  <div className="space-y-2.5">
+                    <div 
+                      onClick={() => setActiveLightboxImage({
+                        url: '/AVT/fem_model_2.png',
+                        caption: '3D finite element model developed in SAP2000',
+                        tag: '3D FEM Model'
+                      })}
+                      className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                    >
+                      <div className="relative h-72 sm:h-88 w-full overflow-hidden flex items-center justify-center bg-white">
+                        <img 
+                          src="/AVT/fem_model_2.png" 
+                          alt="3D finite element model developed in SAP2000"
+                          className="max-h-full w-auto object-contain group-hover:opacity-90 transition-opacity"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                            <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge 3D Model
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                      3D finite element model developed in SAP2000
+                    </p>
+                  </div>
+
+                  {/* 3. Wall Thicknesses */}
+                  <div className="space-y-2.5">
+                    <div 
+                      onClick={() => setActiveLightboxImage({
+                        url: '/AVT/fem_model_1.png',
+                        caption: 'Representation of the 47 wall thicknesses, ranging from 7 to 98 cm',
+                        tag: 'Wall Thicknesses'
+                      })}
+                      className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                    >
+                      <div className="relative h-72 sm:h-88 w-full overflow-hidden flex items-center justify-center bg-white">
+                        <img 
+                          src="/AVT/fem_model_1.png" 
+                          alt="Representation of the 47 wall thicknesses, ranging from 7 to 98 cm"
+                          className="max-h-full w-auto object-contain group-hover:opacity-90 transition-opacity"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                          <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                            <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge Wall Thickness Representation
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                      Representation of the 47 wall thicknesses, ranging from 7 to 98 cm
+                    </p>
+                  </div>
+
+                  {/* 4. Modal Analysis (Side-by-side Mode Shape GIFs) */}
+                  <div className="space-y-3 pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      
+                      {/* Mode 1 */}
+                      <div className="space-y-2">
+                        <div 
+                          onClick={() => setActiveLightboxImage({
+                            url: '/AVT/mode_shape_1.gif',
+                            caption: 'First mode shape',
+                            tag: 'Mode 1'
+                          })}
+                          className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                        >
+                          <div className="relative h-56 sm:h-64 overflow-hidden flex items-center justify-center bg-white">
+                            <img 
+                              src="/AVT/mode_shape_1.gif" 
+                              alt="First mode shape"
+                              className="w-full h-full object-contain group-hover:opacity-90 transition-opacity"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-2.5 py-1 rounded shadow-xs inline-flex items-center gap-1">
+                                <Maximize2 className="w-3.5 h-3.5" /> Full Size
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                          First mode shape
+                        </p>
+                      </div>
+
+                      {/* Mode 2 */}
+                      <div className="space-y-2">
+                        <div 
+                          onClick={() => setActiveLightboxImage({
+                            url: '/AVT/mode_shape_2.gif',
+                            caption: 'Second mode shape',
+                            tag: 'Mode 2'
+                          })}
+                          className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                        >
+                          <div className="relative h-56 sm:h-64 overflow-hidden flex items-center justify-center bg-white">
+                            <img 
+                              src="/AVT/mode_shape_2.gif" 
+                              alt="Second mode shape"
+                              className="w-full h-full object-contain group-hover:opacity-90 transition-opacity"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-2.5 py-1 rounded shadow-xs inline-flex items-center gap-1">
+                                <Maximize2 className="w-3.5 h-3.5" /> Full Size
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                          Second mode shape
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            ) : isTsurumiBridge ? (
+              /* Dedicated Clean, Technical & Visual Layout for Tsurumi Tsubasa Bridge */
+              <div className="space-y-8">
+                
+                {/* Title Header */}
+                <div className="border-b border-slate-200 pb-4">
+                  <h1 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-[#002147] leading-tight">
+                    Tsurumi Tsubasa Bridge | 3D OpenSees Modeling
+                  </h1>
+                </div>
+
+                {/* 1. Existing Bridge (Prominently at the beginning) */}
+                <div className="space-y-2.5">
+                  <div 
+                    onClick={() => setActiveLightboxImage({
+                      url: '/CableBridge/Picture3.jpg',
+                      caption: 'Tsurumi Tsubasa Bridge, Yokohama, Japan',
+                      tag: 'Existing Bridge'
+                    })}
+                    className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col max-w-2xl mx-auto"
+                  >
+                    <div className="relative h-72 sm:h-96 w-full overflow-hidden flex items-center justify-center bg-white">
+                      <img 
+                        src="/CableBridge/Picture3.jpg" 
+                        alt="Tsurumi Tsubasa Bridge, Yokohama, Japan"
+                        className="max-h-full w-auto object-contain rounded-md group-hover:opacity-90 transition-opacity"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                          <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge Photograph
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                    Tsurumi Tsubasa Bridge, Yokohama, Japan
+                  </p>
+                </div>
+
+                {/* Introduction */}
+                <div className="space-y-2">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147] border-b border-slate-100 pb-1">
+                    Introduction
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    Developed a detailed <strong className="font-semibold text-slate-900">3D finite element model of the Tsurumi Tsubasa cable-stayed bridge in OpenSees</strong>, representing its main structural components and connection details for structural dynamics analysis.
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    The model represents the bridge's <strong className="font-semibold text-slate-900">steel deck, concrete piers, steel stay cables, and cable-deck/pier interaction components</strong>.
+                  </p>
+                </div>
+
+                {/* Modeling Complexity */}
+                <div className="space-y-2">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#002147] border-b border-slate-100 pb-1">
+                    Modeling Complexity
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    The model includes:
+                  </p>
+                  <ul className="space-y-1.5 pl-1 text-xs sm:text-sm text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C49B3C] shrink-0 mt-2" />
+                      <span>Steel box-girder decks and concrete piers.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C49B3C] shrink-0 mt-2" />
+                      <span>Steel stay cables with cable sag and initial tension effects.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C49B3C] shrink-0 mt-2" />
+                      <span>Viscous dampers incorporated along the stay cables.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C49B3C] shrink-0 mt-2" />
+                      <span>Springs and dampers representing the deck-to-pier interaction and support conditions.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C49B3C] shrink-0 mt-2" />
+                      <span>Detailed local modeling of the damper and spring connections at the piers.</span>
+                    </li>
+                  </ul>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pt-1">
+                    The model was used to perform <strong className="font-semibold text-slate-900">3D eigenvalue analysis and identify the first six spatial vibration modes</strong> of the bridge.
+                  </p>
+                </div>
+
+                {/* 2. OpenSees FEM Model (Side by Side) */}
+                <div className="space-y-3 pt-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    
+                    {/* Full 3D FEM Model */}
+                    <div className="space-y-2">
+                      <div 
+                        onClick={() => setActiveLightboxImage({
+                          url: '/CableBridge/Picture1.png',
+                          caption: 'Full 3D OpenSees model',
+                          tag: 'Full 3D Model'
+                        })}
+                        className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                      >
+                        <div className="relative h-64 sm:h-72 w-full overflow-hidden flex items-center justify-center bg-white p-2">
+                          <img 
+                            src="/CableBridge/Picture1.png" 
+                            alt="Full 3D OpenSees model"
+                            className="max-h-full w-auto object-contain group-hover:opacity-90 transition-opacity"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                              <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge Model
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                        Full 3D OpenSees model
+                      </p>
+                    </div>
+
+                    {/* Zoomed view of the pier connection */}
+                    <div className="space-y-2">
+                      <div 
+                        onClick={() => setActiveLightboxImage({
+                          url: '/CableBridge/Picture2.png',
+                          caption: 'Pier connection: springs and viscous dampers',
+                          tag: 'Pier Connection'
+                        })}
+                        className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                      >
+                        <div className="relative h-64 sm:h-72 w-full overflow-hidden flex items-center justify-center bg-white p-2">
+                          <img 
+                            src="/CableBridge/Picture2.png" 
+                            alt="Pier connection: springs and viscous dampers"
+                            className="max-h-full w-auto object-contain group-hover:opacity-90 transition-opacity"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                              <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge Connection
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                        Pier connection: springs and viscous dampers
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* 3. Modal Analysis (First Six Mode Shapes in 2-Column Grid) */}
+                <div className="space-y-4 pt-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {[
+                      { num: 1, file: '/CableBridge/bridge_3d_mode_1.gif', title: 'Mode 1' },
+                      { num: 2, file: '/CableBridge/bridge_3d_mode_2.gif', title: 'Mode 2' },
+                      { num: 3, file: '/CableBridge/bridge_3d_mode_3.gif', title: 'Mode 3' },
+                      { num: 4, file: '/CableBridge/bridge_3d_mode_4.gif', title: 'Mode 4' },
+                      { num: 5, file: '/CableBridge/bridge_3d_mode_5.gif', title: 'Mode 5' },
+                      { num: 6, file: '/CableBridge/bridge_3d_mode_6.gif', title: 'Mode 6' }
+                    ].map((mode) => (
+                      <div key={mode.num} className="space-y-2">
+                        <div 
+                          onClick={() => setActiveLightboxImage({
+                            url: mode.file,
+                            caption: mode.title,
+                            tag: `Mode ${mode.num}`
+                          })}
+                          className="group relative cursor-pointer overflow-hidden transition-all bg-white flex flex-col"
+                        >
+                          <div className="relative h-56 sm:h-64 w-full overflow-hidden flex items-center justify-center bg-white p-1">
+                            <img 
+                              src={mode.file} 
+                              alt={mode.title}
+                              className="max-h-full w-auto object-contain group-hover:opacity-90 transition-opacity"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 text-[#002147] text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm inline-flex items-center gap-1.5">
+                                <Maximize2 className="w-3.5 h-3.5 text-[#C49B3C]" /> Enlarge Animation
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-center text-xs sm:text-sm font-bold text-slate-900">
+                          {mode.title}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            ) : (
+              /* Fallback Layout */
+              <div className="space-y-6">
+                <h1 className="font-serif text-2xl font-bold text-[#002147]">
+                  {project.title}
+                </h1>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  {project.description}
+                </p>
               </div>
             )}
 
             {/* Modal Footer */}
-            <div className="pt-6 border-t border-slate-200 flex items-center justify-between">
-              <span className="text-xs text-slate-500 font-mono">
-                Laboratory of Earthquake Engineering and Structural Dynamics (LGSDS)
-              </span>
+            <div className="pt-6 mt-8 border-t border-slate-200 flex items-center justify-end">
               <button
                 onClick={onClose}
                 className="px-4 py-2 bg-[#002147] hover:bg-[#001733] text-white text-xs font-semibold rounded-lg shadow-xs transition-colors cursor-pointer"
@@ -482,11 +542,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
           </button>
           
           <div className="max-w-4xl max-h-[85vh] flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={activeLightboxImage.url} 
-              alt={activeLightboxImage.caption}
-              className="max-h-[75vh] w-auto object-contain rounded shadow-2xl"
-            />
+            <div className="bg-white rounded-xl p-3 sm:p-5 max-h-[75vh] flex items-center justify-center shadow-2xl">
+              <img 
+                src={activeLightboxImage.url} 
+                alt={activeLightboxImage.caption}
+                className="max-h-[68vh] w-auto object-contain rounded"
+              />
+            </div>
             <div className="mt-4 text-center text-white max-w-2xl space-y-1">
               <span className="inline-block font-mono text-xs font-semibold text-[#C49B3C] bg-white/10 px-2 py-0.5 rounded">
                 {activeLightboxImage.tag}

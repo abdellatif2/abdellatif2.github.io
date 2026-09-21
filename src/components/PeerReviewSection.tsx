@@ -18,15 +18,12 @@ export const PeerReviewSection: React.FC = () => {
 
         <div className="space-y-3 text-xs sm:text-sm text-slate-600">
           <p className="leading-relaxed">
-            I actively serve as a peer reviewer for international scientific journals, including:
+            I served as a peer reviewer for international scientific journals, including:
           </p>
 
           <ul className="space-y-2 pl-4 list-disc marker:text-[#C49B3C]">
             <li className="font-medium text-slate-900">
-              Scientific Reports <span className="text-[11px] font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 ml-1.5">(Q1)</span>
-            </li>
-            <li className="font-medium text-slate-900">
-              BMC Medical Research Methodology <span className="text-[11px] font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 ml-1.5">(Q1)</span>
+              Journal of Building Pathology and Rehabilitation <span className="text-[11px] font-mono font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 ml-1.5">(Q2)</span>
             </li>
           </ul>
         </div>

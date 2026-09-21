@@ -158,311 +158,167 @@ export const RESEARCH_PILLARS: ResearchPillar[] = [
 export const NUMERICAL_MODELS: NumericalModel[] = [
   {
     id: 'sap2000-historic-masonry-avt',
-    title: 'Complex Historic Masonry Structure: 3D FEM Modeling & Ambient Vibration Testing (AVT)',
+    title: 'Historic Masonry Building | 3D FEM Modeling & Structural Assessment',
     software: 'SAP2000',
     category: 'Historic Masonry',
-    projectContext: 'Structural Health & Heritage Conservation: Historic Moorish-Mediterranean Palace Complex (Algiers)',
+    projectContext: 'Historic Masonry Building, Algiers (1800s)',
     year: 2024,
-    objective: 'Develop a high-fidelity 3D FEM shell model incorporating 47 distinct wall section thicknesses (7 cm to 98 cm), calibrated via in-situ Ambient Vibration Testing (AVT) and Operational Modal Analysis (OMA) for structural health and seismic vulnerability assessment.',
-    description: 'Comprehensive structural modeling, dynamic identification, and seismic assessment of an irregular multi-story historic masonry palace. Built through successive historical periods, the building exhibits high architectural complexity including multi-level courtyards, decorative arches, vaults, timber-joist diaphragms, and a central hemispherical dome. Geometrical and architectural surveying identified 47 distinct wall section profiles—ranging from thin 7 cm interior partitions to 98 cm thick load-bearing perimeter stone walls. To evaluate structural properties without causing damage to cultural heritage fabric, an on-site Ambient Vibration Testing (AVT) campaign was performed using high-sensitivity seismic accelerometers. Frequency Domain Decomposition (FDD) and Stochastic Subspace Identification (SSI) extracted experimental natural frequencies, mode shapes, and modal damping. These served as empirical benchmarks to update and calibrate the 3D SAP2000 finite element model (optimizing masonry Young\'s modulus, shear modulus, and foundation soil spring constants), yielding modal assurance criterion (MAC) values above 0.93.',
+    objective: 'Numerical modeling and structural assessment of an historic masonry building in Algiers.',
+    description: 'This project concerns the numerical modeling and structural assessment of an historic masonry building in Algiers, constructed in the 1800s. The building consists of a partial basement, ground floor, and first floor, organized around a central patio covered by a masonry dome. The building presents a highly irregular architectural configuration, with complex geometry and numerous variations in wall dimensions. Reconstruction of the existing geometry was particularly challenging due to the age and limitations of the original plans. The model includes 47 distinct wall thicknesses, ranging from 7 cm to 98 cm, covering thin internal partitions as well as massive load-bearing masonry walls. A detailed 3D finite element model was developed in SAP2000 to reproduce the existing structural configuration and support the assessment of the historic masonry structure. The model incorporates the main walls, floors, openings, architectural elements, and the central masonry dome.',
     modelingHighlights: [
-      'Discretization of 47 distinct wall sections with thicknesses precisely mapped from 7 cm to 98 cm',
-      'Curved thick-shell element formulations for the central hemispherical dome, drum, and transitional pendentives',
-      'Explicit modeling of timber joists, floor diaphragms, and courtyard arcade masonry piers',
-      'In-situ Ambient Vibration Testing (AVT) capturing environmental micro-tremors and wind excitation',
-      'Operational Modal Analysis (OMA) via FDD and SSI-DATA extracting 4 fundamental vibration modes',
-      'Finite Element Model Updating (FEMU) calibrating masonry modulus (E = 1,200 to 2,400 MPa) and foundation spring stiffness',
-      'High modal correlation achieved between experimental and numerical models (MAC > 0.93, average frequency error < 2.5%)',
-      'Seismic vulnerability and stress concentration assessment under Eurocode 8 and Algerian code (RPA 99 / v2003)'
+      'Reconstruction of irregular geometry with 47 distinct wall thicknesses (7 cm to 98 cm)',
+      'Detailed 3D finite element model developed in SAP2000',
+      'Incorporates main walls, floors, openings, architectural elements, and central masonry dome',
+      'Dynamic modal analysis capturing fundamental mode shapes'
     ],
     elementTypes: [
-      'Area Shell (Thick / Thin formulations for dome and 47 wall thicknesses)',
-      'Frame (Timber floor joists & tie beams)',
-      'Link / Spring Elements (Soil-Structure Interaction under stone footings)',
-      'Constraint Diaphragms (Semi-rigid floor modeling)'
+      '3D Shell Elements (47 wall thickness sections)',
+      'Masonry Dome & Architectural Elements'
     ],
     materialModels: [
-      'Calibrated Linear-Elastic Masonry with cracked stiffness factors',
-      'Heritage Rubble Stone & Lime Mortar (E = 1,800 MPa, rho = 21 kN/m3, nu = 0.20)',
-      'Dressed Stone & Fired Brick Masonry (E = 2,200 - 2,400 MPa)',
-      'Traditional Timber Joists (E = 9,500 MPa)'
+      'Historic Masonry Material Formulations'
     ],
     analysisTypes: [
-      'Modal Eigenvalue & Ritz Extraction',
-      'Operational Modal Analysis (OMA: FDD & SSI)',
-      'Parametric Model Updating & Sensitivity Analysis',
-      'Multi-Directional Response Spectrum Analysis (RPA 99 & Eurocode 8)',
-      'In-Plane Shear and Out-of-Plane Flexural Stress Check'
+      '3D Finite Element Analysis (SAP2000)',
+      'Modal Eigenvalue Analysis'
     ],
     keyFindings: [
-      'Modeled and classified 47 distinct wall sections (7 cm to 98 cm); the massive 98 cm perimeter walls resist over 64% of total base shear.',
-      'In-situ AVT successfully identified the fundamental coupled transverse-torsional mode at 2.61 Hz (T1 = 0.383 s), closely matched by the calibrated FEM model at 2.63 Hz (error +0.77%, MAC = 0.96).',
-      'FE model updating revealed that standard empirical code formulas overestimated fundamental periods by 32% because they neglected the stiffening contribution of masonry vaults and arch keystones.',
-      'Stress distribution analysis highlighted critical tension concentrations around the drum base of the central dome and upper window lintels, pinpointing exact locations for non-invasive composite tie-rod reinforcement.'
+      'Successfully mapped 47 distinct wall thicknesses ranging from 7 cm to 98 cm across irregular architecture',
+      'Evaluated fundamental dynamic mode shapes of the historic masonry palace complex'
     ],
     images: [
       {
+        url: '/AVT/building_photo.jpg',
+        caption: 'Existing historic masonry building, Algiers',
+        tag: 'Historic Building',
+        type: 'site_photo'
+      },
+      {
+        url: '/AVT/fem_model_2.png',
+        caption: '3D finite element model developed in SAP2000',
+        tag: '3D FEM Model',
+        type: 'fem_model'
+      },
+      {
         url: '/AVT/fem_model_1.png',
-        caption: 'High-fidelity 3D finite element shell discretization in SAP2000 representing the multi-level historic masonry palace with 47 distinct wall thickness sections and load-bearing perimeter walls.',
-        tag: 'FEM Model (3D Shell Mesh)',
+        caption: 'Representation of the 47 wall thicknesses, ranging from 7 to 98 cm',
+        tag: 'Wall Thicknesses',
         type: 'fem_model'
       },
       {
         url: '/AVT/mode_shape_1.gif',
-        caption: 'Animated dynamic mode shape oscillation of the masonry palace structure identified through in-situ Ambient Vibration Testing (AVT) and Operational Modal Analysis (OMA).',
-        tag: 'Dynamic Mode Shape 1 (Animation)',
+        caption: 'First mode shape',
+        tag: 'Modal Analysis',
         type: 'mode_shape'
       },
       {
         url: '/AVT/mode_shape_2.gif',
-        caption: 'Animated mode shape vibration showing coupled transverse-torsional response under operational ambient vibrations, matching calibrated modal properties (MAC > 0.94).',
-        tag: 'Dynamic Mode Shape 2 (Animation)',
+        caption: 'Second mode shape',
+        tag: 'Modal Analysis',
         type: 'mode_shape'
-      },
-      {
-        url: '/AVT/fem_model_2.png',
-        caption: 'Detailed 3D numerical model perspective displaying wall thickness assignments, arcade pier elements, floor diaphragm constraints, and foundation spring boundaries.',
-        tag: 'FEM Model (Structural Discretization)',
-        type: 'fem_model'
-      },
-      {
-        url: '/AVT/building_photo.jpg',
-        caption: 'Field photograph of the surveyed historic Moorish-Mediterranean masonry structure in Algiers investigated during the Ambient Vibration Testing (AVT) experimental campaign.',
-        tag: 'In-Situ Field Survey',
-        type: 'site_photo'
       }
     ],
-    wallThicknessSpecs: {
-      totalSections: 47,
-      minThickness: '7 cm (0.07 m)',
-      maxThickness: '98 cm (0.98 m)',
-      sampleSections: [
-        { id: 'W_EXT_98', name: 'Perimeter Basal Wall', thickness: '98 cm', material: 'Rubble stone masonry with lime mortar', role: 'Main load-bearing foundation retaining & perimeter shear wall' },
-        { id: 'W_EXT_75', name: 'Facade External Wall', thickness: '75 cm', material: 'Dressed ashlar stone & brick coursing', role: 'Primary facade lateral force resisting system' },
-        { id: 'W_INT_55', name: 'Courtyard Arcade Piers', thickness: '55 cm', material: 'Solid fired brick with hydraulic lime', role: 'Arcade structural support and interior shear transfers' },
-        { id: 'W_INT_40', name: 'First Floor Bearing Wall', thickness: '40 cm', material: 'Double-wythe brick masonry', role: 'Gravity & lateral partition support' },
-        { id: 'W_DOME_28', name: 'Roof Dome & Drum Shell', thickness: '28 cm', material: 'Curved fired brick masonry shell', role: 'Central dome vaulting and radial arch support' },
-        { id: 'W_PART_15', name: 'Secondary Internal Walls', thickness: '15 cm', material: 'Single-wythe hollow/solid brick', role: 'Internal room division and secondary stability' },
-        { id: 'W_SCRN_07', name: 'Decorative & Screen Walls', thickness: '7 cm', material: 'Thin brick / plaster infill screen', role: 'Non-structural partition and decorative arcade infill' }
-      ]
-    },
-    ambientVibrationTesting: {
-      sensorLayout: 'Triaxial high-sensitivity piezoelectric seismic accelerometers deployed at 18 nodal stations across ground, 1st floor, terrace, and dome base.',
-      acquisitionDuration: '60 minutes continuous recording per setup under environmental ambient excitation (wind, micro-tremors).',
-      samplingRate: '200 Hz (Nyquist frequency 100 Hz, anti-aliasing filtered at 25 Hz).',
-      idMethods: ['Enhanced Frequency Domain Decomposition (EFDD)', 'Stochastic Subspace Identification (SSI-DATA)', 'Peak-Picking (PP)'],
-      modalComparison: [
-        { mode: 1, label: 'Transverse-Torsional coupled mode', expFreq: '2.61 Hz (0.383 s)', femFreq: '2.63 Hz (0.380 s)', error: '+0.77%', mac: '0.96', damping: '2.8%' },
-        { mode: 2, label: 'Longitudinal flexural translation', expFreq: '3.15 Hz (0.317 s)', femFreq: '3.23 Hz (0.310 s)', error: '+2.54%', mac: '0.94', damping: '3.1%' },
-        { mode: 3, label: 'Dominant torsional global mode', expFreq: '4.42 Hz (0.226 s)', femFreq: '4.55 Hz (0.220 s)', error: '+2.94%', mac: '0.93', damping: '3.6%' },
-        { mode: 4, label: '2nd Transverse + Local Dome breathing mode', expFreq: '6.12 Hz (0.163 s)', femFreq: '6.30 Hz (0.159 s)', error: '+2.94%', mac: '0.91', damping: '4.2%' }
-      ]
-    },
     metrics: {
-      degreesOfFreedom: 18420,
-      fundamentalPeriod: 'T1 = 0.38 s (f1 = 2.61 Hz)',
-      computationalTime: '1.8 min (Modal) / 6.5 min (RSA)',
-      driftReduction: 'Calibrated to In-Situ AVT (MAC > 0.94)'
+      degreesOfFreedom: 48200,
+      fundamentalPeriod: 'First & Second Mode Shapes',
+      computationalTime: 'SAP2000 3D FEM',
+      driftReduction: '47 Wall Thicknesses (7–98 cm)'
     },
-    codeSnippet: {
-      language: 'python',
-      fileName: 'sap2000_masonry_47_sections_setup.py',
-      code: `import comtypes.client
-import numpy as np
-
-# 1. Initialize SAP2000 OAPI Connection
-helper = comtypes.client.CreateObject('SAP2000v1.Helper')
-helper = helper.QueryInterface(comtypes.client.lazybind.IUnknown)
-SapModel = helper.GetObject('CSI.SAP2000.API.SapObject').SapModel
-
-# 2. Define Material Properties for Historical Masonry
-mat_name = "Heritage_Masonry"
-SapModel.PropMaterial.SetMaterial(mat_name, 2)  # Masonry/Concrete type
-# E = 2100 MPa, nu = 0.20, G = 875 MPa
-SapModel.PropMaterial.SetMPIsotropic(mat_name, 2100000.0, 0.20, 0.00001)
-SapModel.PropMaterial.SetWeightAndMass(mat_name, 1, 21.0) # Weight density: 21 kN/m3
-
-# 3. Parametric Batch Definition of 47 Wall Section Thicknesses (0.07m to 0.98m)
-wall_thicknesses_cm = [
-    7, 10, 12, 15, 18, 20, 22, 25, 28, 30, 32, 35, 38, 40, 42, 45, 
-    48, 50, 52, 55, 58, 60, 62, 65, 68, 70, 72, 75, 78, 80, 82, 85, 
-    88, 90, 92, 95, 98 # 47 section variations with intermediate wythes
-]
-
-for t_cm in wall_thicknesses_cm:
-    sec_name = f"WALL_THK_{t_cm}CM"
-    t_meters = t_cm / 100.0
-    # SetAreaShell: Shell type (1=Shell Thick), Material, Thickness, Bending Thickness
-    SapModel.PropArea.SetShell_1(sec_name, 1, True, mat_name, 0.0, t_meters, t_meters)
-    print(f"Created Section: {sec_name} (Thickness = {t_meters:.2f} m)")
-
-# 4. Extract Modal Frequencies for AVT Model Updating
-SapModel.Analyze.RunAnalysis()
-ret = SapModel.Results.ModalPeriod()
-periods = ret[4] # Periods array
-print("\\n--- Calibrated Modal Frequencies ---")
-for i in range(4):
-    freq = 1.0 / periods[i]
-    print(f"Mode {i+1}: f = {freq:.3f} Hz (T = {periods[i]:.3f} s)")`
-    },
-    tags: ['SAP2000', 'Historic Masonry', 'Ambient Vibration Testing', 'Operational Modal Analysis', 'Model Updating', '47 Wall Sections', 'Heritage Conservation']
+    tags: ['SAP2000', 'Historic Masonry', 'Algiers', '3D FEM', '47 Wall Thicknesses', 'Modal Analysis']
   },
   {
     id: 'opensees-tsurumi-tsubasa-bridge',
-    title: 'The Tsurumi Tsubasa Bridge: 3D OpenSees Modeling & Dynamic Modal Analysis',
+    title: 'Tsurumi Tsubasa Bridge | 3D OpenSees Modeling',
     software: 'OpenSees',
     category: 'Cable-Stayed Bridge',
-    projectContext: 'Structural Dynamics & Earthquake Engineering: Tsurumi Tsubasa Cable-Stayed Bridge (Yokohama, Japan)',
+    projectContext: 'Tsurumi Tsubasa Bridge, Yokohama, Japan',
     year: 2024,
-    objective: 'Develop a high-fidelity 3D finite element model of the single-plane Tsurumi Tsubasa Bridge in OpenSees, accounting for geometric nonlinearity, cable sag effects (Ernst formulation), and extract the first 6 spatial dynamic vibration modes (bending, transverse sway, and torsion).',
-    description: "Advanced 3D numerical modelisation of the iconic Tsurumi Tsubasa Bridge in Yokohama, Japan—one of the world's premier single-plane cable-stayed bridges with a main span of 510 m and total length of 1,020 m (255 m + 510 m + 255 m). Developed in OpenSees to investigate spatial dynamic behavior, cable-deck interactions, and earthquake response. The inverted Y-shaped steel towers and single-box aerodynamic steel girder deck are modeled using 3D elastic and corotational beam-column elements capturing axial-flexural coupling. Stay cables arranged along the bridge centerline are discretized with corotational truss elements incorporating initial tension pretensioning and Ernst equivalent elastic modulus formulation to account for cable sag under self-weight. Eigenvalue modal analysis extracts the first 6 fundamental 3D dynamic mode shapes with high accuracy, revealing critical vertical bending, lateral sway, and torsional dynamics essential for seismic resistance and aerodynamic stability.",
+    objective: 'Development of a detailed 3D finite element model in OpenSees representing its main structural components and connection details for structural dynamics analysis.',
+    description: 'Developed a detailed 3D finite element model of the Tsurumi Tsubasa cable-stayed bridge in OpenSees, representing its main structural components and connection details for structural dynamics analysis. The model represents the bridge\'s steel deck, concrete piers, steel stay cables, and cable-deck/pier interaction components.',
     modelingHighlights: [
-      'Full 3D spatial discretization of 1,020 m total length (255 m + 510 m + 255 m) with single-plane cable system',
-      'Inverted Y-shaped steel pylon towers modeled with corotational 3D beam-column elements',
-      'Aerodynamic steel box girder deck modeled with equivalent multi-spine beam and transverse rigid diaphragm links',
-      'Centerline stay cables discretized using corotational truss elements with Ernst equivalent elastic modulus for cable sag',
-      'Iterative dead-load pretension analysis to balance stay cable forces and achieve target bridge deck elevation',
-      'Eigenvalue modal analysis extracting the first 6 3D dynamic mode shapes with animated visualization',
-      'Boundary conditions capturing elastomeric bearings, tower base fixity, and expansion joints at abutments'
+      'Steel box-girder decks and concrete piers',
+      'Steel stay cables with cable sag and initial tension effects',
+      'Viscous dampers incorporated along the stay cables',
+      'Springs and dampers representing the deck-to-pier interaction and support conditions',
+      'Detailed local modeling of the damper and spring connections at the piers',
+      '3D eigenvalue analysis identifying the first six spatial vibration modes'
     ],
     elementTypes: [
-      'corotTruss (Nonlinear Stay Cable Elements with Pretension)',
-      'elasticBeamColumn / forceBeamColumn (3D Steel Pylon Towers & Deck Spine)',
-      'rigidLink (Deck-to-Cable & Bearing Eccentricity Couplings)',
-      'zeroLength (Elastomeric Bearings & Expansion Restraints)'
+      '3D Beam-Column Elements (Steel deck & concrete piers)',
+      'Cable-Stay Elements (Sag & initial tension)',
+      'Springs & Viscous Dampers (Pier connections)'
     ],
     materialModels: [
-      'High-Strength Parallel Wire Cable Steel (E = 205 GPa, fu = 1,770 MPa)',
-      'Structural Steel SM490 / SM570 for Towers and Box Girder Deck (E = 206 GPa, nu = 0.3)',
-      'Ernst Equivalent Modulus Formulation for cable sag stiffness degradation'
+      'Structural Steel SM490 / SM570',
+      'High-Strength Parallel Wire Cable Steel'
     ],
     analysisTypes: [
-      'Nonlinear Dead Load Cable Pretension Equilibrium',
-      '3D Eigenvalue & Generalized Modal Analysis (Modes 1 to 6)',
-      'Spatial Mode Shape Extraction & Animated Visualization',
-      'Dynamic Response & Modal Participation Assessment'
+      '3D Finite Element Analysis (OpenSees)',
+      '3D Spatial Eigenvalue Modal Analysis'
     ],
     keyFindings: [
-      'Mode 1 (T1 = 3.68 s / f1 = 0.272 Hz): Fundamental symmetric vertical bending of the 510 m main span.',
-      'Mode 2 (T2 = 2.45 s / f2 = 0.408 Hz): Anti-symmetric vertical bending mode with nodal inflection at mid-span.',
-      'Mode 3 (T3 = 2.12 s / f3 = 0.472 Hz): First transverse horizontal sway of the deck coupled with pylon crown displacement.',
-      'Mode 4 (T4 = 1.64 s / f4 = 0.610 Hz): Second symmetric vertical bending mode with active stay cable dynamic participation.',
-      'Mode 5 (T5 = 1.35 s / f5 = 0.741 Hz): Fundamental symmetric torsional vibration mode of the single-plane cable box girder.',
-      'Mode 6 (T6 = 1.12 s / f6 = 0.893 Hz): Coupled transverse-torsional 3D mode demonstrating three-dimensional deck-tower dynamic interaction.',
-      'Cable sag formulation via Ernst equivalent modulus resulted in a 12.4% reduction in effective axial stiffness for the longest 260 m stay cables.'
+      'Identified the first six spatial dynamic vibration modes of the bridge'
     ],
     images: [
       {
         url: '/CableBridge/Picture3.jpg',
-        caption: 'The Tsurumi Tsubasa Bridge in Yokohama, Japan: Cable-stayed bridge spanning 1,020 m with single-plane cable arrangement along the central median.',
-        tag: 'Bridge Photo (Yokohama, Japan)',
+        caption: 'Tsurumi Tsubasa Bridge, Yokohama, Japan',
+        tag: 'Existing Bridge',
         type: 'site_photo'
       },
       {
         url: '/CableBridge/Picture1.png',
-        caption: 'Full 3D finite element model developed in OpenSees showing steel pylon towers, stay cables, and bridge deck geometry.',
-        tag: 'OpenSees 3D Model',
+        caption: 'Full 3D OpenSees model',
+        tag: 'Full 3D Model',
         type: 'fem_model'
       },
       {
         url: '/CableBridge/Picture2.png',
-        caption: 'Cross-section discretization and stay cable layout in OpenSees.',
-        tag: 'Tower & Cable Geometry',
+        caption: 'Pier connection: springs and viscous dampers',
+        tag: 'Pier Connection',
         type: 'fem_model'
       },
       {
         url: '/CableBridge/bridge_3d_mode_1.gif',
-        caption: 'Mode 1 (f1 = 0.272 Hz, T1 = 3.68 s): Fundamental symmetric vertical bending of the 510 m main span.',
-        tag: 'Mode 1 (Vertical Bending)',
+        caption: 'Mode 1',
+        tag: 'Mode 1',
         type: 'mode_shape'
       },
       {
         url: '/CableBridge/bridge_3d_mode_2.gif',
-        caption: 'Mode 2 (f2 = 0.408 Hz, T2 = 2.45 s): Anti-symmetric vertical bending vibration mode.',
-        tag: 'Mode 2 (Anti-Symmetric Bending)',
+        caption: 'Mode 2',
+        tag: 'Mode 2',
         type: 'mode_shape'
       },
       {
         url: '/CableBridge/bridge_3d_mode_3.gif',
-        caption: 'Mode 3 (f3 = 0.472 Hz, T3 = 2.12 s): First transverse horizontal sway mode of the deck and pylons.',
-        tag: 'Mode 3 (Transverse Sway)',
+        caption: 'Mode 3',
+        tag: 'Mode 3',
         type: 'mode_shape'
       },
       {
         url: '/CableBridge/bridge_3d_mode_4.gif',
-        caption: 'Mode 4 (f4 = 0.610 Hz, T4 = 1.64 s): Second symmetric vertical bending mode with stay cable participation.',
-        tag: 'Mode 4 (2nd Vertical Bending)',
+        caption: 'Mode 4',
+        tag: 'Mode 4',
         type: 'mode_shape'
       },
       {
         url: '/CableBridge/bridge_3d_mode_5.gif',
-        caption: 'Mode 5 (f5 = 0.741 Hz, T5 = 1.35 s): Fundamental symmetric torsional mode of the single-box girder.',
-        tag: 'Mode 5 (Torsional Mode)',
+        caption: 'Mode 5',
+        tag: 'Mode 5',
         type: 'mode_shape'
       },
       {
         url: '/CableBridge/bridge_3d_mode_6.gif',
-        caption: 'Mode 6 (f6 = 0.893 Hz, T6 = 1.12 s): Coupled transverse-torsional spatial vibration mode.',
-        tag: 'Mode 6 (Coupled Transverse-Torsional)',
+        caption: 'Mode 6',
+        tag: 'Mode 6',
         type: 'mode_shape'
       }
     ],
-    ambientVibrationTesting: {
-      sensorLayout: 'Single-plane cable-stayed bridge monitoring array with deck centerline, pylon tops, and cable acceleration sensors.',
-      acquisitionDuration: '3D spatial eigenvalue extraction for first 6 natural vibration modes.',
-      samplingRate: 'Modal frequencies spanning 0.27 Hz to 0.89 Hz.',
-      idMethods: ['OpenSees Eigenvalue Analysis', 'Generalized Jacobi Eigen Solver', 'Ernst Modulus Cable Sag Compensation'],
-      modalComparison: [
-        { mode: 1, label: 'Symmetric vertical bending (main span)', expFreq: '0.272 Hz (3.68 s)', femFreq: '0.272 Hz (3.68 s)', error: '0.0%', mac: '1.00', damping: '1.2%' },
-        { mode: 2, label: 'Anti-symmetric vertical bending', expFreq: '0.408 Hz (2.45 s)', femFreq: '0.408 Hz (2.45 s)', error: '0.0%', mac: '1.00', damping: '1.4%' },
-        { mode: 3, label: 'Transverse horizontal sway', expFreq: '0.472 Hz (2.12 s)', femFreq: '0.472 Hz (2.12 s)', error: '0.0%', mac: '1.00', damping: '1.5%' },
-        { mode: 4, label: 'Second symmetric vertical bending', expFreq: '0.610 Hz (1.64 s)', femFreq: '0.610 Hz (1.64 s)', error: '0.0%', mac: '1.00', damping: '1.6%' },
-        { mode: 5, label: 'Fundamental deck torsion', expFreq: '0.741 Hz (1.35 s)', femFreq: '0.741 Hz (1.35 s)', error: '0.0%', mac: '1.00', damping: '1.8%' },
-        { mode: 6, label: 'Coupled transverse-torsional', expFreq: '0.893 Hz (1.12 s)', femFreq: '0.893 Hz (1.12 s)', error: '0.0%', mac: '1.00', damping: '2.0%' }
-      ]
-    },
-    codeSnippet: {
-      language: 'python',
-      fileName: 'opensees_tsurumi_bridge_modal.py',
-      code: `import openseespy.opensees as ops
-import numpy as np
-
-# 1. Initialize OpenSees 3D Model
-ops.wipe()
-ops.model('basic', '-ndm', 3, '-ndf', 6)
-
-# 2. Materials: Steel SM490 (Towers & Deck) & Cable Strands
-E_steel = 2.06e8   # kN/m2 (Structural steel)
-E_cable = 2.05e8   # kN/m2 (High-strength parallel wire strands)
-rho_steel = 7.85   # t/m3
-
-# Ernst Equivalent Modulus function for Cable Sag
-def ernst_modulus(E0, stress, span_proj, gamma):
-    # E_eq = E0 / (1 + (gamma * span_proj)^2 * E0 / (12 * stress^3))
-    denom = 1.0 + ((gamma * span_proj)**2 * E0) / (12.0 * (stress**3))
-    return E0 / denom
-
-# 3. Discretize Cable-Stay Elements using corotTruss with Initial Strain
-# ops.element('corotTruss', eleTag, iNode, jNode, A, matTag, '-rho', rho, '-cFlag', 1)
-
-# 4. Run 3D Eigenvalue Modal Analysis for First 6 Modes
-num_modes = 6
-eigen_vals = ops.eigen(num_modes)
-
-print("--- Tsurumi Tsubasa Bridge: First 6 Dynamic Modes ---")
-for m, w2 in enumerate(eigen_vals):
-    omega = np.sqrt(w2)
-    freq = omega / (2.0 * np.pi)
-    period = 1.0 / freq
-    print(f"Mode {m+1}: f = {freq:.3f} Hz, T = {period:.3f} s")`
-    },
     metrics: {
-      degreesOfFreedom: 12480,
-      fundamentalPeriod: 'T1 = 3.68 s (Mode 1, Vertical)',
-      computationalTime: '42 s (3D Eigenvalue & Cable Prestress)',
-      driftReduction: 'First 6 3D Spatial Modes Characterized'
+      fundamentalPeriod: 'First Six Spatial Modes'
     },
-    tags: ['OpenSees', 'Cable-Stayed Bridge', 'Tsurumi Tsubasa', 'Japan', 'Modal Analysis', 'Stay Cables', '3D Dynamics']
+    tags: ['OpenSees', 'Cable-Stayed Bridge', 'Tsurumi Tsubasa', 'Yokohama, Japan', '3D FEM', 'Modal Analysis']
   }
 ];
 
@@ -533,64 +389,32 @@ export const PUBLICATIONS: Publication[] = [
 
 export const EXPERIENCES: ExperienceItem[] = [
   {
-    id: 'phd-candidate',
-    title: 'Ph.D. Candidate in Earthquake Engineering',
-    role: 'Doctoral Researcher',
-    organization: 'National Polytechnic School (École Nationale Polytechnique - ENP)',
-    location: 'Algiers, Algeria',
-    period: '2022 — Present (Expected Defense: 2026)',
-    type: 'education',
-    description: [
-      'Doctoral research: "AI-Aided Structural Health Monitoring and Automated Seismic Design of RC Systems per Eurocode 8 and RPA2024", under the supervision of Prof. Nouredine Bourahla.',
-      'Developed automated optimization pipelines coupling ETABS via API and finite element models (OpenSees, SAP2000) for code-compliant structural member sizing and sensor placement.',
-      'Designed Genetic Algorithm (GA) frameworks for optimal sensor placement in multi-story buildings and historic monuments, and for knee-braced steel frame dissipation.',
-      'Published and presented research in peer-reviewed venues including the Academic Journal of Civil Engineering, 18th World Conference on Earthquake Engineering (18WCEE Milan), and 18WCSI Antalya.'
-    ],
-    skillsUsed: ['OpenSees', 'SAP2000', 'ETABS API', 'Python', 'Structural Dynamics', 'SHM', 'RPA2024']
-  },
-  {
-    id: 'msc-enp',
-    title: 'M.Sc. & State Engineer Degree in Civil Engineering',
-    role: 'State Engineer (Graduated Valedictorian / Ranked 1st in Class)',
-    organization: 'École Nationale Polytechnique (ENP)',
-    location: 'Algiers, Algeria',
-    period: '2017 — 2022',
-    type: 'education',
-    description: [
-      'Graduation Thesis: "Etude d\'un bâtiment contreventé par des portiques en béton préfabriqué" (Dynamic analysis and seismic design of precast concrete framed structures).',
-      'Advanced coursework: Non-Linear Finite Element Analysis, Structural Dynamics, Continuum Mechanics, Seismic Resistant Design (Eurocode 8 & RPA99), Soil-Structure Interaction.'
-    ],
-    skillsUsed: ['SAP2000', 'ETABS', 'MATLAB', 'Eurocode 8', 'RPA99', 'Precast Concrete']
-  },
-  {
-    id: 'teaching-ta',
-    title: 'Graduate Teaching Assistant',
-    role: 'Instructor & Lab Lead',
-    organization: 'National Polytechnic School (ENP)',
+    id: 'doctoral-candidate',
+    title: 'Doctoral Candidate & Research Assistant',
+    role: 'Doctoral Candidate & Research Assistant',
+    organization: 'Earthquake Engineering & Structural Dynamics Laboratory · École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
     period: '2023 — Present',
-    type: 'teaching',
+    type: 'research',
     description: [
-      'Led computer lab sessions for "Nonlinear Finite Element Modeling of Structures" using OpenSees and SAP2000 for Master-level civil engineering students (45+ students/year).',
-      'Supervised 4 Master degree graduation capstone projects on seismic isolation, pushover analysis, and vibration-based damage detection.',
-      'Conducted tutorials on Structural Dynamics (SDOF/MDOF modal response, Fourier transforms, response spectrum method).'
-    ],
-    skillsUsed: ['OpenSees', 'SAP2000', 'Teaching', 'Academic Mentorship', 'Structural Dynamics']
+      'Conducting doctoral research in earthquake engineering, focusing on automated and intelligent approaches for seismic design and structural assessment.',
+      'Working on structural health monitoring and vibration-based assessment of existing structures.',
+      'Developing numerical models and computational methods for structural dynamics and seismic engineering.'
+    ]
   },
   {
-    id: 'structural-consultant',
-    title: 'Computational Structural Engineering Consultant (Part-Time)',
-    role: 'Seismic & Structural Specialist',
-    organization: 'Civil Engineering Consulting Bureau & Seismic Audits',
+    id: 'structural-engineer',
+    title: 'Structural Engineer',
+    role: 'Structural Engineer',
+    organization: 'Structural Engineering Consulting Office',
     location: 'Algiers, Algeria',
     period: '2021 — 2024',
     type: 'industry',
     description: [
-      'Conducted on-site Ambient Vibration Testing (AVT) campaigns and 3D FEM modeling for historic masonry structures, including complex heritage palaces with 47 distinct wall thickness sections (7 cm to 98 cm) calibrated via Operational Modal Analysis (FDD/SSI).',
-      'Performed nonlinear pushover and time-history seismic performance assessments for existing public hospitals and cultural heritage facilities in high seismic zones.',
-      'Designed seismic retrofitting interventions with carbon-fiber-reinforced polymers (CFRP), tie rods, and steel bracing modeled and verified in SAP2000 and ETABS.'
-    ],
-    skillsUsed: ['SAP2000', 'ETABS', 'Seismic Retrofit', 'Ambient Vibration Testing', 'RPA99/Eurocode 8']
+      'Designed reinforced concrete structures for residential and industrial buildings, including structural analysis and seismic design.',
+      'Performed structural assessment of existing buildings and evaluated their seismic performance.',
+      'Developed and reviewed structural models and designs using engineering software.'
+    ]
   }
 ];
 
@@ -720,40 +544,20 @@ export const NEWS_ITEMS: NewsItem[] = [
 
 export const COMMUNICATIONS: ScientificCommunication[] = [
   {
-    id: 'comm-1',
-    title: 'APPLICATION OF AN INTELLIGENT MULTI-DAMAGE DETECTION FRAMEWORK FOR SHM ON FULL-SCALE STRUCTURE',
-    event: '18th World Conference on Earthquake Engineering (18WCEE)',
+    id: 'comm-artiste-2025',
+    title: 'Early-stage Automated Seismic Retrofitting Using Graph Neural Networks and Evolutionary Algorithms in a BIM Environment',
+    event: 'ARTISTE 2025 - The First International Conference in Artificial Intelligence in Structural Engineering',
     type: 'Oral Presentation',
-    location: 'Milan, Italy',
-    date: 'July 2024',
-    details: 'Presented deep neural network (DNN) multi-damage detection framework for a thousand-year-old historic monument in Algiers combining GA-based Sensor Number and Placement Optimization (SNPO) with Operational Modal Analysis.'
+    location: 'Torino, Italy',
+    date: '14–17 September 2025'
   },
   {
-    id: 'comm-2',
-    title: 'GA-Based Optimisation of Dissipative Knee Braced Steel Frames',
-    event: '18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures (18WCSI)',
+    id: 'comm-icrce-2025-djelfa',
+    title: 'Automated Optimization of Shear Wall Design Under the New RPA2024 Provisions',
+    event: 'The First International Conference on Recent Challenges in Civil Engineering and Environmental Sustainability',
     type: 'Oral Presentation',
-    location: 'Antalya, Turkey',
-    date: 'November 2023',
-    details: 'Presented genetic algorithm optimization of knee-braced steel frames (KBF) to maximize height-wise dissipative energy dissipation and prevent story drift mechanisms.'
-  },
-  {
-    id: 'comm-3',
-    title: 'Performance assessment and improvement of automated structural seismic design of RC systems per EC08 and RPA2024',
-    event: 'Rencontres Universitaires de Génie Civil (RUGC 2025) / AUGC',
-    type: 'Oral Presentation',
-    location: 'RUGC 2025',
-    date: '2025',
-    details: 'Presented algorithmic framework for automated seismic layout sizing of RC frames and shear walls satisfying Eurocode 8 and Algerian Code RPA2024 under response spectrum analysis.'
-  },
-  {
-    id: 'comm-4',
-    title: 'AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS',
-    event: 'The First International Conference on Recent Challenges in Civil Engineering (ICRCE)',
-    type: 'Oral Presentation',
-    location: 'Algiers, Algeria',
-    date: '2025',
-    details: 'Presented end-to-end ETABS API automation pipeline formulating shear wall rebar and concrete sizing as a constrained mathematical optimization problem.'
+    location: 'Djelfa, Algeria',
+    date: 'December 2025'
   }
 ];
 
@@ -792,34 +596,25 @@ export const PEER_REVIEW_ACTIVITIES: PeerReviewActivity[] = [
 
 export const EDUCATION_HISTORY: EducationItem[] = [
   {
-    id: 'edu-1',
-    degree: 'Ph.D. in Civil & Earthquake Engineering (Candidate)',
+    id: 'edu-phd',
+    degree: 'Ph.D. in Earthquake Engineering',
     institution: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2022 — Present (Defense Expected: Late 2026)',
-    honors: 'Doctoral Excellence Fellowship',
-    thesisTitle: 'AI-Aided Structural Health Monitoring and Automated Seismic Design of RC Systems per Eurocode 8 and RPA2024',
-    advisors: 'Supervised by Prof. Nouredine Bourahla (Laboratory of Earthquake Engineering & Structural Dynamics)',
-    description: 'Research centered on AI-aided structural health monitoring, ambient vibration testing, finite element model updating in OpenSees/SAP2000, and automated structural seismic design under Eurocode 8 and the new Algerian Seismic Code RPA2024.'
+    period: '2022 — Present'
   },
   {
-    id: 'edu-2',
-    degree: 'State Engineer Degree & Master of Science in Civil Engineering',
+    id: 'edu-master',
+    degree: "Master's Degree in Civil Engineering",
     institution: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2017 — 2022',
-    honors: 'Valedictorian — Ranked 1st in Class (Summa Cum Laude)',
-    thesisTitle: 'Etude d\'un bâtiment contreventé par des portiques en béton préfabriqué',
-    description: 'Rigorous 5-year Grande École curriculum encompassing advanced structural mechanics, finite element analysis, soil-structure interaction, continuum mechanics, concrete & steel design, and applied mathematics.'
+    period: '2017 — 2022'
   },
   {
-    id: 'edu-3',
-    degree: 'Classes Préparatoires aux Grandes Écoles d’Ingénieurs (CPGE)',
+    id: 'edu-preparatory',
+    degree: 'Preparatory Classes in Science and Technology',
     institution: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2015 — 2017',
-    honors: 'Admitted via National Competitive Entrance Examination (Concours National)',
-    description: 'Intensive two-year foundation in advanced higher mathematics (linear algebra, differential geometry, multivariable calculus), physics (classical mechanics, thermodynamics, electromagnetism), and numerical algorithm design.'
+    period: '2015 — 2017'
   }
 ];
 
