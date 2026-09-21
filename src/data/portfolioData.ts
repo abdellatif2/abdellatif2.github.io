@@ -27,8 +27,30 @@ export const PERSONAL_INFO = {
   orcid: '0009-0004-0737-0087',
   orcidUrl: 'https://orcid.org/my-orcid?orcid=0009-0004-0737-0087',
   linkedin: 'https://www.linkedin.com/in/abdellatifhannachi/',
-  bio: `I am a doctoral researcher in Earthquake Engineering at the National Polytechnic School (École Nationale Polytechnique - ENP Algiers), working under the supervision of Prof. Nouredine Bourahla. My research lies at the nexus of earthquake engineering, AI-aided structural health monitoring (SHM), and automated structural design. I combine advanced finite element modeling (OpenSees, SAP2000, ETABS API) with metaheuristic optimization (Genetic Algorithms) and deep neural networks to optimize structural members, evaluate full-scale ambient vibration data, and enhance structural resilience under Eurocode 8 and the new RPA2024 provisions.`,
-  shortBio: `Doctoral researcher at ENP Algiers working on AI-aided structural health monitoring, automated seismic design per EC08 & RPA2024, and nonlinear FEM simulations.`,
+  bio: `I am a final-year doctoral candidate in Earthquake Engineering at the École Nationale Polytechnique (ENP), Algiers, working within the Laboratory of Earthquake Engineering and Structural Dynamics (LGSDS). My doctoral research focuses on developing automated and intelligent approaches for seismic design, integrating structural engineering, numerical analysis, optimization, and AI within digital and BIM-based environments.
+
+In parallel, I contribute to ongoing research in structural health monitoring of civil infrastructure, particularly buildings and bridges. This work involves ambient vibration testing, operational modal analysis, system identification, sensor placement optimization, and the development of calibrated numerical models for structural assessment and damage monitoring.
+
+My engineering experience includes the development and calibration of 3D finite element models using OpenSees/OpenSeesPy and SAP2000 for seismic assessment, nonlinear analysis, model updating, and the generation of structural and damage scenarios. On the computational side, I have experience developing deep learning models for structural engineering applications, including surrogate modeling and structural health monitoring, using architectures ranging from conventional neural networks to Graph Neural Networks (GNNs).`,
+  skillsList: [
+    'Structural Design',
+    'Seismic Assessment and Design',
+    'Nonlinear Structural Analysis',
+    'Structural Health Monitoring (SHM)',
+    'Ambient Vibration Testing (AVT)',
+    'Operational Modal Analysis (OMA-SSI)',
+    'System Identification',
+    'Sensor Placement Optimization',
+    'Finite Element Modeling',
+    'OpenSees & OpenSeesPy',
+    'SAP2000 3D Modeling',
+    'BIM',
+    'Optimization and Evolutionary Algorithms',
+    'Deep Learning for Structural Engineering',
+    'Neural Networks & Graph Neural Networks (GNNs)',
+    'Surrogate Modeling'
+  ],
+  shortBio: `Final-year doctoral candidate in Earthquake Engineering at ENP Algiers (LGSDS) specializing in automated seismic design, SHM, FE modeling, and AI surrogate modeling.`,
   stats: [
     { label: 'Google Scholar Citations', value: '6+' },
     { label: 'Publications & Theses', value: '6' },
@@ -625,19 +647,11 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Academic Journal of Civil Engineering (AJCE), Vol. 43, No. 1 (Special Issue RUGC 2025), pp. 1-8',
     year: 2025,
     type: 'journal',
-    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
-    abstract: 'Proposes an automated structural seismic design algorithm tailored for reinforced concrete (RC) framing and shear wall systems complying with Eurocode 8 (EC08) and the newly updated Algerian Seismic Code RPA2024 provisions. Evaluates the computational efficiency and structural performance of automated layout sizing across diverse building typologies. Algorithmic parameter tuning is carried out to improve the performance of optimized structural layouts evaluated via response spectrum analysis, delivering fully code-compliant, material-optimized structural configurations integrated within modern digital engineering and BIM workflows.',
-    tags: ['Automated Seismic Design', 'RPA2024', 'Eurocode 8', 'Reinforced Concrete', 'Response Spectrum', 'RUGC 2025'],
-    featured: true,
-    bibtex: `@article{hannachi2025performance,
-  title={Performance assessment and improvement of automated structural seismic design of RC systems per EC08 and RPA2024},
-  author={Hannachi, Abdellatif and Bourahla, Nouredine and Tafraout, Salim},
-  journal={Academic Journal of Civil Engineering},
-  volume={43},
-  number={1},
-  pages={1--8},
-  year={2025}
-}`
+    doi: '10.26168/ajce.43.1.46',
+    scholarUrl: 'https://doi.org/10.26168/ajce.43.1.46',
+    abstract: '',
+    tags: [],
+    bibtex: ''
   },
   {
     id: 'pub-2024-18wcee-shm',
@@ -646,17 +660,10 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Proceedings of the 18th World Conference on Earthquake Engineering (18WCEE), Milan, Italy',
     year: 2024,
     type: 'conference',
-    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
-    abstract: 'Showcases a comprehensive multi-damage detection framework utilizing deep neural networks (DNN) for structural health monitoring (SHM). Demonstrated on a full-scale thousand-year-old historical monument case study in Algiers. The SHM strategy incorporates the results of an extended Genetic Algorithm (GA)-based Sensor Number and Placement Optimization (SNPO) procedure, substantially improving the reliability and efficiency of SHM for complex heritage masonry structures experiencing multiple simultaneous damage states under environmental and dynamic actions.',
-    tags: ['18WCEE', 'Structural Health Monitoring', 'Deep Neural Networks', 'Sensor Optimization', 'Full-Scale Structure', 'Historic Monument'],
-    featured: true,
-    bibtex: `@inproceedings{larbi2024application,
-  title={APPLICATION OF AN INTELLIGENT MULTI-DAMAGE DETECTION FRAMEWORK FOR SHM ON FULL-SCALE STRUCTURE},
-  author={Larbi, Selma and Bourahla, Nouredine and Hannachi, Abdellatif and Bourahla, Yasser},
-  booktitle={Proceedings of the 18th World Conference on Earthquake Engineering (18WCEE)},
-  address={Milan, Italy},
-  year={2024}
-}`
+    scholarUrl: 'https://www.researchgate.net/publication/382175220_APPLICATION_OF_AN_INTELLIGENT_MULTI-DAMAGE_DETECTION_FRAMEWORK_FOR_SHM_ON_FULL-SCALE_STRUCTURE',
+    abstract: '',
+    tags: [],
+    bibtex: ''
   },
   {
     id: 'pub-2023-18wcsi-kbf',
@@ -665,18 +672,11 @@ export const PUBLICATIONS: Publication[] = [
     venue: '18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures (18WCSI), Antalya, Turkey / Springer',
     year: 2023,
     type: 'conference',
-    citations: 6,
-    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
-    abstract: 'Proposes an intelligent optimization procedure utilizing genetic algorithms (GA) to optimize the seismic performance of knee-braced steel frames (KBF). Knee bracing systems combine high lateral stiffness with ductile hysteretic energy dissipation. The GA framework determines the optimal height-wise strength distribution of the dissipative knee elements to maximize hysteretic energy dissipation during seismic excitation, preventing premature plastic concentration and story drift mechanisms.',
-    tags: ['Knee Braced Frames', 'Genetic Algorithms', 'Seismic Energy Dissipation', 'Steel Structures', 'Optimization', '18WCSI'],
-    featured: true,
-    bibtex: `@inproceedings{bourahla2023ga,
-  title={GA-Based Optimisation of Dissipative Knee Braced Steel Frames},
-  author={Bourahla, Nouredine and Hannachi, Abdellatif},
-  booktitle={Proceedings of the 18th World Conference on Seismic Isolation, Energy Dissipation and Active Vibration Control of Structures (18WCSI)},
-  address={Antalya, Turkey},
-  year={2023}
-}`
+    doi: '10.1007/978-3-031-71048-3_12',
+    scholarUrl: 'https://doi.org/10.1007/978-3-031-71048-3_12',
+    abstract: '',
+    tags: [],
+    bibtex: ''
   },
   {
     id: 'pub-2025-icrce-shearwall',
@@ -685,16 +685,10 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'The First International Conference on Recent Challenges in Civil Engineering (ICRCE), 2025',
     year: 2025,
     type: 'conference',
-    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
-    abstract: 'Reformulates the reinforced concrete shear wall design process as an optimization problem. The primary objective is to minimize the use of reinforcement steel and concrete while ensuring that all safety, ductility, and drift code constraints are met under the newly revised RPA2024 Algerian seismic provisions. The framework is directly integrated with ETABS software through its API, allowing automatic retrieval of shear wall geometry, loading combinations, and analysis results to generate optimized boundary elements without requiring tedious manual trial-and-error iterations.',
-    tags: ['RPA2024', 'Shear Wall Optimization', 'ETABS API', 'Automated Design', 'Rebar Detailing', 'Seismic Engineering'],
-    featured: true,
-    bibtex: `@inproceedings{hannachi2025automated,
-  title={AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS},
-  author={Hannachi, Abdellatif and Bourahla, Nouredine},
-  booktitle={Proceedings of the First International Conference on Recent Challenges in Civil Engineering (ICRCE)},
-  year={2025}
-}`
+    scholarUrl: 'https://www.researchgate.net/publication/398655007_Automated_Optimization_of_Shear_Wall_Design_Under_the_New_RPA2024_Provisions',
+    abstract: '',
+    tags: [],
+    bibtex: ''
   },
   {
     id: 'pub-2025-enp-sensor-hq',
@@ -703,36 +697,10 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Research Proceedings & Structural Dynamics Technical Report, École Nationale Polytechnique (ENP), Algiers',
     year: 2025,
     type: 'conference',
-    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
-    abstract: 'Investigates optimal sensor placement for continuous vibration-based structural health monitoring in multi-story buildings using a hybrid AI optimization framework. Applied to the HQ Tower R+12 case study to establish the optimal configuration of triaxial accelerometers capable of capturing higher translational and torsional modal responses under ambient traffic and wind excitation while minimizing instrumentation costs.',
-    tags: ['Sensor Optimization', 'Structural Health Monitoring', 'High-Rise Buildings', 'Operational Modal Analysis', 'HQ Tower'],
-    featured: false,
-    bibtex: `@inproceedings{boukharouba2025hybrid,
-  title={Hybrid aI-based sensor optimization for structural health monitoring of multi-story buildings — case study : HQ tower R+12},
-  author={Boukharouba, M. and Bourahla, Nouredine and Hannachi, Abdellatif},
-  booktitle={Research Proceedings, Ecole Nationale Polytechnique},
-  address={Algiers, Algeria},
-  year={2025}
-}`
-  },
-  {
-    id: 'pub-2022-master-thesis',
-    title: 'Etude d\'un bâtiment contreventé par des portiques en béton préfabriqué',
-    authors: ['Abdellatif Hannachi'],
-    venue: 'Diplôme d\'Ingénieur d\'État & Master\'s Thesis, École Nationale Polytechnique (ENP), Algiers',
-    year: 2022,
-    type: 'thesis',
-    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=VivrkJAAAAAJ',
-    abstract: 'Comprehensive seismic modeling, dynamic analysis, and ductility evaluation of a multi-story building braced by precast reinforced concrete moment-resisting frames in accordance with RPA99/v2003 and Eurocode 8. Investigates the rotational stiffness and ductile behavior of precast beam-column connections, verifying lateral stiffness, story drift limitations, and structural integrity under earthquake excitation.',
-    tags: ['Precast Concrete Frames', 'RPA99/v2003', 'Eurocode 8', 'Connection Detailing', 'Seismic Design', 'ENP Algiers'],
-    featured: false,
-    bibtex: `@mastersthesis{hannachi2022etude,
-  title={Etude d'un b{\^a}timent contrevent{\'e} par des portiques en b{\'e}ton pr{\'e}fabriqu{\'e}},
-  author={Hannachi, Abdellatif},
-  school={Ecole Nationale Polytechnique},
-  address={Algiers, Algeria},
-  year={2022}
-}`
+    scholarUrl: 'https://www.researchgate.net/profile/Abdellatif-Hannachi',
+    abstract: '',
+    tags: [],
+    bibtex: ''
   }
 ];
 
