@@ -2,7 +2,11 @@ import React from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { ArrowUp, BookOpen, Github, Linkedin, Globe, FileCheck } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onBackToHub?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onBackToHub }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -22,12 +26,25 @@ export const Footer: React.FC = () => {
             <span className="text-white/60 text-[11px] block mt-1">
               Department of Civil Engineering &middot; Structural Dynamics &amp; Earthquake Engineering Laboratory (LGSDS)
             </span>
-            <a 
-              href={`mailto:${PERSONAL_INFO.email}`} 
-              className="text-[#C49B3C] hover:underline font-mono text-[11px] block mt-1"
-            >
-              {PERSONAL_INFO.email}
-            </a>
+            <div className="flex items-center gap-3 mt-1.5">
+              <a 
+                href={`mailto:${PERSONAL_INFO.email}`} 
+                className="text-[#C49B3C] hover:underline font-mono text-[11px]"
+              >
+                {PERSONAL_INFO.email}
+              </a>
+              {onBackToHub && (
+                <>
+                  <span className="text-white/30">&middot;</span>
+                  <button
+                    onClick={onBackToHub}
+                    className="text-white/80 hover:text-[#C49B3C] font-mono text-[11px] underline cursor-pointer"
+                  >
+                    Quick Links Hub
+                  </button>
+                </>
+              )}
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-3.5 text-xs font-mono text-white/70">
@@ -94,7 +111,7 @@ export const Footer: React.FC = () => {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 text-[11px] text-white/50">
           <p>
-            &copy; {new Date().getFullYear()} Abdellatif Hannachi. Designed with Swiss minimalist academic typography for structural engineering and research dissemination.
+            &copy; {new Date().getFullYear()} Abdellatif Hannachi
           </p>
 
           <button

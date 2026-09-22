@@ -46,7 +46,7 @@ export interface NumericalModel {
     url: string;
     caption: string;
     tag: string;
-    type?: 'fem_model' | 'structural_framing' | 'site_photo' | 'modal_plot' | 'mode_shape';
+    type?: 'fem_model' | 'structural_framing' | 'site_photo' | 'modal_plot' | 'mode_shape' | 'diagram' | 'signal' | 'result';
   }[];
   wallThicknessSpecs?: {
     totalSections: number;

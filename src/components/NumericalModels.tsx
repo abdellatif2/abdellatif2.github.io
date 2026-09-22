@@ -13,7 +13,7 @@ export const NumericalModels: React.FC = () => {
 
   return (
     <section id="models" className="academic-section bg-white border-b border-[#E2E8F0]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-left">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 text-left">
         
         {/* Section Header */}
         <div className="mb-6">
@@ -27,7 +27,7 @@ export const NumericalModels: React.FC = () => {
         </div>
 
         {/* Balanced Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {NUMERICAL_MODELS.map((model, idx) => {
             // Find thumbnail image
             const thumbnail = model.images && model.images.length > 0 ? model.images[0] : null;
@@ -47,12 +47,12 @@ export const NumericalModels: React.FC = () => {
                 }}
               >
                 {/* Card Image Thumbnail */}
-                <div className="relative h-48 w-full bg-slate-950 overflow-hidden flex items-center justify-center">
+                <div className="relative h-48 w-full bg-slate-900 overflow-hidden flex items-center justify-center">
                   {thumbnail ? (
                     <img 
                       src={thumbnail.url} 
                       alt={model.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      className={`w-full h-full ${model.id === 'opensees-corrosion-rc-bridge' ? 'object-contain p-2 bg-white' : 'object-cover'} group-hover:scale-105 transition-transform duration-500 ease-out`}
                       loading="lazy"
                     />
                   ) : (

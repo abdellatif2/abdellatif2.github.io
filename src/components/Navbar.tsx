@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Menu, X } from 'lucide-react';
+import { FileText, Menu, X, LayoutGrid, ArrowLeft } from 'lucide-react';
 
 interface NavbarProps {
   onOpenCvModal: () => void;
+  onBackToHub?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal, onBackToHub }) => {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -89,15 +90,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             
-            {/* Empty left spacer or home anchor */}
-            <a 
-              href="#hero" 
-              className="text-white/40 hover:text-[#C49B3C] text-xs font-mono transition-colors"
-              title="Return to top"
-              aria-label="Return to top"
-            >
-              <span className="text-[#C49B3C] font-bold">&sect;</span>
-            </a>
+            {/* Left anchor or Hub switcher */}
+            <div className="flex items-center gap-2">
+              {onBackToHub ? (
+                <button 
+                  onClick={onBackToHub} 
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-white/90 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded transition-colors cursor-pointer"
+                  title="Return to Quick Links Hub"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 text-[#C49B3C]" />
+                  <span>Links Hub</span>
+                </button>
+              ) : (
+                <a 
+                  href="#hero" 
+                  className="text-white/40 hover:text-[#C49B3C] text-xs font-mono transition-colors"
+                  title="Return to top"
+                  aria-label="Return to top"
+                >
+                  <span className="text-[#C49B3C] font-bold">&sect;</span>
+                </a>
+              )}
+            </div>
 
             {/* Desktop Navigation Links */}
             <nav className="hidden xl:flex items-center gap-1">
@@ -178,12 +192,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal }) => {
             </div>
 
             <div className="pt-6 border-t border-white/10 mt-6 space-y-3">
+              {onBackToHub && (
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onBackToHub();
+                  }}
+                  className="w-full py-2.5 text-center text-xs font-semibold text-white/90 bg-white/10 hover:bg-white/20 border border-white/20 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <ArrowLeft className="w-4 h-4 text-[#C49B3C]" />
+                  <span>Return to Quick Links Hub</span>
+                </button>
+              )}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenCvModal();
                 }}
-                className="w-full py-2.5 text-center text-xs font-semibold text-[#002147] bg-[#C49B3C] hover:bg-[#D4AF5A] rounded transition-colors flex items-center justify-center gap-2"
+                className="w-full py-2.5 text-center text-xs font-semibold text-[#002147] bg-[#C49B3C] hover:bg-[#D4AF5A] rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <FileText className="w-4 h-4" />
                 <span>View Full Academic CV</span>

@@ -21,6 +21,8 @@ export const PERSONAL_INFO = {
   location: 'Algiers, Algeria',
   email: 'abdellatif.hannachi@g.enp.edu.dz',
   secondaryEmail: 'hannachi.abdellatif.res@gmail.com',
+  whatsapp: 'https://wa.me/qr/W46T6PPELJNLI1',
+  phone: '+213 540 08 19 16',
   github: 'https://github.com/abdellatif2',
   googleScholar: 'https://scholar.google.com/citations?hl=en&user=VivrkJAAAAAJ',
   researchGate: 'https://www.researchgate.net/profile/Abdellatif-Hannachi?ev=hdr_xprf',
@@ -319,6 +321,111 @@ export const NUMERICAL_MODELS: NumericalModel[] = [
       fundamentalPeriod: 'First Six Spatial Modes'
     },
     tags: ['OpenSees', 'Cable-Stayed Bridge', 'Tsurumi Tsubasa', 'Yokohama, Japan', '3D FEM', 'Modal Analysis']
+  },
+  {
+    id: 'opensees-corrosion-rc-bridge',
+    title: 'Two-Span RC Bridge | Nonlinear Modeling of Corrosion Effects',
+    software: 'OpenSees',
+    category: 'RC Bridge & Corrosion',
+    projectContext: 'Two-Span Reinforced Concrete Bridge',
+    year: 2025,
+    objective: 'Investigate the influence of reinforcement corrosion on the seismic response of a two-span RC bridge using a nonlinear OpenSees model.',
+    description: 'Developed a nonlinear OpenSees model of a two-span reinforced concrete bridge to investigate the influence of reinforcement corrosion on its seismic response. The bridge has a reinforced concrete deck supported by circular RC piers, with nonlinear rotational springs capturing plastic hinge regions under corrosion-induced degradation.',
+    modelingHighlights: [
+      'Nonlinear OpenSees model of a two-span reinforced concrete bridge',
+      'Circular RC piers with nonlinear rotational springs at pier ends capturing plastic hinge regions',
+      'Corrosion-induced degradation incorporated via modified peak-oriented hysteresis behavior',
+      'Corrosion-dependent moment-rotation backbone curves implemented in OpenSees',
+      'Dynamic time-history analysis under earthquake ground motion excitation',
+      'Evaluation of pier hysteresis response and pier base rotation under varying corrosion levels'
+    ],
+    elementTypes: [
+      'Elastic Beam-Column Elements (RC Deck & Piers)',
+      'Zero-Length Rotational Spring Elements (Plastic Hinge Regions)'
+    ],
+    materialModels: [
+      'Modified Peak-Oriented Hysteresis Model (Corrosion-Dependent Degradation)'
+    ],
+    analysisTypes: [
+      'Modal Eigenvalue Analysis (Modes 1, 2, 3)',
+      'Nonlinear Dynamic Time-History Analysis (Earthquake Ground Motion)'
+    ],
+    keyFindings: [
+      'Effective representation of corrosion-induced degradation in nonlinear pier response',
+      'Detailed simulation of pier hysteresis behavior and base rotation under earthquake loading'
+    ],
+    images: [
+      {
+        url: '/corrosion/numerical_model.png',
+        caption: 'Numerical model of the two-span RC bridge',
+        tag: 'Numerical Model',
+        type: 'fem_model'
+      },
+      {
+        url: '/corrosion/moment_rotation_backbone.png',
+        caption: 'Corrosion-dependent moment-rotation backbone',
+        tag: 'Backbone',
+        type: 'fem_model'
+      },
+      {
+        url: '/corrosion/bridge_geometry.png',
+        caption: 'Bridge geometry',
+        tag: 'Geometry',
+        type: 'diagram'
+      },
+      {
+        url: '/corrosion/pier_steel_detailling.png',
+        caption: 'Pier reinforcement detailing',
+        tag: 'Detailing',
+        type: 'diagram'
+      },
+      {
+        url: '/corrosion/opensees_model.png',
+        caption: 'Nonlinear OpenSees model',
+        tag: 'OpenSees Model',
+        type: 'fem_model'
+      },
+      {
+        url: '/corrosion/mode1.png',
+        caption: 'Mode 1',
+        tag: 'Mode 1',
+        type: 'mode_shape'
+      },
+      {
+        url: '/corrosion/mode2.png',
+        caption: 'Mode 2',
+        tag: 'Mode 2',
+        type: 'mode_shape'
+      },
+      {
+        url: '/corrosion/mode3.png',
+        caption: 'Mode 3',
+        tag: 'Mode 3',
+        type: 'mode_shape'
+      },
+      {
+        url: '/corrosion/earthquake_time_history.png',
+        caption: 'Earthquake ground motion',
+        tag: 'Ground Motion',
+        type: 'signal'
+      },
+      {
+        url: '/corrosion/hysterisis_loop.png',
+        caption: 'Pier hysteresis response',
+        tag: 'Hysteresis',
+        type: 'result'
+      },
+      {
+        url: '/corrosion/rotation_at_pier_base.png',
+        caption: 'Pier base rotation',
+        tag: 'Base Rotation',
+        type: 'result'
+      }
+    ],
+    metrics: {
+      fundamentalPeriod: 'Modes 1, 2, 3 Evaluated'
+    },
+    tags: ['OpenSees', 'RC Bridge', 'Corrosion Modeling', 'Nonlinear Plastic Hinges', 'Hysteresis Degradation', 'Seismic Response']
   }
 ];
 
