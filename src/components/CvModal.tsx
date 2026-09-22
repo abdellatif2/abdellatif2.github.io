@@ -99,7 +99,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-950">
                   <span>Ph.D. in Earthquake Engineering & Structural Mechanics</span>
-                  <span>2022 — 2026 (Expected)</span>
+                  <span>2023 — Present</span>
                 </div>
                 <div className="text-xs text-slate-700 italic">École Nationale Polytechnique (ENP), Algiers, Algeria</div>
                 <p className="text-xs text-slate-600 mt-1">
@@ -109,11 +109,42 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
 
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-950">
-                  <span>M.Sc. in Structural Engineering (Major: Earthquake & Civil Structures)</span>
-                  <span>2020 — 2022</span>
+                  <span>Master's Degree in Civil Engineering (Earthquake & Structural Engineering)</span>
+                  <span>2019 — 2022</span>
                 </div>
-                <div className="text-xs text-slate-700 italic">École Nationale Polytechnique (ENP), Algiers, Algeria (Valedictorian)</div>
+                <div className="text-xs text-slate-700 italic">École Nationale Polytechnique (ENP), Algiers, Algeria</div>
               </div>
+
+              <div>
+                <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-950">
+                  <span>Preparatory Classes in Science and Technology</span>
+                  <span>2017 — 2019</span>
+                </div>
+                <div className="text-xs text-slate-700 italic">École Nationale Polytechnique (ENP), Algiers, Algeria</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Professional & Research Experience */}
+          <div className="space-y-4 print-break-inside-avoid">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-1 font-mono">
+              Professional & Research Experience
+            </h2>
+            <div className="space-y-3">
+              {EXPERIENCES.map((exp) => (
+                <div key={exp.id} className="text-xs text-slate-800 space-y-1">
+                  <div className="flex justify-between font-bold text-slate-950">
+                    <span>{exp.title}</span>
+                    <span className="font-mono text-[11px] font-normal">{exp.period}</span>
+                  </div>
+                  <div className="text-xs text-slate-700 italic">{exp.organization} · {exp.location}</div>
+                  <ul className="list-disc pl-4 space-y-0.5 text-slate-600">
+                    {exp.description.map((bullet, i) => (
+                      <li key={i}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
 

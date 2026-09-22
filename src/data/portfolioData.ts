@@ -479,18 +479,6 @@ export const PUBLICATIONS: Publication[] = [
     abstract: '',
     tags: [],
     bibtex: ''
-  },
-  {
-    id: 'pub-2025-enp-sensor-hq',
-    title: 'Hybrid AI-based sensor optimization for structural health monitoring of multi-story buildings — case study: HQ tower R+12',
-    authors: ['M. Boukharouba', 'Nouredine Bourahla', 'Abdellatif Hannachi'],
-    venue: 'Research Proceedings & Structural Dynamics Technical Report, École Nationale Polytechnique (ENP), Algiers',
-    year: 2025,
-    type: 'conference',
-    scholarUrl: 'https://www.researchgate.net/profile/Abdellatif-Hannachi',
-    abstract: '',
-    tags: [],
-    bibtex: ''
   }
 ];
 
@@ -513,9 +501,9 @@ export const EXPERIENCES: ExperienceItem[] = [
     id: 'structural-engineer',
     title: 'Structural Engineer',
     role: 'Structural Engineer',
-    organization: 'Structural Engineering Consulting Office',
+    organization: 'SCTE (Société de Consulting & Testing Engineering)',
     location: 'Algiers, Algeria',
-    period: '2021 — 2024',
+    period: '2023 — 2025',
     type: 'industry',
     description: [
       'Designed reinforced concrete structures for residential and industrial buildings, including structural analysis and seismic design.',
@@ -605,7 +593,7 @@ export const NEWS_ITEMS: NewsItem[] = [
   },
   {
     id: 'news-2',
-    date: 'December 2025',
+    date: '10–11 December 2025',
     title: 'Presented Automated Shear Wall Optimization at ICRCE 2025',
     category: 'Conference',
     description: 'Presented "AUTOMATED OPTIMIZATION OF SHEAR WALL DESIGN UNDER THE NEW RPA2024 PROVISIONS", reformulating RC shear wall boundary elements design via ETABS API automation.',
@@ -664,7 +652,7 @@ export const COMMUNICATIONS: ScientificCommunication[] = [
     event: 'The First International Conference on Recent Challenges in Civil Engineering and Environmental Sustainability',
     type: 'Oral Presentation',
     location: 'Djelfa, Algeria',
-    date: 'December 2025'
+    date: '10–11 December 2025'
   }
 ];
 
@@ -707,21 +695,21 @@ export const EDUCATION_HISTORY: EducationItem[] = [
     degree: 'Ph.D. in Earthquake Engineering',
     institution: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2022 — Present'
+    period: '2023 — Present'
   },
   {
     id: 'edu-master',
     degree: "Master's Degree in Civil Engineering",
     institution: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2017 — 2022'
+    period: '2019 — 2022'
   },
   {
     id: 'edu-preparatory',
     degree: 'Preparatory Classes in Science and Technology',
     institution: 'École Nationale Polytechnique (ENP)',
     location: 'Algiers, Algeria',
-    period: '2015 — 2017'
+    period: '2017 — 2019'
   }
 ];
 
